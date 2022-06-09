@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class IndexController extends Controller
 {
@@ -48,9 +49,10 @@ class IndexController extends Controller
         if($file){ 
             
             Storage::delete('/public/upload/user_image/'.$data->profile_photo_path);
-            
+            $img = Image::make($file);
+            $img->resize(300,200);
             $name = $file->getClientOriginalName();
-            $path = $request->file('image')->storeAs('upload/user_image',$name,'public'); 
+            $img->save('storage/upload/user_image/'.$name); 
             $data->update([
                 'name' => $request->name,
                 'email'=>$request->email,

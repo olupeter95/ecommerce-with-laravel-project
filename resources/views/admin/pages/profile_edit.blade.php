@@ -57,7 +57,7 @@
                         <div class="col-md-6">
                         <div class="form-group">
                             <img id="showimage" src="{{ (!empty($admins->profile_photo_path)) ? 
-                              url('storage/upload/admin_image/'.$admins->profile_photo_path) : url('upload/no_image.jpg')  }}" 
+                              url('storage/upload/admin_image/'.$admins->profile_photo_path) : url('storage/upload/no_image.jpg')  }}" 
                              alt="User Avatar" alt="" style="width:100px; height:100px">
                             </div>
                         </div>

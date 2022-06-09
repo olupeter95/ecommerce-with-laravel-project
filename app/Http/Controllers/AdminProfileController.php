@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class AdminProfileController extends Controller
 {
-    public function Profile($id){
 
+    
+
+    public function Profile($id){
         $admins = Admin::find($id);
         return view('admin.pages.profile',compact('admins'));
     }
@@ -40,8 +44,10 @@ class AdminProfileController extends Controller
         $admins = Admin::find($id);
         if($file){ 
             Storage::delete('/public/upload/admin_image/'.$admins->profile_photo_path);
+            $img = Image::make($file);
+            $img->resize(300,200);
             $name = $file->getClientOriginalName();
-            $path = $request->file('profile_photo_path')->storeAs('upload/admin_image',$name,'public'); 
+            $img->save('storage/upload/admin_image/'.$name); 
             $update = Admin::find($id)->update([
                 'name' => $request->name,
                 'email'=>$request->email,
@@ -67,7 +73,8 @@ class AdminProfileController extends Controller
         }
     }
 
-    public function PasswordChange($id){
+    public function PasswordChange($id)
+    {
         $admins = Admin::find($id);
         return view('admin.admin_changepwd',compact('admins'));
     }

@@ -9,7 +9,7 @@
 		  </li>
 		</ul>
     </div>
-	  &copy; 2020 <a href="#">Psd to Html Expert</a>. All Rights Reserved.
+	  &copy; <?php echo date('Y');?> <a href="#">Rocktechnology</a>. All Rights Reserved.
   </footer>
 
   <!-- Control Sidebar -->

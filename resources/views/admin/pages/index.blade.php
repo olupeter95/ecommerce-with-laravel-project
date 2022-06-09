@@ -312,6 +312,6 @@
 					</div>  
 				</div>
 			</div>
-		</section>
+</section>
 		<!-- /.content -->
 @endsection
