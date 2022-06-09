@@ -64,7 +64,7 @@ $route = Route::current()->getName();
           </a>
           <ul class="treeview-menu">
             <li><a href="{{  route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
-            <li><a href="{{  route('manage.product') }}"><i class="ti-more"></i>Manage Product</a></li>
+            <li><a href="{{  route('view.product') }}"><i class="ti-more"></i>Manage Product</a></li>
           </ul>
         </li>		  
 		 

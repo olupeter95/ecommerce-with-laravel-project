@@ -80,7 +80,7 @@ class ProductController extends Controller
             'short_desc_fr'=>$request->short_desc_fr,
             'description_en'=>$request->description_en,
             'description_fr'=>$request->description_fr,
-            'product_thumbnail'=>$request->product_thumbnail,
+            'product_thumbnail'=>$name,
             'featured'=>$request->featured,
             'hot_deals'=>$request->hot_deals,
             'special_offer'=>$request->special_offer,
@@ -111,7 +111,14 @@ class ProductController extends Controller
             'message' => 'product added successfully',
             'alert-type'=> 'success'
          );
-         return redirect()->back()->with($notification);
+         return redirect()->route('view.product')->with($notification);
 
+    }
+
+    public function viewProduct(){
+        $id = Auth::id();
+        $admins = Admin::find($id);
+        $product = Product::latest()->get();
+        return view('admin.product.view',compact('product','admins'));
     }
 }
