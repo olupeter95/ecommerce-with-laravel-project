@@ -109,5 +109,5 @@ Route::get('/sub-subcategory/ajax/{subcategory_id}',[SubSubCategoryController::c
 Route::prefix('product')->group(function(){
     Route::get('/all',[ProductController::class,'index'])->name('add.product')->middleware('auth:admin');
     Route::get('/manage',[ProductController::class,'ManageProduct'])->name('manage.product')->middleware('auth:admin');
-    Route::post('/new',[ProductController::class,'addProduct'])->name('add.product');
+    Route::post('/store',[ProductController::class,'addProduct'])->name('store.product');
 });

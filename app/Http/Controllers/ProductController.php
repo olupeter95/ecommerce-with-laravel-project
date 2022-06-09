@@ -8,6 +8,8 @@ use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\Brand;
 use App\Models\Admin;
+use App\Models\Product;
+use App\Models\MultiImage;
 use Auth;
 use Image;
 use Carbon\Carbon;
@@ -55,7 +57,7 @@ class ProductController extends Controller
         $name = $file->getClientOriginalName();
         $img->save('storage/upload/product/thumbnail/'.$name);
 
-        $prdouct = Product::insert([
+        $prdouct_id = Product::insertGetId([
             'brand_id'=>$request->brand_id,
             'category_id'=>$request->category_id,
             'subcategory_id'=>$request->subcategory_id,
@@ -86,5 +88,30 @@ class ProductController extends Controller
             'status'=>1,
             'created_at' => Carbon::now(), 
         ]);
+
+        ////// Multiple Image upload //////
+        $files = $request->file('photo_name');
+        foreach($files as $imgs){
+            $imgs = Image::make($file);
+            $imgs->resize(917,1000);
+            $names = $file->getClientOriginalName();
+            $imgs->save('storage/upload/product/image/'.$name);
+
+            MultiImage::insert([
+                'product_id'=>$prdouct_id,
+                'photo_name'=>$names,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+        
+
+        ////// End Multiple Image upload //////
+
+        $notification = array(
+            'message' => 'product added successfully',
+            'alert-type'=> 'success'
+         );
+         return redirect()->back()->with($notification);
+
     }
 }

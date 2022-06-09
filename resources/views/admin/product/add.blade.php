@@ -7,7 +7,7 @@
                 <div class="card">
                     <h3 class="card-header">Add Product</h3>
                     <div class="card-body">
-                        <form method="post" action="{{ route('add.product') }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('store.product') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row"><!--- start first row --->
                             <div class="col-md-4">
@@ -212,7 +212,7 @@
                             <div class="col-md-4">
                             <div class="form-group">
                                 <label for="category">Multiple Image</label>
-                                <input type="file"  name="photo_name[]" class="form-control" multiple
+                                <input type="file"  name="photo_name[]" class="form-control" multiple=""
                                 id="multiImg">
                                 @error('photo_name')
                                 <span class="text-danger">{{$message}}</span>
