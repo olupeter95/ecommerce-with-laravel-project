@@ -32,8 +32,8 @@
                             <td>{{$prod->product_qty}}</td>
                             
                             <td>
-                                <a href="" title="Edit Data" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                <a href="" id="delete" title="Delete Data" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a href="{{ route('edit.product',$prod->id) }}" title="Edit Data" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('delete.product',$prod->id) }}" id="delete" title="Delete Data" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach

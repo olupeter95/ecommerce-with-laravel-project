@@ -110,4 +110,6 @@ Route::prefix('product')->group(function(){
     Route::get('/all',[ProductController::class,'index'])->name('add.product')->middleware('auth:admin');
     Route::get('/manage',[ProductController::class,'viewProduct'])->name('view.product')->middleware('auth:admin');
     Route::post('/store',[ProductController::class,'addProduct'])->name('store.product');
+    Route::get('/edit/{id}',[ProductController::class,'editProduct'])->name('edit.product')->middleware('auth:admin');
+    Route::get('/delete//{id}',[ProductController::class,'delProduct'])->name('delete.product');
 });

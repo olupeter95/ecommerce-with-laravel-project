@@ -121,4 +121,19 @@ class ProductController extends Controller
         $product = Product::latest()->get();
         return view('admin.product.view',compact('product','admins'));
     }
+
+    public function editProduct($id){
+        $aid = Auth::id();
+        $admins = Admin::find($aid);
+        $products = Product::findorFail($id);
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategories = SubCategory::latest()->get();
+        $subsubcategories = SubSubCategory::latest()->get();
+        return view('admin.product.edit',compact('admins','products','brands','categories','subcategories',
+        'subsubcategories'));
+    }
+
+
+    
 }
