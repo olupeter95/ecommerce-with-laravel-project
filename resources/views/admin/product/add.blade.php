@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">SubCategory</label>
+                                <label for="subcategory_id">SubCategory</label>
                                 <select name="subcategory_id" class="form-control">
                                 <option value="" selected="" disabled>Select SubCategory</option>
                                    
@@ -55,7 +55,7 @@
                         <div class="row"><!---start second row --->
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">SubSubCategory</label>
+                                <label for="subsubcategory_id">SubSubCategory</label>
                                 <select name="subsubcategory_id" class="form-control">
                                 <option value="" selected="">Select SubSubCategory</option>
                                     
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Name En</label>
+                                <label for="product_name_en">Product Name En</label>
                                 <input type="text" class="form-control" name="product_name_en" >
                                 @error('product_name_en')
                                 <span class="text-danger">{{$message}}</span>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Name Fr</label>
+                                <label for="product_name_fr">Product Name Fr</label>
                                 <input type="text" class="form-control" name="product_name_fr" >
                                 @error('product_name_fr')
                                 <span class="text-danger">{{$message}}</span>
@@ -90,7 +90,7 @@
                         <div class="row"><!---start third row --->
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Code</label>
+                                <label for="product_code">Product Code</label>
                                 <input type="text" class="form-control" name="product_code" >
                                 @error('product_code')
                                 <span class="text-danger">{{$message}}</span>
@@ -99,7 +99,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Quantity</label>
+                                <label for="product_qty">Product Quantity</label>
                                 <input type="text" class="form-control" name="product_qty" >
                                 @error('product_qty')
                                 <span class="text-danger">{{$message}}</span>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Tags En</label>
+                                <label for="product_tags_en">Product Tags En</label>
                                 <input type="text" value="Lorem,Ipsum,Amet" data-role="tagsinput" 
                                 name="product_tags_en"  class="form-control" />
                                 @error('product_tags_en')
@@ -124,7 +124,7 @@
                         <div class="row"><!---start fourth row --->
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Tags Fr</label>
+                                <label for="product_tags_fr">Product Tags Fr</label>
                                 <input type="text" value="Lorem,Ipsum,Amet" data-role="tagsinput"
                                  name="product_tags_fr"  class="form-control" />
                                 @error('product_tags_fr')
@@ -134,7 +134,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Size En</label>
+                                <label for="product_size_en">Product Size En</label>
                                 <input type="text" value="small,medium,large" data-role="tagsinput" 
                                 name="product_size_en"   class="form-control" />
                                 @error('product_tags_en')
@@ -144,7 +144,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Size Fr</label>
+                                <label for="product_size_fr">Product Size Fr</label>
                                 <input type="text" value="Lorem,Ipsum,Amet" data-role="tagsinput" 
                                 name="product_size_fr"  class="form-control" />
                                 @error('product_size_en')
@@ -158,7 +158,7 @@
                         <div class="row"><!---start fifth row --->
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Color En</label>
+                                <label for="product_color_en">Product Color En</label>
                                 <input type="text" value="Blue,Red,Black" data-role="tagsinput" name="product_color_en" 
                                 class="form-control" />
                                 @error('product_color_en')
@@ -168,7 +168,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Product Color Fr</label>
+                                <label for="product_color_fr">Product Color Fr</label>
                                 <input type="text" value="sac,orange,blur" data-role="tagsinput" 
                                 name="product_color_fr" class="form-control" />
                                 @error('product_color_fr')
@@ -178,7 +178,7 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Selling Price</label>
+                                <label for="selling_price">Selling Price</label>
                                 <input type="text"  name="selling_price" class="form-control" />
                                 @error('selling_price')
                                 <span class="text-danger">{{$message}}</span>
@@ -200,23 +200,25 @@
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Main Thumbnail</label>
+                                <label for="thumbnail">Main Thumbnail</label>
                                 <input type="file"  name="product_thumbnail" class="form-control" 
                                 onChange="mainThamUrl(this)">
                                 @error('product_thumbnail')
                                 <span class="text-danger">{{$message}}</span>
-                                <img src=""  id="mainThmb">
                                 @enderror
+                                <br>
+                                <img src=""  id="mainThmb">
                             </div>
                             </div>
                             <div class="col-md-4">
                             <div class="form-group">
-                                <label for="category">Multiple Image</label>
+                                <label for="multiImg">Multiple Image</label>
                                 <input type="file"  name="photo_name[]" class="form-control" multiple=""
                                 id="multiImg">
                                 @error('photo_name')
                                 <span class="text-danger">{{$message}}</span>
                                 @enderror
+                                <br>
                                 <div class="row" id="preview_img">
 
                                 </div>
@@ -274,38 +276,37 @@
                         <hr>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <fieldset>
-                                <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                                name="hot_deals" value="1">
-                                <label class="form-check-label" for="exampleCheck1">Hot Deals</label>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck2"
-                                name="featured" value="1">
-                                <label class="form-check-label" for="exampleCheck1">Featured</label>
-                                </div>
-                                </fieldset>
-                            
+                         <div class="col-md-6">
+                             <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" name="hot_deals"
+                                 id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                Hot Deals
+                                </label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" name="featured"
+                                 id="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2">
+                                Featured
+                                </label>
+                            </div>
+                        </div>
                         <div class="col-md-6">
-                            <fieldset>
-                                <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck3" 
-                                name="special_offer" value="1">
-                                <label class="form-check-label" for="exampleCheck1">Special Offer</label>
-                                </div>
-                          </fieldset>
-                          <fieldset>
-                                <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck4" 
-                                name="special_deals" value="1">
-                                <label class="form-check-label" for="exampleCheck1">Special Deals</label>
-                                </div>
-                            </fieldset>
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" name="special_offer"
+                        id="defaultCheck3">
+                        <label class="form-check-label" for="defaultCheck3">
+                        Special Offer
+                        </label>
+                        </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" name="special_deals"
+                        id="defaultCheck4">
+                        <label class="form-check-label" for="defaultCheck4">
+                        Special Deals
+                        </label>
+                        </div>
 
                         </div>
                             

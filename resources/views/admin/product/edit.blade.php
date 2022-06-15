@@ -268,42 +268,42 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <fieldset>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1"
-                            name="hot_deals" value="1"{{$products->hot_deals == 1 ? 'checked' : '' }}>
-                            <label class="form-check-label" for="exampleCheck1">Hot Deals</label>
+
+                        <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{$products->hot_deals}}" name="hot_deals"
+                                 id="defaultCheck1" {{ $products->hot_deals == 1 ? 'checked' : ''}}>
+                                <label class="form-check-label" for="defaultCheck1">
+                                Hot Deals
+                                </label>
                             </div>
-                            </fieldset>
-                            <fieldset>
                             <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck2"
-                            name="featured" value="1"{{ $products->featured == 1 ? 'checked' : '' }}>
-                            <label class="form-check-label" for="exampleCheck1">Featured</label>
+                                <input class="form-check-input" type="checkbox" value="{{$products->featured}}" name="featured"
+                                 id="defaultCheck2" {{ $products->featured == 1 ? 'checked' : ''}}>
+                                <label class="form-check-label" for="defaultCheck2">
+                                Featured
+                                </label>
                             </div>
-                            </fieldset>
                         
                         </div>
                     <div class="col-md-6">
-                        <fieldset>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck3" 
-                            name="special_offer" value="1"{{ $products->special_offer == 1 ? 'checked': '' }}>
-                            <label class="form-check-label" for="exampleCheck1">Special Offer</label>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck4" 
-                            name="special_deals" value="1" {{ $products->special_deals == 1 ? 'checked': '' }}>
-                            <label class="form-check-label" for="exampleCheck1">Special Deals</label>
-                            </div>
-                        </fieldset>
-
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{$products->special_offer}}" name="special_offer"
+                        id="defaultCheck3" {{ $products->special_offer == 1 ? 'checked' : ''}}>
+                        <label class="form-check-label" for="defaultCheck3">
+                        Special Offer
+                        </label>
+                        </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{$products->special_deals}}" name="special_deals"
+                        id="defaultCheck4" {{ $products->special_deals == 1 ? 'checked' : ''}}>
+                        <label class="form-check-label" for="defaultCheck4">
+                        Special Deals
+                        </label>
+                        </div>
                     </div>
                         
                     </div>
-                    <button type="submit" class="btn btn-info ">Add Product</button>
+                    <button type="submit" class="btn btn-info ">Update Product Data</button>
 
                     </form>
                     
@@ -311,7 +311,112 @@
             </div><!--- end card --->
         </div><!--- end col --->
 </div> <!--- end row --->
+</section>
 
+
+<!-------Multiple Image Update area--------->
+<section class="content">
+    <div class="row">
+
+
+
+<div class="col-md-12">
+  <div class="box bl-3 border-primary">
+    <div class="box-header">
+      <h4 class="box-title"> <strong>Product Multiple Image Update</strong></h4>
+    </div>
+
+    <form action="{{route('update.product-img')}}" enctype="multipart/form-data" method="post">
+        @csrf
+        <div class="row row-sm ">
+            @foreach($multiImg as $img)
+            <div class="col-md-3 p-4">
+            <div class="card" style="width: 18rem;">
+             <img src="{{ asset('storage/upload/product/image/'.$img->photo_name) }}" 
+                class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="" id="delete" title="Delete Data" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash"></i></a>
+            </h5>
+            <p class="card-text">
+                <div class="form-group">
+                    <label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
+                    <input type="file" class="form-group" name="photo_name[{{$img->id}}]">
+                </div>
+            </p>
+           
+        </div>
+    </div>
+                
+            </div>
+            @endforeach
+        </div>
+        <div class="text-xs-right px-2">
+            <input type="submit" class="btn btn-primary" value="Update Image">
+        </div>
+        <br>
+    </form>
+    
+  </div>
+ </div>
+</div>
+</section>
+<!-------End Multiple Image Update area--------->
+
+
+
+<!-------Thumbnail  Image Update area--------->
+<section class="content">
+    <div class="row">
+
+
+
+<div class="col-md-12">
+  <div class="box bl-3 border-primary">
+    <div class="box-header">
+      <h4 class="box-title"> <strong>Product Thumbnail  Image Update</strong></h4>
+    </div>
+
+    <form action="{{route('update.product-thumbnail')}}" enctype="multipart/form-data" method="post">
+        @csrf
+        <input type="hidden" name="id" value="{{ $products->id }}">
+        <input type="hidden" name="old_img" value="{{ $products->product_thumbnail }}">
+        <div class="row row-sm ">
+            <div class="col-md-3 p-4">
+            <div class="card" style="width: 18rem;">
+             <img src="{{ asset('storage/upload/product/thumbnail/'.$products->product_thumbnail) }}" 
+                class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">
+                <div class="form-group">
+                    <label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
+                    <input type="file"  name="product_thumbnail" class="form-control" 
+                                onChange="mainThamUrl(this)">
+                                @error('product_thumbnail')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                                <br>
+                                <img src=""  id="mainThmb">
+                </div>
+            </p>
+           
+        </div>
+    </div>
+                
+            </div>
+        </div>
+        <div class="text-xs-right px-2">
+            <input type="submit" class="btn btn-primary" value="Update Image">
+        </div>
+        <br>
+    </form>
+    
+  </div>
+ </div>
+</div>
+</section>
+<!-------End Thumbnail Image Update area--------->
 
 <script type="text/javascript">
 function mainThamUrl(input){
@@ -324,37 +429,4 @@ function mainThamUrl(input){
     }
 }	
 </script>
-
-<script>
-
-$(document).ready(function(){
-$('#multiImg').on('change', function(){ //on file input change
-    if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-    {
-        var data = $(this)[0].files; //this file data
-        
-        $.each(data, function(index, file){ //loop though each file
-            if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
-                var fRead = new FileReader(); //new filereader
-                fRead.onload = (function(file){ //trigger function on successful read
-                return function(e) {
-                    var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(80)
-                .height(80); //create image element 
-                    $('#preview_img').append(img); //append image to output element
-                };
-                })(file);
-                fRead.readAsDataURL(file); //URL representing the file's data.
-            }
-        });
-        
-    }else{
-        alert("Your browser doesn't support File API!"); //if File API is absent
-    }
-});
-});
-
-</script>
-
-</section>
-
 @endsection 

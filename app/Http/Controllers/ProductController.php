@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 
+
 class ProductController extends Controller
 {
     public function index(){
@@ -95,7 +96,7 @@ class ProductController extends Controller
             $imgs = Image::make($file);
             $imgs->resize(917,1000);
             $names = $file->getClientOriginalName();
-            $imgs->save('storage/upload/product/image/'.$name);
+            $imgs->save('storage/upload/product/image/'.$names);
 
             MultiImage::insert([
                 'product_id'=>$prdouct_id,
@@ -126,12 +127,13 @@ class ProductController extends Controller
         $aid = Auth::id();
         $admins = Admin::find($aid);
         $products = Product::findorFail($id);
+        $multiImg = MultiImage::Where('product_id',$id)->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
         $subsubcategories = SubSubCategory::latest()->get();
         return view('admin.product.edit',compact('admins','products','brands','categories','subcategories',
-        'subsubcategories'));
+        'subsubcategories','multiImg'));
     }
 
 
@@ -197,4 +199,49 @@ class ProductController extends Controller
          return redirect()->route('view.product')->with($notification);
         
     }
+
+    public function updateProductImg(Request $request){
+        $img_id = $request->photo_name;
+        foreach($img_id as $id => $img){
+            $imgDel = MultiImage::find($id);
+            Storage::delete('/public/product/image/'.$imgDel->photo_name);            
+            $img_name = Image::make($img);
+            $img_name->resize(917,1000);
+            $names_img = $img->getClientOriginalName();
+            $img_name->save('storage/upload/product/image/'.$names_img);
+
+            MultiImage::Where('id',$id)->update([
+                
+                'photo_name'=>$names_img,
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+        $notification = array(
+            'message' => 'product image updated successfully',
+            'alert-type'=> 'success'
+         );
+         return redirect()->back()->with($notification);
+    }
+
+    public function updateProductThumbnail(Request $request){
+        $pro_id = $request->id;
+        $old_img = $request->old_img;
+        $thumb_img = $request->file('product_thumbnail');
+        Storage::delete('/public/product/thumbnail/'.$old_img);
+        $thumb = Image::make($thumb_img); 
+        $thumb->resize(917,100);
+        $thumb_name =  $thumb_img->getClientOriginalName(); 
+        $thumb->save('storage/upload/product/thumbnail/'.$thumb_name);
+        Product::findorFail($pro_id)->update([
+            'product_thumbnail'=>$thumb_name,
+            'updated_at'=> Carbon::now()
+        ]);   
+        $notification = array(
+            'message' => 'product thumbnail updated successfully',
+            'alert-type'=> 'success'
+         );
+         return redirect()->back()->with($notification);    
+    }
+  
+  
 }
