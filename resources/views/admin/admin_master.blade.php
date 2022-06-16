@@ -91,7 +91,7 @@
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">  
-         $(document).on("click", "#delete", function(e){
+         $(document).on('click', '#delete', function(e){
              e.preventDefault();
              var link = $(this).attr("href");
              Swal.fire({
@@ -104,6 +104,7 @@
                       confirmButtonText: 'Yes, delete it!'
                     }).then((result) => {
                       if (result.isConfirmed) {
+                        window.location.href = link
                         Swal.fire(
                           'Deleted!',
                           'Your file has been deleted.',

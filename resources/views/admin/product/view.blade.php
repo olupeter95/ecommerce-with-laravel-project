@@ -17,7 +17,8 @@
                         <tr>
                             <th>Image</th>
                             <th>Product Name EN</th>
-                            <th>Product Name Fr</th> 
+                            <th>Product Price</th> 
+                            <th>Product Discount</th> 
                             <th>Product Quantity</th>
                             <th>Status</th> 
                             <th >Actions</th>
@@ -29,7 +30,18 @@
                         <tr>
                             <td><img src="{{asset('storage/upload/product/thumbnail/'.$prod->product_thumbnail)}}" alt="" style="width:60px;height:60px"></td>
                             <td>{{$prod->product_name_en}}</td>
-                            <td>{{$prod->product_name_fr}}</td>
+                            <td>{{$prod->selling_price}}</td>
+                            <td>
+                                @if($prod->discount_price == NULL)
+                                <span class="badge badge-pill badge-danger">No Discount</span>
+                                @else
+                                @php
+                                  $amount = $prod->selling_price - $prod->discount_price ;
+                                  $percentage = ($amount / $prod->selling_price) * 100;
+                                @endphp
+                                <span class="badge badge-pill badge-success">{{ round($percentage).'%'}}</span>
+                                @endif
+                            </td>
                             <td>{{$prod->product_qty}}</td>
                             <td>
                                 @if($prod->status == 1)
@@ -38,14 +50,14 @@
                                 <span class="badge badge-pill badge-danger">Inactive</span>
                                 @endif
                             </td>
-                            <td width="40%">
-                            <a href="{{ route('edit.product',$prod->id) }}" title="View Details" class="btn btn-primary">
+                            <td width="30%">
+                            <a href="{{ route('product.details',$prod->id) }}" title="View Details" class="btn btn-primary">
                                 <i class="fa fa-eye"></i>
                             </a>
                                 <a href="{{ route('edit.product',$prod->id) }}" title="Edit Data" class="btn btn-info">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="" id="delete" title="Delete Data" class="btn btn-danger">
+                                <a href="{{ route('product.delete',$prod->id) }}" id="delete" title="Delete Data" class="btn btn-danger">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </a>
                                 @if($prod->status == 1)

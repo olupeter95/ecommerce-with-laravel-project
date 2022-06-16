@@ -274,4 +274,27 @@ class ProductController extends Controller
    return redirect()->back()->with($notification);
    }
 
+   public function productDetails($id){
+     $aid = Auth::id();
+     $admins = Admin::find($aid);
+     $prods = Product::findorFail($id);
+     return view('admin.product.product-details',compact('admins','prods'));
+   }
+
+   public function delProduct($id){
+    $prods = Product::findorFail($id);
+    Storage::delete('public/product/thumbnail/'.$prods->product_thumbnail);
+    Product::findorFail($id)->delete();
+    $image = MultiImage::where('product_id',$id)->get();
+    foreach($image as $imgdel){
+        Storage::delete('public/product/image/'.$imgdel->photo_name);
+        MultiImage::where('product_id',$id)->delete();
+    }
+    $notification = array(
+        'message' => 'Product deleted successfully',
+        'alert-type' => 'success'
+    );
+ 
+    return redirect()->back()->with($notification);
+   }
 }
