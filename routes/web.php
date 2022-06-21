@@ -9,6 +9,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
+use App\Http\Controllers\SliderController;
 use App\Models\Admin;
 use App\Models\User;
 
@@ -120,3 +121,17 @@ Route::prefix('product')->group(function(){
     Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active');
     Route::get('/details/{id}',[ProductController::class,'productDetails'])->name('product.details')->middleware('auth:admin');
 });
+/////end admin product///
+
+
+//Admin slider route///
+Route::prefix('slider')->group(function(){
+    Route::get('/manage',[SliderController::class,'viewSlider'])->name('view.slider')->middleware('auth:admin');
+    Route::post('/store',[SliderController::class,'storeSlider'])->name('store.slider');
+    Route::get('/edit/{id}',[SliderController::class,'editSlider'])->name('edit.slider')->middleware('auth:admin');
+    Route::get('/delete/{id}',[SliderController::class,'delSlider'])->name('delete.slider');
+    Route::post('/update',[SliderController::class,'updateSlider'])->name('update.slider');
+    Route::get('/inactive/{id}',[SliderController::class,'inactiveSlider'])->name('slider.inactive');
+    Route::get('/active/{id}',[SliderController::class,'activeSlider'])->name('slider.active');
+});
+/////end slider route///

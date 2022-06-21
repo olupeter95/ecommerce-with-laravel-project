@@ -66,7 +66,20 @@ $route = Route::current()->getName();
             <li><a href="{{  route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
             <li><a href="{{  route('view.product') }}"><i class="ti-more"></i>Manage Product</a></li>
           </ul>
-        </li>		  
+        </li>		 
+        
+        
+        <li class="treeview {{ ($prefix == '/product') ? 'active':'' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Slider</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{  route('view.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+          </ul>
+        </li>		
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  

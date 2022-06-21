@@ -67,16 +67,12 @@ public function update(Request $request){
     $validateData = $request->validate([
         'brand_name_en'=>'required|max:255',
         'brand_name_fr'=>'required|max:255',
-        'brand_image'=>'required|max:2000'
     ],
     [
         'brand_name_en.required'=>'Brand Name En is required',
         'brand_name_en.max'=>'exceed maximum number of character',
         'brand_name_fr.required'=>'Brand Name Fr is required',
-        'brand_name_fr.max'=>'exceed maximum number of character',
-        'brand_image.required'=>'Brand Image is required',
-        'brand_image.mimes'=>'only accept jpg,jpeg and png file type',
-        'brand_image.max'=>'Maximum file upload file size, is 2mb',
+        'brand_name_fr.max'=>'exceed maximum number of character',    
     ]);    
     
     $id = $request->id;
