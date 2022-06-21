@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\SubSubCategoryController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\frontend\LanguageController;
 use App\Models\Admin;
 use App\Models\User;
 
@@ -26,39 +27,13 @@ use App\Models\User;
 */
 
 
-
+/*-----------------User ROUTE------------------*/
 Route::get('/', [IndexController::class,'index'])->name('home');
 Route::get('logout/user', [IndexController::class,'UserLogout'])->name('user.logout');
 Route::get('profile/user', [IndexController::class,'UserProfile'])->name('user.profile');
 Route::post('profile/user/update', [IndexController::class,'UserProfileUpdate'])->name('user.profile.update');
 Route::get('change/user/pwd', [IndexController::class,'ChangePassword'])->name('change.user.password');
 Route::post('user/update/password', [IndexController::class,'UpdatePassword'])->name('user.password.update');
-/*-----------------ADMiN ROUTE------------------*/
-Route::middleware('admin:admin')->group(function (){
-    Route::get('admin/login',[AdminController::class,'loginForm']);
-    Route::post('admin/login',[AdminController::class,'store'])->name('admin.login');
-    
-   
-});
-
-Route::middleware(['auth:sanctum,admin',config('jetstream.auth_session'),'verified'
-])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        $id = Auth::id();
-        $admins = Admin::find($id);
-        return view('admin.pages.index',compact('admins'));
-    })->name('admin.body')->middleware('auth:admin');
-});
-
-Route::get('admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
-Route::get('admin/profile/{id}',[AdminProfileController::class,'Profile'])->name('admin.profile');
-Route::get('admin/profile/edit/{id}',[AdminProfileController::class,'ProfileEdit'])->name('admin.profile.edit');
-Route::post('admin/profile/update/{id}',[AdminProfileController::class,'ProfileUpdate'])->name('admin.profile.update');
-Route::get('admin/change/password/{id}',[AdminProfileController::class,'PasswordChange'])->name('admin.pwd.reset');
-Route::post('admin/create/newpassword/{id}',[AdminProfileController::class,'NewPwd'])->name('admin.change.password');
-/*-----------------END ADMiN ROUTE--------------*/
-
-
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
@@ -67,6 +42,34 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'
         return view('dashboard',compact('user'));
     })->name('dashboard');
 });
+/*-----------------End User ROUTE------------------*/
+
+/*-----------------ADMiN ROUTE------------------*/
+Route::middleware('admin:admin')->group(function (){
+    Route::get('admin/login',[AdminController::class,'loginForm']);
+    Route::post('admin/login',[AdminController::class,'store'])->name('admin.login');
+    
+});
+Route::middleware(['auth:admin'])->group(function(){
+Route::middleware(['auth:sanctum,admin',config('jetstream.auth_session'),'verified'
+])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        $id = Auth::id();
+        $admins = Admin::find($id);
+        return view('admin.pages.index',compact('admins'));
+    })->name('admin.body');
+});
+Route::get('admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
+Route::get('admin/profile/{id}',[AdminProfileController::class,'Profile'])->name('admin.profile');
+Route::get('admin/profile/edit/{id}',[AdminProfileController::class,'ProfileEdit'])->name('admin.profile.edit');
+Route::post('admin/profile/update/{id}',[AdminProfileController::class,'ProfileUpdate'])->name('admin.profile.update');
+Route::get('admin/change/password/{id}',[AdminProfileController::class,'PasswordChange'])->name('admin.pwd.reset');
+Route::post('admin/create/newpassword/{id}',[AdminProfileController::class,'NewPwd'])->name('admin.change.password');
+});
+/*-----------------END ADMiN ROUTE--------------*/
+
+
+
 
 
 
@@ -135,3 +138,9 @@ Route::prefix('slider')->group(function(){
     Route::get('/active/{id}',[SliderController::class,'activeSlider'])->name('slider.active');
 });
 /////end slider route///
+
+
+////All frontend route /////
+Route::get('/language/english',[LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/french',[LanguageController::class, 'French'])->name('french.language');
+////End All frontend route /////
