@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Image;
+use App\Models\Slider;
 
 class IndexController extends Controller
 {
     //
     public function index(){
-        return view('layouts.pages.home');
+        $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('layouts.pages.home',compact('sliders'));
     }
 
     public function UserLogout(){
