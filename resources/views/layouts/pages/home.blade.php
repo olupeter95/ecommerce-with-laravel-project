@@ -126,8 +126,17 @@
                             <img  src="{{asset('storage/upload/product/thumbnail/'.$prod->product_thumbnail)}}" alt="">
                           </a> </div>
                           <!-- /.image -->
-                          
-                          <div class="tag new"><span>new</span></div>
+                          @php 
+                          $amount = $prod->selling_price - $prod->discount_price;
+                          $discount = ($amount/$prod->discount_price) * 100;
+                          @endphp
+                          <div>
+                            @if($prod->discount_price == NULL)
+                            <div class="tag new"><span>new</span></div>
+                            @else
+                            <div class="tag hot"><span>{{round($discount)}}%</span></div>
+                            @endif
+                          </div>
                         </div>
                         <!-- /.product-image -->
                         
@@ -141,8 +150,14 @@
                           </a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
+                          @if($prod->discount_price == NULL)
+                          <div class="product-price">
+                          <span class="price-before-discount">${{$prod->selling_price}}</span>
+                          </div>
+                          @else
                           <div class="product-price"> <span class="price"> ${{$prod->discount_price}} </span> 
                           <span class="price-before-discount">${{$prod->selling_price}}</span> </div>
+                          @endif
                           <!-- /.product-price --> 
                           
                         </div>
@@ -194,8 +209,19 @@
                             <img  src="{{asset('storage/upload/product/thumbnail/'.$prod->product_thumbnail)}}" alt="">
                           </a> </div>
                           <!-- /.image -->
+                          @php 
+                          $amount = $prod->selling_price - $prod->discount_price;
+                          $discount = ($amount/$prod->discount_price) * 100;
+                          @endphp
+                          <div>
+                            @if($prod->discount_price == NULL)
+                            <div class="tag new"><span>new</span></div>
+                            @else
+                            <div class="tag hot"><span>{{round($discount)}}%</span></div>
+                            @endif
+                          </div>
                           
-                          <div class="tag new"><span>new</span></div>
+                          
                         </div>
                         <!-- /.product-image -->
                         
@@ -209,8 +235,14 @@
                           </a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
+                          @if($prod->discount_price == NULL)
+                          div class="product-price">
+                          <span class="price-before-discount">${{$prod->selling_price}}</span>
+                          </div>
+                          @else
                           <div class="product-price"> <span class="price"> ${{$prod->discount_price}} </span> 
                           <span class="price-before-discount">${{$prod->selling_price}}</span> </div>
+                          @endif
                           <!-- /.product-price --> 
                           
                         </div>
