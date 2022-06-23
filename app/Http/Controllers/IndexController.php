@@ -10,13 +10,17 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Image;
 use App\Models\Slider;
+use App\Models\Category;
+use App\Models\Product;
 
 class IndexController extends Controller
 {
     //
     public function index(){
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
-        return view('layouts.pages.home',compact('sliders'));
+        $categories = Category::orderBy('category_name_en','ASC')->get();
+        $products = Product::where('status',1)->orderBy('id','DESC')->limit(5)->get();
+        return view('layouts.pages.home',compact('sliders','categories','products'));
     }
 
     public function UserLogout(){
