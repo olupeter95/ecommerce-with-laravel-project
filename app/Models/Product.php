@@ -38,4 +38,9 @@ class Product extends Model
             'special_deals',
             'status'
     ];
+
+    public function multiimage()
+    {
+        return $this->hasMany(MultiImage::class);
+    }
 }

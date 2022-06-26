@@ -12,6 +12,7 @@ use Image;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\MultiImage;
 
 class IndexController extends Controller
 {
@@ -111,8 +112,11 @@ class IndexController extends Controller
        ]);
        Auth::logout();
        return redirect()->route('login');
+    }
 
-
-
+    public function prodDetails($id){
+        $products = Product::findorFail($id);
+        $multImg = MultiImage::where('product_id',$id)->orderBy('photo_name','ASC')->get();
+        return view('layouts.pages.product-detail',compact('products','multImg'));
     }
 }

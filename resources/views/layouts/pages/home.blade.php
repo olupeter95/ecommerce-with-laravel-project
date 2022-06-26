@@ -1,5 +1,8 @@
 @extends('home_master')
 @section('content')
+@section('title')
+E-commerce Store
+@endsection
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
   <div class="container">
     <div class="row"> 
@@ -34,7 +37,7 @@
                     @endif
                      </span>
                      </div>
-                  <div class="button-holder fadeInDown-3"> <a href="index.php?page=single-product" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
+                  <div class="button-holder fadeInDown-3"> <a href="" class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop Now</a> </div>
                 </div>
                 <!-- /.caption --> 
               </div>
@@ -122,7 +125,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html">
+                          <div class="image"> <a href="{{route('product-details',$prod->id)}}">
                             <img  src="{{asset('storage/upload/product/thumbnail/'.$prod->product_thumbnail)}}" alt="">
                           </a> </div>
                           <!-- /.image -->
@@ -141,7 +144,7 @@
                         <!-- /.product-image -->
                         
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="detail.html">
+                          <h3 class="name"><a href="{{route('product-details',$prod->id)}}">
                             @if(session()->get('language') == 'french')
                             {{$prod->product_name_fr}}
                             @else
