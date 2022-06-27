@@ -159,7 +159,6 @@ class ProductController extends Controller
             'description_en'=>'required',
             'description_fr'=>'required',
         ]);
-
         $id = $request->id;
             $prdouct_id = Product::findorFail($id)->update([
             'brand_id'=>$request->brand_id,

@@ -270,16 +270,16 @@
                         <div class="col-md-6">
 
                         <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{$products->hot_deals}}" name="hot_deals"
-                                 id="defaultCheck1" {{ $products->hot_deals == 1 ? 'checked' : ''}}>
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox"  name="hot_deals" id="defaultCheck1" 
+                                 value="1" {{ $products->hot_deals == 1 ? 'checked' : ''}} >
+                                <label class="form-check-label" for="defaultCheck1" >
                                 Hot Deals
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{$products->featured}}" name="featured"
+                                <input class="form-check-input" type="checkbox" value="1" name="featured"
                                  id="defaultCheck2" {{ $products->featured == 1 ? 'checked' : ''}}>
-                                <label class="form-check-label" for="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2" >
                                 Featured
                                 </label>
                             </div>
@@ -287,16 +287,16 @@
                         </div>
                     <div class="col-md-6">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{$products->special_offer}}" name="special_offer"
+                        <input class="form-check-input" type="checkbox"  name="special_offer" value="1"
                         id="defaultCheck3" {{ $products->special_offer == 1 ? 'checked' : ''}}>
-                        <label class="form-check-label" for="defaultCheck3">
+                        <label class="form-check-label" for="defaultCheck3" >
                         Special Offer
                         </label>
                         </div>
                         <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{$products->special_deals}}" name="special_deals"
+                        <input class="form-check-input" type="checkbox"  name="special_deals" value="1"
                         id="defaultCheck4" {{ $products->special_deals == 1 ? 'checked' : ''}}>
-                        <label class="form-check-label" for="defaultCheck4">
+                        <label class="form-check-label" for="defaultCheck4" >
                         Special Deals
                         </label>
                         </div>

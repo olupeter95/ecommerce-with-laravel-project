@@ -21,7 +21,8 @@ class IndexController extends Controller
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->limit(5)->get();
-        return view('layouts.pages.home',compact('sliders','categories','products'));
+        $featured = Product::where('featured',1)->orderBy('id','DESC')->limit(5)->get();
+        return view('layouts.pages.home',compact('sliders','categories','products','featured'));
     }
 
     public function UserLogout(){
