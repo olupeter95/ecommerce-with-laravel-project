@@ -316,17 +316,23 @@ E-commerce Store
         
         <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
-        <section class="section featured-product wow fadeInUp">
+        <section class="section featured-product wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
           <h3 class="section-title">Featured products</h3>
-          <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-            @forelse($featured as $feature)
-            <div class="item item-carousel">
-              <div class="products">
+         
+          <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" style="opacity: 1; display: block;">
+          @foreach($featured as $feature)  
+          <div class="owl-wrapper-outer">
+            
+              <div class="owl-wrapper" style="width: 3960px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+              
+              <div class="owl-item" style="width: 330px;">
+              
+              <div class="item item-carousel">
+            
+            <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="{{route('product-details',$feature->id)}}">
-                      <img  src="{{asset('storage/upload/product/thumbnail/'.$feature->product_thumbnail)}}" alt=""></a> 
-                    </div>
+                    <div class="image"> <a href="detail.html"><img src="{{'storage/upload/product/thumbnail/'.$feature->product_thumbnail}}" alt=""></a> </div>
                     <!-- /.image -->
                     
                     <div class="tag hot"><span>hot</span></div>
@@ -334,23 +340,10 @@ E-commerce Store
                   <!-- /.product-image -->
                   
                   <div class="product-info text-left">
-                    <h3 class="name"><a href="{{route('product-details',$feature->id)}}">
-                      @if(session()->get('language')=='french')
-                      {{$feature->product_name_fr}}
-                      @else
-                      {{$feature->product_name_en}}
-                      @endif
-                    </a></h3>
-                    <div class="rating rateit-small"></div>
+                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
+                    <div class="rating rateit-small rateit"><button id="rateit-reset-47" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-47" style="display: none;"></button><div id="rateit-range-47" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-47" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
                     <div class="description"></div>
-                    <div class="product-price"> 
-                      @if($feature->discount_price == NULL)
-                      <span class="price"> ${{$feature->selling_price}} </span> 
-                      @else
-                      <span class="price"> ${{$feature->selling_price}} </span> 
-                      <span class="price-before-discount">${{$feature->discount_price}}</span> 
-                      @endif   
-                    </div>
+                    <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
                     <!-- /.product-price --> 
                     
                   </div>
@@ -371,18 +364,28 @@ E-commerce Store
                   <!-- /.cart --> 
                 </div>
                 <!-- /.product --> 
-                
-              </div>
+                </div>
               <!-- /.products --> 
-              @empty
-              <div class="text-danger"><h5>No Product Data</h5></div>
+              
             </div>
-            <!-- /.item -->
-            @endforelse
+          
           </div>
+          
+            </div>
+            
+          </div>
+          @endforeach
+            <!-- /.item --> 
+          <div class="owl-controls clickable">
+            <div class="owl-buttons">
+              <div class="owl-prev"></div>
+              <div class="owl-next"></div>
+            </div>
+          </div>
+        </div>
+      
           <!-- /.home-owl-carousel --> 
         </section>
-        <!-- /.section --> 
         <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <div class="wide-banners wow fadeInUp outer-bottom-xs">
@@ -410,6 +413,100 @@ E-commerce Store
         </div>
         <!-- /.wide-banners --> 
         <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
+       
+          <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+          <section class="section featured-product wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+          <h3 class="section-title">
+            @if(session()->get('language')=='french')
+            {{$skip_category->category_name_fr}}
+            @else
+            {{$skip_category->category_name_en}}
+            @endif
+          </h3>
+         
+          <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" style="opacity: 1; display: block;">
+          @foreach($skip_product as $feature)  
+          <div class="owl-wrapper-outer">
+            
+              <div class="owl-wrapper" style="width: 3960px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+              
+              <div class="owl-item" style="width: 330px;">
+              
+              <div class="item item-carousel">
+            
+            <div class="products">
+                <div class="product">
+                  <div class="product-image">
+                    <div class="image"> <a href="detail.html"><img src="{{'storage/upload/product/thumbnail/'.$feature->product_thumbnail}}" alt=""></a> </div>
+                    <!-- /.image -->
+                    
+                    <div class="tag hot"><span>hot</span></div>
+                  </div>
+                  <!-- /.product-image -->
+                  
+                  <div class="product-info text-left">
+                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
+                    <div class="rating rateit-small rateit"><button id="rateit-reset-47" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-47" style="display: none;"></button><div id="rateit-range-47" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-47" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
+                    <div class="description"></div>
+                    <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
+                    <!-- /.product-price --> 
+                    
+                  </div>
+                  <!-- /.product-info -->
+                  <div class="cart clearfix animate-effect">
+                    <div class="action">
+                      <ul class="list-unstyled">
+                        <li class="add-cart-button btn-group">
+                          <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                        </li>
+                        <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                        <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                      </ul>
+                    </div>
+                    <!-- /.action --> 
+                  </div>
+                  <!-- /.cart --> 
+                </div>
+                <!-- /.product --> 
+                </div>
+              <!-- /.products --> 
+              
+            </div>
+          
+          </div>
+          
+            </div>
+            
+          </div>
+          @endforeach
+            <!-- /.item --> 
+          <div class="owl-controls clickable">
+            <div class="owl-buttons">
+              <div class="owl-prev"></div>
+              <div class="owl-next"></div>
+            </div>
+          </div>
+        </div>
+      
+          <!-- /.home-owl-carousel --> 
+        </section>
+        <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
+
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
         <!-- ============================================== BEST SELLER ============================================== -->
         
         <div class="best-deal wow fadeInUp outer-bottom-xs">
