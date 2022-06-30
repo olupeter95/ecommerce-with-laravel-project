@@ -8,19 +8,15 @@ $tag_fr = App\Models\Product::groupBy('product_tags_fr')->select('product_tags_f
         <h3 class="section-title">Product tags</h3>
         <div class="sidebar-widget-body outer-top-xs">
           <div class="tag-list"> 
-          
             @if(session()->get('language')=='french')
             @foreach($tag_fr as $tag)
-            <a class="item active"  href="category.html">{{ str_replace(',','',$tag->product_tags_fr)}}</a> 
+            <a class="item active"  href="{{route('product-tags',$tag->product_tags_fr)}}">{{ str_replace(',','',$tag->product_tags_fr)}}</a> 
             @endforeach
             @else
             @foreach($tag_en as $tag)
-            <a class="item active"  href="category.html">{{str_replace(',','',$tag->product_tags_en)}}</a> 
+            <a class="item active"  href="{{route('product-tags',$tag->product_tags_en)}}">{{str_replace(',','',$tag->product_tags_en)}}</a> 
             @endforeach
             @endif
-        
-          
-
         </div>
           <!-- /.tag-list --> 
         </div>

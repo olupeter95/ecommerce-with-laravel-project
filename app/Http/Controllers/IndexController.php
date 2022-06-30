@@ -112,7 +112,7 @@ class IndexController extends Controller
             'password.confirmed'=>'Password do not match',
             'password_confirmation'=>'Password Confimation field required'
         ]);
-        $newpwd = Hash::make($request->passwor);
+        $newpwd = Hash::make($request->password);
         User::find(Auth::user()->id)->update([
             'password'=>$newpwd
        ]);
@@ -124,5 +124,10 @@ class IndexController extends Controller
         $products = Product::findorFail($id);
         $multImg = MultiImage::where('product_id',$id)->orderBy('photo_name','ASC')->get();
         return view('layouts.pages.product-detail',compact('products','multImg'));
+    }
+
+    public function prodTags($tags){
+        $prod = Product::where('status',1)->where('product_tags_en',$tags)->where('product_tags_fr',$tags)->orderBy('id','DESC')->get();
+        return view('layouts.tags.view',compact('prod'));
     }
 }

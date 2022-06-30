@@ -116,7 +116,8 @@
               <div class="cart-item product-summary">
                 <div class="row">
                   <div class="col-xs-4">
-                    <div class="image"> <a href="detail.html"><img src="{{asset('frontend/assets/images/cart.jpg')}}" alt=""></a> </div>
+                    <div class="image"> <a href="detail.html">
+                      <img src="{{asset('frontend/assets/images/cart.jpg')}}" alt=""></a> </div>
                   </div>
                   <div class="col-xs-7">
                     <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
@@ -163,7 +164,9 @@
         <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
           <div class="nav-outer">
             <ul class="nav navbar-nav">
-              <li class="active dropdown yamm-fw"> <a href="{{route('home')}}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+              <li class="active dropdown yamm-fw"> 
+              <a href="{{route('home')}}" data-hover="dropdown" 
+              class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
             <!--Get category menu -->
               @php
               $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();

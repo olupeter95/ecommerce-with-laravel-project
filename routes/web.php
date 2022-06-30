@@ -146,6 +146,10 @@ Route::get('/language/french',[LanguageController::class, 'French'])->name('fren
 ////End All frontend route /////
 
 
-// frontend product details route//
+
 Route::get('/product/detail/{id}',[IndexController::class, 'prodDetails'])->name('product-details');
 //end product details route//
+
+// frontend product tags route//
+Route::get('/product/tags/{tags}',[IndexController::class, 'prodTags'])->name('product-tags');
+// end frontend product tags route//

@@ -239,7 +239,7 @@ E-commerce Store
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
                           @if($prod->discount_price == NULL)
-                          div class="product-price">
+                          <div class="product-price">
                           <span class="price-before-discount">${{$prod->selling_price}}</span>
                           </div>
                           @else
