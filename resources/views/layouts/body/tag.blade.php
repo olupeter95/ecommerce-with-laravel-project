@@ -13,8 +13,8 @@ $tag_fr = App\Models\Product::groupBy('product_tags_fr')->select('product_tags_f
             <a class="item active"  href="{{route('product-tags',$tag->product_tags_fr)}}">{{ str_replace(',','',$tag->product_tags_fr)}}</a> 
             @endforeach
             @else
-            @foreach($tag_en as $tag)
-            <a class="item active"  href="{{route('product-tags',$tag->product_tags_en)}}">{{str_replace(',','',$tag->product_tags_en)}}</a> 
+            @foreach($tag_en as $tags)
+            <a class="item active"  href="{{route('product-tags',$tags->product_tags_en)}}">{{str_replace(',','',$tags->product_tags_en)}}</a> 
             @endforeach
             @endif
         </div>

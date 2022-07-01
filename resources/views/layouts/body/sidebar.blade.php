@@ -46,7 +46,7 @@
               <!-- /.hot-deal-wrapper -->
               
               <div class="product-info text-left m-t-20">
-                <h3 class="name"><a href="{{route('product.details',$hot_deal->id)}}">
+                <h3 class="name"><a href="{{route('product-details',$hot_deal->id)}}">
                   @if(session()->get('language')=='french')
                   {{$hot_deal->product_name_fr}}
                   @else
@@ -107,7 +107,7 @@
                     <div class="row product-micro-row">
                       <div class="col col-xs-5">
                         <div class="product-image">
-                          <div class="image"> <a href="{{route('product.details',$special_offer->id)}}"> 
+                          <div class="image"> <a href="{{route('product-details',$special_offer->id)}}"> 
                             <img src="{{asset('storage/upload/product/thumbnail/'.$special_offer->product_thumbnail)}}" alt=""> 
                           </a> 
                         </div>
@@ -175,7 +175,7 @@
                     <div class="row product-micro-row">
                       <div class="col col-xs-5">
                         <div class="product-image">
-                          <div class="image"> <a href="{{route('product.details',$special_deal->id)}}"> 
+                          <div class="image"> <a href="{{route('product-details',$special_deal->id)}}"> 
                             <img src="{{asset('storage/upload/product/thumbnail/'.$special_deal->product_thumbnail)}}"  alt=""> 
                           </a> 
                         </div>

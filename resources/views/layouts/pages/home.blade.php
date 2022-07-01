@@ -208,7 +208,7 @@ E-commerce Store
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html">
+                          <div class="image"> <a href="{{route('product-details',$prod->id)}}">
                             <img  src="{{asset('storage/upload/product/thumbnail/'.$prod->product_thumbnail)}}" alt="">
                           </a> </div>
                           <!-- /.image -->

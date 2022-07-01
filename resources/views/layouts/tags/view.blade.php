@@ -7,7 +7,7 @@ Product Tags
   <div class="container">
     <div class="breadcrumb-inner">
       <ul class="list-inline list-unstyled">
-        <li><a href="#">Home</a></li>
+        <li><a href="{{route('home')}}">Home</a></li>
         <li class='active'>Handbags</li>
       </ul>
     </div>
@@ -180,7 +180,8 @@ Product Tags
             <!-- /.container-fluid --> 
           </div>
         </div>
-        
+     <!-- ========================================== SECTION – HERO- END ========================================= -->
+            
      
         <div class="clearfix filters-container m-t-10">
           <div class="row">
@@ -240,23 +241,15 @@ Product Tags
             </div>
             <!-- /.col -->
             <div class="col col-sm-6 col-md-4 text-right">
-              <div class="pagination-container">
-                <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-                <!-- /.list-inline --> 
-              </div>
-              <!-- /.pagination-container --> </div>
+            {{$prod->links()}} 
+           </div>
             <!-- /.col --> 
           </div>
           <!-- /.row --> 
         </div>
+        
         <div class="search-result-container ">
+        
           <div id="myTabContent" class="tab-content category-list">
           
             <div class="tab-pane active " id="grid-container">
@@ -339,23 +332,102 @@ Product Tags
             </div>
             <!-- /.tab-pane -->
             
+
+            <div class="tab-pane "  id="list-container">
+              <div class="category-product">
+              @foreach($prod as $prods)
+                <div class="category-product-inner wow fadeInUp">
+                  <div class="products">
+                    <div class="product-list product">
+                      <div class="row product-list-row">
+
+                        <div class="col col-sm-4 col-lg-4">
+                          <div class="product-image">
+                            <div class="image"> <img src="{{asset('storage/upload/product/thumbnail/'.$prods->product_thumbnail)}}" alt=""> </div>
+                          </div>
+                          <!-- /.product-image --> 
+                        </div>
+                        <!-- /.col -->
+                        <div class="col col-sm-8 col-lg-8">
+                          <div class="product-info">
+                            <h3 class="name"><a href="detail.html">
+                            @if(session()->get('language') == 'french')
+                            {{$prods->product_name_fr}}
+                            @else
+                            {{$prods->product_name_en}}
+                            @endif
+                            </a></h3>
+                            <div class="rating rateit-small"></div>
+                            <div class="product-price"> 
+                          @php 
+                          $amount = $prods->selling_price - $prods->discount_price;
+                          $discount = ($amount/$prods->discount_price) * 100;
+                          @endphp
+                            @if($prods->discount_price == NULL)
+                          <div class="product-price">
+                          <span class="price-before-discount">${{$prods->selling_price}}</span>
+                          </div>
+                          @else   
+                          <div class="product-price"> <span class="price"> ${{$prods->discount_price}} </span> 
+                          <span class="price-before-discount">${{$prods->selling_price}}</span> </div>
+                          @endif
+                             </div>
+                            <!-- /.product-price -->
+                            <div class="description m-t-10">
+                            @if(session()->get('language') == 'french')
+                            {{$prods->description_fr}}
+                            @else
+                            {{$prods->description_en}}
+                            @endif   <div class="cart clearfix animate-effect">
+                              <div class="action">
+                                <ul class="list-unstyled">
+                                  <li class="add-cart-button btn-group">
+                                    <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                  </li>
+                                  <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                  <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal"></i> </a> </li>
+                                </ul>
+                              </div>
+                              <!-- /.action --> 
+                            </div>
+                            <!-- /.cart --> 
+                            
+                          </div>
+                          <!-- /.product-info --> 
+                        </div>
+                        <!-- /.col --> 
+                      </div>
+                      <!-- /.product-list-row -->
+                      
+                          <div>
+                            @if($prods->discount_price == NULL)
+                            <div class="tag new"><span>new</span></div>
+                            @else
+                            <div class="tag hot"><span>{{round($discount)}}%</span></div>
+                            @endif
+                          </div>
+                        </div>
+                    </div>
+                    <!-- /.product-list --> 
+                  </div>
+                  <!-- /.products --> 
+                </div>
+                <!-- /.category-product-inner -->
+               @endforeach
+                
+              </div>
+              <!-- /.category-product --> 
+            </div>
+            <!-- /.tab-pane #list-container --> 
    
           </div>
+          
           <!-- /.tab-content -->
           <div class="clearfix filters-container">
             <div class="text-right">
-              <div class="pagination-container">
-                <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-                <!-- /.list-inline --> 
-              </div>
-              <!-- /.pagination-container --> </div>
+             {{$prod->links()}} 
+            </div>
             <!-- /.text-right --> 
             
           </div>

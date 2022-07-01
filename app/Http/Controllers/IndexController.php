@@ -127,7 +127,8 @@ class IndexController extends Controller
     }
 
     public function prodTags($tags){
-        $prod = Product::where('status',1)->where('product_tags_en',$tags)->where('product_tags_fr',$tags)->orderBy('id','DESC')->get();
+        $prod = Product::where('status',1)->where('product_tags_en',$tags)->orWhere(
+            'product_tags_fr',$tags)->orderBy('id','DESC')->paginate(3);
         return view('layouts.tags.view',compact('prod'));
     }
 }
