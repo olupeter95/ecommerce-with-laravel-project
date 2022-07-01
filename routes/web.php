@@ -153,3 +153,8 @@ Route::get('/product/detail/{id}',[IndexController::class, 'prodDetails'])->name
 // frontend product tags route//
 Route::get('/product/tags/{tags}',[IndexController::class, 'prodTags'])->name('product-tags');
 // end frontend product tags route//
+
+// frontend product categories route//
+Route::get('/product/subcat/{id}/{slug}',[IndexController::class, 'prodSubcat'])->name('subcat-product');
+Route::get('/product/subsubcat/{id}/{slug}',[IndexController::class, 'prodSubSubcat'])->name('subsubcat-product');
+// end frontend product tags route//

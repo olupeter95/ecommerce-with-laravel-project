@@ -131,4 +131,14 @@ class IndexController extends Controller
             'product_tags_fr',$tags)->orderBy('id','DESC')->paginate(3);
         return view('layouts.tags.view',compact('prod'));
     }
+
+    public function prodSubcat($id, $slug){
+        $prod = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('layouts.categories.subcat-view',compact('prod'));
+    }
+
+    public function prodSubSubcat($id, $slug){
+        $prod = Product::where('status',1)->where('subsubcategory_id',$id)->orderBy('id','DESC')->paginate(3);
+        return view('layouts.categories.subsubcat-view',compact('prod'));
+    }
 }

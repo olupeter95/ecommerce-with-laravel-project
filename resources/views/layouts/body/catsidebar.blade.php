@@ -23,18 +23,20 @@
             @foreach($subcategories as $subcat)
                     <div class="col-sm-12 col-md-3">
                     <h2 class="title">
-                        @if(session()->get('language') == 'french')
+                      <a href="{{route('subcat-product',[$subcat->id,$subcat->subcategory_slug_en])}}">
+                    @if(session()->get('language') == 'french')
                         {{$subcat->subcategory_name_fr}}
                         @else
                         {{$subcat->subcategory_name_en}}
                         @endif
+                    </a>
                     </h2>
               @php
             $subsubcategories = App\Models\SubSubCategory::Where('subcategory_id',$subcat->id)->orderBy('subsubcategory_name_en','ASC')->get();
             @endphp
             @foreach($subsubcategories as $subsubcat)
                       <ul class="links list-unstyled">
-                        <li><a href="#">
+                        <li><a href="{{route('subsubcat-product',[$subsubcat->id,$subsubcat->subsubcategory_slug_en])}}">
                           @if(session()->get('language') == 'french')
                           {{$subsubcat->subsubcategory_name_fr}}
                           @else

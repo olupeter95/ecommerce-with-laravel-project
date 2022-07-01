@@ -1,7 +1,7 @@
 @extends('home_master')
 @section('content')
 @section('title')
-Product Tags
+SubCategory Product
 @endsection
 <div class="breadcrumb">
   <div class="container">
@@ -55,7 +55,7 @@ Product Tags
             $subcategories = App\Models\SubCategory::Where('category_id',$cat->id)->orderBy('subcategory_name_en','ASC')->get();
             @endphp
             @foreach($subcategories as $subcat)
-                          <li><a href="{{route('subcat-product',[$subcat->id,$subcat->subcategory_slug_en])}}">
+                          <li><a href="#">
                           @if(session()->get('language') == 'french')
                         {{$subcat->subcategory_name_fr}}
                         @else

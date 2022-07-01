@@ -174,7 +174,7 @@
               
               @foreach($categories as $cat)
               <li class="dropdown yamm mega-menu"> 
-              <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
              @if(session()->get('language')=='french')
               {{$cat->category_name_fr}}
             @else
@@ -192,19 +192,21 @@
 
               @foreach($subcategories as $subcat)
                         <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                          <h2 class="title">
+                          <a href="{{route('subcat-product',[$subcat->id,$subcat->subcategory_slug_en])}}"><h2 class="title">
                           @if(session()->get('language') == 'french')
                           {{$subcat->subcategory_name_fr}}
                           @else
                           {{$subcat->subcategory_name_en}}
                           @endif
-                        </h2>
+                          </h2>
+                          </a>
+                        
               @php
               $subsubcategories = App\Models\SubSubCategory::Where('subcategory_id',$subcat->id)->orderBy('subsubcategory_name_en','ASC')->get();
               @endphp
               @foreach($subsubcategories as $subsubcat)
                           <ul class="links">
-                            <li><a href="#"> 
+                            <li><a href="{{route('subsubcat-product',[$subsubcat->id,$subsubcat->subsubcategory_slug_en])}}"> 
                            @if(session()->get('language') == 'french')
                           {{$subsubcat->subsubcategory_name_fr}}
                           @else
