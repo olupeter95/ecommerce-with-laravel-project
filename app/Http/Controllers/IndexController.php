@@ -122,14 +122,24 @@ class IndexController extends Controller
 
     public function prodDetails($id){
         $products = Product::findorFail($id);
+        $color_en = $products->product_color_en;
+        $prod_color_en = explode(',',$color_en);
+        $color_fr = $products->product_color_fr;
+        $prod_color_fr = explode(',',$color_fr );
+        $prod_size_en = explode(',',$products->product_size_en);
+        $prod_size_fr = explode(',',$products->product_size_fr);
         $multImg = MultiImage::where('product_id',$id)->orderBy('photo_name','ASC')->get();
-        return view('layouts.pages.product-detail',compact('products','multImg'));
+        return view('layouts.pages.product-detail',compact('products','multImg','prod_color_en',
+    'prod_color_fr','prod_size_en','prod_size_fr'));
     }
 
     public function prodTags($tags){
         $prod = Product::where('status',1)->where('product_tags_en',$tags)->orWhere(
             'product_tags_fr',$tags)->orderBy('id','DESC')->paginate(3);
-        return view('layouts.tags.view',compact('prod'));
+        $prod_color_en = Product::where('product_tags_en',$tags)->select('product_color_en')->get();
+        $color_en =explode(',',$prod_color_en);
+        $color_fr = explode(',',Product::groupBy('product_color_fr')->select('product_color_fr')->get());
+            return view('layouts.tags.view',compact('prod','color_en', 'color_fr'));
     }
 
     public function prodSubcat($id, $slug){

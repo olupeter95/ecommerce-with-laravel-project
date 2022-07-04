@@ -123,12 +123,16 @@ Product Tags
               </div>
               <div class="sidebar-widget-body">
                 <ul class="list">
-                  <li><a href="#">Red</a></li>
-                  <li><a href="#">Blue</a></li>
-                  <li><a href="#">Yellow</a></li>
-                  <li><a href="#">Pink</a></li>
-                  <li><a href="#">Brown</a></li>
-                  <li><a href="#">Teal</a></li>
+                  @if(session()->get('language') == 'french')
+                  @foreach($color_fr as $color)
+                  <li><a href="#">{{$color}}</a></li>
+                  @endforeach
+                  @else
+                  @foreach($color_en as $color)
+                  <option>{{ $color}}</option>
+                  @endforeach
+                  @endif
+
                 </ul>
               </div>
               <!-- /.sidebar-widget-body --> 
