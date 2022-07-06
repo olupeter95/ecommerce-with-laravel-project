@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use App\Models\Category;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Actions\Admin\Category\CreateCategory;
+use App\Actions\Admin\Category\DeleteCategory;
+use App\Actions\Admin\Category\UpdateCategory;
+use App\Http\Requests\category\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -17,31 +19,9 @@ class CategoryController extends Controller
         return view('admin.category.index',compact('admins','category'));
     }
 
-    public function add(Request $request){
-        $validateData = $request->validate([
-            'category_name_en'=>'required|max:255',
-            'category_name_fr'=>'required|max:255',
-            'category_icon'=>'required|max:2000'
-        ],
-        [
-            'category_name_en.required'=>'category Name En is required',
-            'category_name_en.max'=>'exceed maximum number of character',
-            'category_name_fr.required'=>'category Name Fr is required',
-            'category_name_fr.max'=>'exceed maximum number of character',
-            'category_icon.required'=>'category Image is required',
-            'category_icon.max'=>'Maximum file upload file size, is 2mb',
-        ]);
-        
-        
-       Category::insert([
-            'category_name_en' => $request->category_name_en,
-            'category_name_fr' => $request->category_name_fr,
-            'category_slug_en'=>strtolower(str_replace('','_',$request->category_name_en)),
-            'category_slug_fr'=>strtolower(str_replace('','_',$request->category_name_fr)),
-            'category_icon' => $request->category_icon,
-            'created_at'=> Carbon::now()
-        ]);
-        $notification = array(
+    public function add(StoreCategoryRequest $request, CreateCategory $createCategory){
+        $createCategory->handle($request);
+         $notification = array(
            'message' => 'category added successfully',
            'alert-type'=> 'success'
         );
@@ -55,30 +35,8 @@ class CategoryController extends Controller
    return view('admin.category.edit',compact('category','admins'));
 }
 
-public function update(Request $request){
-    $validateData = $request->validate([
-        'category_name_en'=>'required|max:255',
-        'category_name_fr'=>'required|max:255',
-        'category_icon'=>'required|max:2000'
-    ],
-    [
-        'category_name_en.required'=>'category Name En is required',
-        'category_name_en.max'=>'exceed maximum number of character',
-        'category_name_fr.required'=>'category Name Fr is required',
-        'category_name_fr.max'=>'exceed maximum number of character',
-        'category_icon.required'=>'category Image is required',
-        'category_icon.max'=>'Maximum file upload file size, is 2mb',
-    ]);
-    
-    $id = $request->id;
-   Category::find($id)->update([
-        'category_name_en' => $request->category_name_en,
-        'category_name_fr' => $request->category_name_fr,
-        'category_slug_en'=>strtolower(str_replace(' ','_',$request->category_name_en)),
-        'category_slug_fr'=>strtolower(str_replace(' ','_',$request->category_name_fr)),
-        'category_icon' => $request->category_icon,
-        'created_at'=> Carbon::now()
-    ]);
+public function update(StoreCategoryRequest $request, UpdateCategory $updateCategory){
+   $updateCategory->handle($request); 
     $notification = array(
        'message' => 'category updated successfully',
        'alert-type'=> 'success'
@@ -86,8 +44,8 @@ public function update(Request $request){
     return redirect()->route('all.category')->with($notification);
 }
 
-public function delete($id){
-    Category::findOrFail($id)->delete();
+public function delete($id,DeleteCategory $deleteCategory){
+    $deleteCategory->handle($id);
     $notification = array(
       'message' => 'category deleted successfully',
       'alert-type'=> 'error'
