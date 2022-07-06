@@ -12,11 +12,7 @@ Route::get('change/user/pwd', [IndexController::class,'ChangePassword'])->name('
 Route::post('user/update/password', [IndexController::class,'UpdatePassword'])->name('user.password.update');
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('dashboard',compact('user'));
-    })->name('dashboard');
+    Route::get('/dashboard', [IndexController::class, 'home'])->name('dashboard');
 });
 /*-----------------End User ROUTE------------------*/ 
 

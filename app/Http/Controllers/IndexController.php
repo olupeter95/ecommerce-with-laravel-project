@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use Image;
+use Intervention\Image\Facades\Image;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Product;
@@ -17,6 +17,13 @@ use App\Models\MultiImage;
 class IndexController extends Controller
 {
     //
+    public function home(){
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('dashboard',compact('user'));
+    }
+
+
     public function index(){
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();

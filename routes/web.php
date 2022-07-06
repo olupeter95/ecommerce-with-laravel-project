@@ -16,6 +16,8 @@ require_once('web/admin.php');
 require_once('web/brand.php');
 require_once('web/user.php');
 require_once('web/category.php');
+require_once('web/subcategory.php');
+require_once('web/subsubcategory.php');
 require_once('web/product.php');
 require_once('web/slider.php');
 require_once('web/language.php');

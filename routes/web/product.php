@@ -15,7 +15,7 @@ Route::prefix('product')->group(function(){
     Route::post('/thumbnail/update',[ProductController::class,'updateProductThumbnail'])->name('update.product-thumbnail');
     Route::get('/inactive/{id}',[ProductController::class,'ProductInactive'])->name('product.inactive');
     Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active');
-    Route::get('/details/{id}',[ProductController::class,'productDetails'])->name('admin.product.details')->middleware('auth:admin');
+    Route::get('/details/{id}',[ProductController::class,'productDetails'])->name('product.details')->middleware('auth:admin');
 });
 /////end admin product///
 

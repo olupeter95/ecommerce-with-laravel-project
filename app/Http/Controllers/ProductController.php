@@ -10,8 +10,8 @@ use App\Models\Brand;
 use App\Models\Admin;
 use App\Models\Product;
 use App\Models\MultiImage;
-use Auth;
-use Image;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
