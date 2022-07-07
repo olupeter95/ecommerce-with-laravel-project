@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
-use App\Models\SubCategory;
 use App\Models\Category;
-use Carbon\Carbon;
+use App\Models\SubCategory;
+use Illuminate\Support\Facades\Auth;
+use App\Actions\Admin\Subcategory\CreateSubcategory;
+use App\Actions\Admin\Subcategory\DeleteSubcategory;
+use App\Actions\Admin\Subcategory\UpdateSubcategory;
+use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
 
 class SubCategoryController extends Controller
 {
@@ -19,29 +21,8 @@ class SubCategoryController extends Controller
         return view('admin.subcategory.index',compact('admins','subcategory','category'));
     }
 
-    public function add(Request $request){
-        $validateData = $request->validate([
-            'category_id'=>'required',
-            'subcategory_name_en'=>'required|max:255',
-            'subcategory_name_fr'=>'required|max:255',
-        ],
-        [
-            'category_id'=>'category is required',
-            'subcategory_name_en.required'=>'category Name En is required',
-            'subcategory_name_en.max'=>'exceed maximum number of character',
-            'subcategory_name_fr.required'=>'category Name Fr is required',
-            'subcategory_name_fr.max'=>'exceed maximum number of character',
-        ]);
-        
-        
-       SubCategory::insert([
-            'category_id' => $request->category_id,
-            'subcategory_name_en' => $request->subcategory_name_en,
-            'subcategory_name_fr' => $request->subcategory_name_fr,
-            'subcategory_slug_en'=>strtolower(str_replace('','_',$request->subcategory_name_en)),
-            'subcategory_slug_fr'=>strtolower(str_replace('','_',$request->subcategory_name_fr)),
-            'created_at'=> Carbon::now()
-        ]);
+    public function add(CreateSubCategoryRequest $request, CreateSubcategory $subCategory){
+        $subCategory->handle($request);
         $notification = array(
            'message' => 'Subcategory added successfully',
            'alert-type'=> 'success'
@@ -57,29 +38,8 @@ class SubCategoryController extends Controller
    return view('admin.subcategory.edit',compact('category','admins','subcategory'));
 }
 
-public function update(Request $request){
-    $validateData = $request->validate([
-        'category_id'=>'required',
-        'subcategory_name_en'=>'required|max:255',
-        'subcategory_name_fr'=>'required|max:255',
-    ],
-    [
-        'category_id'=>'category is required',
-        'subcategory_name_en.required'=>'category Name En is required',
-        'subcategory_name_en.max'=>'exceed maximum number of character',
-        'subcategory_name_fr.required'=>'category Name Fr is required',
-        'subcategory_name_fr.max'=>'exceed maximum number of character',
-    ]);
-    
-    $id = $request->id;
-    SubCategory::find($id)->update([
-    'category_id' => $request->category_id,
-    'subcategory_name_en' => $request->subcategory_name_en,
-    'subcategory_name_fr' => $request->subcategory_name_fr,
-    'subcategory_slug_en'=>strtolower(str_replace('','_',$request->subcategory_name_en)),
-    'subcategory_slug_fr'=>strtolower(str_replace('','_',$request->subcategory_name_fr)),
-    'created_at'=> Carbon::now()
-    ]);
+public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory){
+    $updateSubcategory->handle($request);
     $notification = array(
        'message' => 'Subcategory updated successfully',
        'alert-type'=> 'success'
@@ -87,8 +47,8 @@ public function update(Request $request){
     return redirect()->route('all.subcategory')->with($notification);
 }
 
-public function delete($id){
-    SubCategory::findOrFail($id)->delete();
+public function delete($id, DeleteSubcategory $deleteSubcategory){
+    $deleteSubcategory->handle($id);
     $notification = array(
       'message' => 'category deleted successfully',
       'alert-type'=> 'error'
