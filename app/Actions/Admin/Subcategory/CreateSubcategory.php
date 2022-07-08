@@ -7,7 +7,7 @@ use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
 
 Class CreateSubcategory {
 
-    public function handle(CreateSubCategoryRequest $request): SubCategory 
+    public function handle(CreateSubCategoryRequest $request): Bool
     {
         $subcategory = SubCategory::insert([
             'category_id' => $request->category_id,

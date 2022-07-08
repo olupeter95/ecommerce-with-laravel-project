@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\SubSubCategory;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,13 +17,13 @@ class Category extends Model
         'category_icon'
     ];
 
-    public function subcategory()
-    {
-        return $this->hasMany(SubCategory::class);
-    }
+   public function subcategory(){
+    return $this->hasMany(SubCategory::class, 'category_id', 'id');
+   }
 
-    public function subsubcategory()
-    {
-        return $this->hasMany(SubSubCategory::class);
-    }
+   public function subsubcategory(){
+    return $this->hasMany(SubSubCategory::class);
+   }
+
+   
 }

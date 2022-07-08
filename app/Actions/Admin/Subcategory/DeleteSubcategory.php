@@ -7,7 +7,7 @@ use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
 
 Class DeleteSubcategory {
 
-    public function handle($id): SubCategory 
+    public function handle($id): Bool
     {
         $subcategory = SubCategory::findOrFail($id)->delete();
 

@@ -16,8 +16,8 @@ class SubCategoryController extends Controller
     public function index(){
         $id = Auth::id();
         $admins = Admin::find($id);
-        $subcategory = SubCategory::latest()->get();
         $category = Category::all();
+        $subcategory = SubCategory::latest()->get();
         return view('admin.subcategory.index',compact('admins','subcategory','category'));
     }
 

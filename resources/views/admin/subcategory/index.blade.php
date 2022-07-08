@@ -25,14 +25,21 @@
                         
                     </thead>
                     <tbody>
-                        @foreach($subcategory as $subcat)
+                        @foreach($subcategory as $sub_cat)
                         <tr>
-                            <td>{{$subcat->category->category_name_en}}</td>
-                            <td>{{$subcat->subcategory_name_en}}</td>
-                            <td>{{$subcat->subcategory_name_fr}}</td>
+                            
                             <td>
-                                <a href="{{ route('edit.subcategory',$subcat->id)}}" title="Edit Data" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                                <a href="{{ route('delete.subcategory',$subcat->id)}}" id="delete" title="Delete Data" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            @if(isset($sub_cat->category->category_name_en))    
+                            {{$sub_cat->category->category_name_en}}
+                            @else 
+                            No category
+                            @endif
+                            </td>
+                            <td>{{$sub_cat->subcategory_name_en}}</td>
+                            <td>{{$sub_cat->subcategory_name_fr}}</td>
+                            <td>
+                                <a href="{{ route('edit.subcategory',$sub_cat->id)}}" title="Edit Data" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('delete.subcategory',$sub_cat->id)}}" id="delete" title="Delete Data" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach

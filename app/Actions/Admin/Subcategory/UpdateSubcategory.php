@@ -7,7 +7,7 @@ use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
 
 Class UpdateSubcategory {
 
-    public function handle(CreateSubCategoryRequest $request): SubCategory 
+    public function handle(CreateSubCategoryRequest $request): Bool
     {
         $id = $request->id;
         $subcategory = SubCategory::find($id)->update([
