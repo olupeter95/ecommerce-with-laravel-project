@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Slider;
 use App\Models\Admin;
+use App\Models\Slider;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Actions\Admin\Slider\CreateSlider;
+use App\Actions\Admin\Slider\DeleteSlider;
+use App\Actions\Admin\Slider\UpdateSlider;
+use App\Http\Requests\Slider\SliderRequest;
 
 class SliderController extends Controller
 {
@@ -19,27 +21,8 @@ class SliderController extends Controller
         return view('admin.slider.view',compact('admins','sliders'));
     }
 
-    public function storeSlider(Request $request){
-        $validateData = $request->validate([
-            'slider_img'=>'required'
-        ],
-        [
-            'slider_img.required'=>'Image field is required'
-        ]);
-        $file = $request->file('slider_img');
-        $img = Image::make($file);
-        $img->resize(870,370);
-        $name = $file->getClientOriginalName();
-        $img->save('storage/upload/slider/'.$name);
-        Slider::insert([
-            'title_en'=>$request->title_en,
-            'title_fr'=>$request->title_fr,
-            'description_en'=>$request->description_en,
-            'description_fr'=>$request->description_fr,
-            'slider_img' => $name,
-            'status'=>0,
-            'created_at' => Carbon::now()
-        ]);
+    public function storeSlider(SliderRequest $request, CreateSlider $createSlider){
+        $createSlider->handle($request);
         $notification = array(
             'message' => 'Slider added successfully',
             'alert-type'=> 'success'
@@ -54,10 +37,8 @@ class SliderController extends Controller
         return view('admin.slider.edit',compact('admins','slider'));
     }
 
-    public function delSlider($id){
-        $slide = Slider::findorFail($id);
-        Storage::delete('public/upload/slider/'.$slide->slider_img);
-        Slider::findorFail($id)->delete();
+    public function delSlider($id,DeleteSlider $deleteSlider){
+        $deleteSlider->handle($id);
         $notification = array(
             'message' => 'Slider deleted successfully',
             'alert-type' => 'success'
@@ -65,37 +46,8 @@ class SliderController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function updateSlider(Request $request){
-        $id = $request->id;
-        $old_img = $request->old_image;
-        $file = $request->file('slider_img');
-        if($file){
-            Storage::delete('/public/upload/slider/'.$old_img->slider_img);
-            $img = Image::make($file);
-            $img->resize(870,370);
-            $name = $file->getClientOriginalName();
-            $img->save('storage/upload/slider/'.$name);
-            Slider::findorFail($id)->update([
-                'title_en'=>$request->title_en,
-                'title_fr'=>$request->title_fr,
-                'description_en'=>$request->description_en,
-                'description_fr'=>$request->description_fr,
-                'slider_img' => $name,
-                'status'=>0,
-                'created_at' => Carbon::now()
-            ]);
-        }else{
-            Slider::findorFail($id)->update([
-                'title_en'=>$request->title_en,
-                'title_fr'=>$request->title_fr,
-                'description_en'=>$request->description_en,
-                'description_fr'=>$request->description_fr,
-                'status'=>0,
-                'created_at' => Carbon::now()
-            ]);
-        }
-        
-     
+    public function updateSlider(Request $request, UpdateSlider $updateSlider){
+        $updateSlider->handle($request);
         $notification = array(
             'message' => 'Slider Updated Successfully',
             'alert-type'=> 'success'
