@@ -27,7 +27,13 @@
                     <tbody>
                         @foreach($subsubcategory as $subcats)
                         <tr>
-                            <td>{{$subcats->category->category_name_en}}</td>
+                            <td>
+                                @if(isset($subcats->category->category_name_en))
+                                {{$subcats->category->category_name_en}}
+                                @else 
+                                No Subcategory 
+                                @endif
+                            </td>
                             <td>{{$subcats->subcategory->subcategory_name_en}}</td>
                             <td>{{$subcats->subsubcategory_name_en}}</td>
                            
@@ -104,7 +110,7 @@
             var category_id = $(this).val();
             if(category_id) {
                 $.ajax({
-                    url: "{{  url('/category/subcategory/ajax') }}/"+category_id,
+                    url: "{{  url('/subsubcategory/subcategory/ajax') }}/"+category_id,
                     type:"GET",
                     dataType:"json",
                     success:function(data) {
