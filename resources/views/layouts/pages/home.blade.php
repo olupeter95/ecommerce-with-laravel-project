@@ -18,7 +18,7 @@ E-commerce Store
         <div id="hero">
         <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
           @foreach($sliders as $slide)
-            <div class="item" style="background-image:url( {{asset('storage/upload/slider/'.$slide->slider_img)}})  ;">
+            <div class="item" style="background-image:url({{asset('storage/upload/slider/'.$slide->slider_img)}}) ">
               <div class="container-fluid">
                 <div class="caption bg-color vertical-center text-left">
                   <div class="big-text fadeInDown-1"> 
@@ -1146,6 +1146,6 @@ E-commerce Store
   <!-- /.container --> 
 </div>
 <!-- ========================================== SECTION – HERO ========================================= -->
-
+</div>
 @endsection
 
