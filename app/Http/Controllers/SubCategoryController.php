@@ -6,6 +6,8 @@ use App\Models\Admin;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Facades\Auth;
+use App\Actions\Admin\Subcategory\EditSubCategory;
+use App\Actions\Admin\Subcategory\SubCategoryView;
 use App\Actions\Admin\Subcategory\CreateSubcategory;
 use App\Actions\Admin\Subcategory\DeleteSubcategory;
 use App\Actions\Admin\Subcategory\UpdateSubcategory;
@@ -13,15 +15,14 @@ use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
 
 class SubCategoryController extends Controller
 {
-    public function index(){
-        $id = Auth::id();
-        $admin = Admin::find($id);
-        $category = Category::all();
-        $subcategory = SubCategory::latest()->get();
-        return view('admin.subcategory.index',compact('admin','subcategory','category'));
+    public function index(SubCategoryView $subCategoryView)
+    {
+        $view =  $subCategoryView->handle();
+        return $view;
     }
 
-    public function add(CreateSubCategoryRequest $request, CreateSubcategory $subCategory){
+    public function create(CreateSubCategoryRequest $request, CreateSubcategory $subCategory)
+    {
         $subCategory->handle($request);
         $notification = array(
            'message' => 'Subcategory added successfully',
@@ -30,15 +31,14 @@ class SubCategoryController extends Controller
         return redirect()->back()->with($notification);
    }
    
-   public function edit($id){
-    $aid = Auth::id();
-    $admin = Admin::find($aid);
-    $category = Category::all();
-    $subcategory = SubCategory::find($id);
-   return view('admin.subcategory.edit',compact('category','admin','subcategory'));
-}
+   public function edit($id, EditSubCategory  $editSubCategory)
+   {
+    $edit = $editSubCategory->handle($id);
+    return $edit;
+   }
 
-public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory){
+public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory)
+{
     $updateSubcategory->handle($request);
     $notification = array(
        'message' => 'Subcategory updated successfully',
@@ -47,7 +47,8 @@ public function update(CreateSubCategoryRequest $request, UpdateSubcategory $upd
     return redirect()->route('all.subcategory')->with($notification);
 }
 
-public function delete($id, DeleteSubcategory $deleteSubcategory){
+public function delete($id, DeleteSubcategory $deleteSubcategory)
+{
     $deleteSubcategory->handle($id);
     $notification = array(
       'message' => 'category deleted successfully',
