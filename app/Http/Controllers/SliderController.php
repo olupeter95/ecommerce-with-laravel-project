@@ -16,9 +16,9 @@ class SliderController extends Controller
 {
     public function viewSlider(){
         $aid = Auth::id();
-        $admins = Admin::find($aid);
+        $admin = Admin::find($aid);
         $sliders = Slider::latest()->get();
-        return view('admin.slider.view',compact('admins','sliders'));
+        return view('admin.slider.view',compact('admin','sliders'));
     }
 
     public function storeSlider(SliderRequest $request, CreateSlider $createSlider){
@@ -32,9 +32,9 @@ class SliderController extends Controller
 
     public function editSlider($id){
         $aid = Auth::id();
-        $admins = Admin::find($aid);
+        $admin = Admin::find($aid);
         $slider = Slider::findorFail($id);
-        return view('admin.slider.edit',compact('admins','slider'));
+        return view('admin.slider.edit',compact('admin','slider'));
     }
 
     public function delSlider($id,DeleteSlider $deleteSlider){

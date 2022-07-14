@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Auth;
+use App\Actions\Admin\Brand\BrandView;
+use App\Actions\Admin\Brand\EditBrand;
 use App\Actions\Admin\Brand\CreateBrand;
 use App\Actions\Admin\Brand\DeleteBrand;
 use App\Actions\Admin\Brand\UpdateBrand;
@@ -13,14 +15,12 @@ use App\Http\Requests\Brand\storeBrandRequest;
 
 class BrandController extends Controller
 {
-    public function index(){
-        $id = Auth::id();
-        $admins = Admin::find($id);
-        $brands = Brand::latest()->get();
-        return view('admin.brand.index',compact('admins','brands'));
+    public function index(BrandView $brandView){
+       $view = $brandView->handle();
+       return $view; 
     }
 
-   public function add(storeBrandRequest $request, CreateBrand $createBrand){
+   public function create(storeBrandRequest $request, CreateBrand $createBrand){
         $createBrand->handle($request);
         $notification = array(
             'message' => 'Brand Added Successfully',
@@ -29,11 +29,9 @@ class BrandController extends Controller
         return redirect()->back()->with($notification);
    } 
 
-   public function edit($id){
-        $aid = Auth::id();
-        $admins = Admin::find($aid);
-       $brands = Brand::find($id);
-       return view('admin.brand.edit',compact('brands','admins'));
+   public function edit($id, EditBrand $editBrand){
+       $edit = $editBrand->handle($id);
+       return $edit;
    }
 
     public function update(storeBrandRequest $request, UpdateBrand $updateBrand){

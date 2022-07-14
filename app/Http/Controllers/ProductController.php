@@ -27,10 +27,10 @@ class ProductController extends Controller
 {
     public function index(){
         $id = Auth::id();
-        $admins = Admin::find($id);
+        $admin = Admin::find($id);
         $categories = Category::latest()->get();
         $brands = Brand::latest()->get();
-        return view('admin.product.add',compact('admins','categories','brands'));
+        return view('admin.product.add',compact('admin','categories','brands'));
     }
 
     public function addProduct(CreateProductRequest $request, CreateProduct $createProduct){
@@ -45,21 +45,21 @@ class ProductController extends Controller
 
     public function viewProduct(){
         $id = Auth::id();
-        $admins = Admin::find($id);
+        $admin = Admin::find($id);
         $product = Product::latest()->get();
-        return view('admin.product.view',compact('product','admins'));
+        return view('admin.product.view',compact('product','admin'));
     }
 
     public function editProduct($id){
         $aid = Auth::id();
-        $admins = Admin::find($aid);
+        $admin = Admin::find($aid);
         $products = Product::findorFail($id);
         $multiImg = MultiImage::Where('product_id',$id)->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
         $subsubcategories = SubSubCategory::latest()->get();
-        return view('admin.product.edit',compact('admins','products','brands','categories','subcategories',
+        return view('admin.product.edit',compact('admin','products','brands','categories','subcategories',
         'subsubcategories','multiImg'));
     }
 
@@ -122,9 +122,9 @@ class ProductController extends Controller
 
    public function productDetails($id){
      $aid = Auth::id();
-     $admins = Admin::find($aid);
+     $admin = Admin::find($aid);
      $prods = Product::findorFail($id);
-     return view('admin.product.product-details',compact('admins','prods'));
+     return view('admin.product.product-details',compact('admin','prods'));
    }
 
    public function delProduct($id, DeleteProduct $deleteProduct){

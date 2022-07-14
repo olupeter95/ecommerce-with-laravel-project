@@ -243,8 +243,10 @@ E-commerce Store
                           <span class="price-before-discount">${{$prod->selling_price}}</span>
                           </div>
                           @else
-                          <div class="product-price"> <span class="price"> ${{$prod->discount_price}} </span> 
-                          <span class="price-before-discount">${{$prod->selling_price}}</span> </div>
+                          <div class="product-price"> 
+                            <span class="price"> ${{$prod->discount_price}} </span> 
+                          <span class="price-before-discount">${{$prod->selling_price}}</span> 
+                        </div>
                           @endif
                           <!-- /.product-price --> 
                           
@@ -332,18 +334,45 @@ E-commerce Store
             <div class="products">
                 <div class="product">
                   <div class="product-image">
-                    <div class="image"> <a href="detail.html"><img src="{{'storage/upload/product/thumbnail/'.$feature->product_thumbnail}}" alt=""></a> </div>
+                    <div class="image"> <a href="{{route('product-details',$feature->id)}}">
+                      <img src="{{'storage/upload/product/thumbnail/'.$feature->product_thumbnail}}" alt="">
+                    </a> </div>
                     <!-- /.image -->
-                    
-                    <div class="tag hot"><span>hot</span></div>
+                          @php 
+                          $amount = $feature->selling_price - $feature->discount_price;
+                          $discount = ($amount/$feature->discount_price) * 100;
+                          @endphp  
+                        <div>
+                            @if($feature->discount_price == NULL)
+                            <div class="tag new"><span>new</span></div>
+                            @else
+                            <div class="tag hot"><span>{{round($discount)}}%</span></div>
+                            @endif 
+                      </div>
                   </div>
                   <!-- /.product-image -->
                   
                   <div class="product-info text-left">
-                    <h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-                    <div class="rating rateit-small rateit"><button id="rateit-reset-47" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-47" style="display: none;"></button><div id="rateit-range-47" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-47" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;"><div class="rateit-selected" style="height: 14px; width: 56px;"></div><div class="rateit-hover" style="height:14px"></div></div></div>
+                    <h3 class="name"><a href="detail.html">
+                      @if(session()->get('language') == 'french')
+                      {{$feature->product_name_fr}}
+                      @else 
+                      {{$feature->product_name_en}}
+                      @endif
+                    </a></h3>
+                    <div class="rating rateit-small rateit">
+                      <button id="rateit-reset-47" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-47" style="display: none;">
+                    </button>
+                    <div id="rateit-range-47" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-47" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;">
+                    <div class="rateit-selected" style="height: 14px; width: 56px;"></div>
+                    <div class="rateit-hover" style="height:14px"></div>
+                    </div>
+                  </div>
                     <div class="description"></div>
-                    <div class="product-price"> <span class="price"> $450.99 </span> <span class="price-before-discount">$ 800</span> </div>
+                    <div class="product-price"> 
+                    <span class="price"> ${{$feature->discount_price}} </span> 
+                          <span class="price-before-discount">${{$feature->selling_price}}</span> 
+                    </div>
                     <!-- /.product-price --> 
                     
                   </div>
@@ -352,7 +381,10 @@ E-commerce Store
                     <div class="action">
                       <ul class="list-unstyled">
                         <li class="add-cart-button btn-group">
-                          <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button class="btn btn-primary icon" data-toggle="modal" data-target="#exampleModal"
+                           type="button" id="{{$feature->id}}" onclick="productView(this.id)">
+                             <i class="fa fa-shopping-cart"></i> 
+                            </button>
                           <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                         </li>
                         <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
@@ -386,6 +418,79 @@ E-commerce Store
       
           <!-- /.home-owl-carousel --> 
         </section>
+      
+ <!-- Modal -->
+<div class="modal fade  "  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if(session()->get('language') == 'french')
+        <h5 class="modal-title" id="exampleModalLabel"><span id="pname_fr"></span></h5>
+        @else 
+        <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
+        @endif
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src=" " class="card-img-top" alt="..." style = "200px; height:200px" id="pimage">
+            
+          </div>
+          </div><!--end col--->
+          <div class="col-md-4">
+          <ul class="list-group">
+            <li class="list-group-item">Price: <strong class="text-danger"><span id="pprice">$</span></strong>
+            <del><span id="oldprice">$</span></del>
+          </li>
+            <li class="list-group-item">Product Code: <strong id="code"></strong></li>
+            @if(session()->get('language') == 'french')
+            <li class="list-group-item">Category: <strong id="category_fr"></strong></li>
+            @else
+            <li class="list-group-item">Category: <strong id="category"></strong></li>
+            @endif
+            @if(session()->get('language') == 'french')
+            <li class="list-group-item">Brand: <strong id="brand_fr"></strong></li>
+            @else
+            <li class="list-group-item">Brand: <strong id="brand"></strong></li>
+            @endif
+            <li class="list-group-item">Stock: <strong id="quantity"></strong></li>
+          </ul>
+          </div><!--end col--->
+          <div class="col-md-4">
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Choose Color</label>
+          @if(session()->get('language') == 'french')
+          <select class="form-control" id="exampleFormControlSelect1" name="color_fr"></select>
+          @else 
+          <select class="form-control" id="exampleFormControlSelect1" name="color_en"></select>
+          @endif
+        </div><!--end formgroup--->
+        
+        <div class="form-group" id="sizeArea">
+          <label for="exampleFormControlSelect1">Choose Size</label>
+          @if(session()->get('language') == 'french')
+          <select class="form-control" id="exampleFormControlSelect1" name="size_fr"></select>
+          @else 
+          <select class="form-control" id="exampleFormControlSelect1" name="size_en"></select>
+          @endif
+        </div><!--end formgroup--->
+        
+        <div class="form-group">
+          <label for="quantity">Product Quantity</label>
+          <input type="number" class="form-control" value="1" min="1">
+        </div><!--end formgroup---> 
+        <button type="submit" class="btn btn-primary mb-2">Add To Cart</button>
+          </div><!--end col--->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!---- /end modal --->
         <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <div class="wide-banners wow fadeInUp outer-bottom-xs">

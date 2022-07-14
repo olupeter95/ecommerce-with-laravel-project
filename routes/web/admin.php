@@ -16,8 +16,8 @@ Route::middleware(['auth:sanctum,admin',config('jetstream.auth_session'),'verifi
 ])->group(function () {
     Route::get('/admin/dashboard', function () {
         $id = Auth::id();
-        $admins = Admin::find($id);
-        return view('admin.pages.index',compact('admins'));
+        $admin = Admin::find($id);
+        return view('admin.pages.index',compact('admin'));
     })->name('admin.body');
 });
 Route::get('admin/logout',[AdminController::class,'destroy'])->name('admin.logout');

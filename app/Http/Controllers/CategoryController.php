@@ -14,9 +14,9 @@ class CategoryController extends Controller
 {
      public function index(){
         $id = Auth::id();
-        $admins = Admin::find($id);
+        $admin = Admin::find($id);
         $category = Category::latest()->get();
-        return view('admin.category.index',compact('admins','category'));
+        return view('admin.category.index',compact('admin','category'));
     }
 
     public function add(StoreCategoryRequest $request, CreateCategory $createCategory){
@@ -30,9 +30,9 @@ class CategoryController extends Controller
    
    public function edit($id){
     $aid = Auth::id();
-    $admins = Admin::find($aid);
+    $admin = Admin::find($aid);
     $category = Category::find($id);
-   return view('admin.category.edit',compact('category','admins'));
+   return view('admin.category.edit',compact('category','admin'));
 }
 
 public function update(StoreCategoryRequest $request, UpdateCategory $updateCategory){

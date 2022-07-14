@@ -27,4 +27,8 @@ Route::get('/product/tags/{tags}',[IndexController::class, 'prodTags'])->name('p
 Route::get('/product/subcat/{id}/{slug}',[IndexController::class, 'prodSubcat'])->name('subcat-product');
 Route::get('/product/subsubcat/{id}/{slug}',[IndexController::class, 'prodSubSubcat'])->name('subsubcat-product');
 // end frontend product tags route//
+
+//product modal view
+Route::get('/product/view/modal/{id}',[IndexController::class, 'ProductModalView']);
+
 ?>

@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImage;
-use Illuminate\Http\Request;
 use App\Actions\Frontend\UpdateUser;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use App\Actions\Frontend\UpdatePassword;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\UpdatePasswordRequest;
+
 
 class IndexController extends Controller
 {
@@ -26,7 +22,6 @@ class IndexController extends Controller
         $user = User::find($id);
         return view('dashboard',compact('user'));
     }
-
 
     public function index(){
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
@@ -89,13 +84,30 @@ class IndexController extends Controller
     'prod_color_fr','prod_size_en','prod_size_fr','relatedProd'));
     }
 
+    public function ProductModalView($id){
+        $product = Product::with('category','brand')->findorFail($id);
+        $color_en = $product->product_color_en;
+        $prod_color_en = explode(',',$color_en);
+        $color_fr = $product->product_color_fr;
+        $prod_color_fr = explode(',',$color_fr);
+        $prod_size_en = explode(',',$product->product_size_en);
+        $prod_size_fr = explode(',',$product->product_size_fr);
+        return response()->json(array(
+            'product'=>$product,
+            'color_en'=>$prod_color_en,
+            'color_fr'=>$prod_color_fr,
+            'size_en'=>$prod_size_en,
+            'size_fr'=>$prod_size_fr,
+        ));
+    }
+
     public function prodTags($tags){
         $prod = Product::where('status',1)->where('product_tags_en',$tags)->orWhere(
             'product_tags_fr',$tags)->orderBy('id','DESC')->paginate(3);
         $prod_color_en = Product::where('product_tags_en',$tags)->select('product_color_en')->get();
         $color_en =explode(',',$prod_color_en);
         $color_fr = explode(',',Product::groupBy('product_color_fr')->select('product_color_fr')->get());
-            return view('layouts.tags.view',compact('prod','color_en', 'color_fr'));
+         return view('layouts.tags.view',compact('prod','color_en', 'color_fr'));
     }
 
     public function prodSubcat($id, $slug){

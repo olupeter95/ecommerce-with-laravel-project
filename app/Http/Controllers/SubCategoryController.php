@@ -15,10 +15,10 @@ class SubCategoryController extends Controller
 {
     public function index(){
         $id = Auth::id();
-        $admins = Admin::find($id);
+        $admin = Admin::find($id);
         $category = Category::all();
         $subcategory = SubCategory::latest()->get();
-        return view('admin.subcategory.index',compact('admins','subcategory','category'));
+        return view('admin.subcategory.index',compact('admin','subcategory','category'));
     }
 
     public function add(CreateSubCategoryRequest $request, CreateSubcategory $subCategory){
@@ -32,10 +32,10 @@ class SubCategoryController extends Controller
    
    public function edit($id){
     $aid = Auth::id();
-    $admins = Admin::find($aid);
+    $admin = Admin::find($aid);
     $category = Category::all();
     $subcategory = SubCategory::find($id);
-   return view('admin.subcategory.edit',compact('category','admins','subcategory'));
+   return view('admin.subcategory.edit',compact('category','admin','subcategory'));
 }
 
 public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory){

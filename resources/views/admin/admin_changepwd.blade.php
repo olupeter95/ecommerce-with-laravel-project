@@ -12,7 +12,7 @@
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form action="{{ route('admin.change.password',$admins->id) }}" method="post" >
+					<form action="{{ route('admin.change.password',$admin->id) }}" method="post" >
                         @csrf
 					  <div class="row">
 						<div class="col-12">						      

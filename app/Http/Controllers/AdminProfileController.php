@@ -13,13 +13,13 @@ use App\Http\Requests\AdminProfile\ChangePasswordRequest;
 class AdminProfileController extends Controller
 {
      public function Profile($id){
-        $admins = Admin::find($id);
-        return view('admin.pages.profile',compact('admins'));
+        $admin = Admin::find($id);
+        return view('admin.pages.profile',compact('admin'));
     }
 
     public function ProfileEdit($id){
-        $admins = Admin::find($id);
-        return view('admin.pages.profile_edit',compact('admins'));
+        $admin = Admin::find($id);
+        return view('admin.pages.profile_edit',compact('admin'));
     }
     
     public function ProfileUpdate(UpdateAdminRequest $request, $id, UpdateProfile  $updateProfile){
@@ -34,8 +34,8 @@ class AdminProfileController extends Controller
 
     public function PasswordChange($id)
     {
-        $admins = Admin::find($id);
-        return view('admin.admin_changepwd',compact('admins'));
+        $admin = Admin::find($id);
+        return view('admin.admin_changepwd',compact('admin'));
     }
 
     public function NewPwd(ChangePasswordRequest $request, $id, ChangePassword $changePassword){

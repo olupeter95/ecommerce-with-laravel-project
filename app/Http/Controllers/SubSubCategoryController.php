@@ -17,11 +17,11 @@ class SubSubCategoryController extends Controller
     //
     public function index(){
         $id = Auth::id();
-        $admins = Admin::find($id);
+        $admin = Admin::find($id);
         $subcategory = SubCategory::latest()->get();
         $subsubcategory = SubSubCategory::latest()->get();
         $category = Category::all();
-        return view('admin.subsubcategory.index',compact('admins','subcategory','category','subsubcategory'));
+        return view('admin.subsubcategory.index',compact('admin','subcategory','category','subsubcategory'));
     }
 
     public function add(SubSubCategoryRequest $request, CreateSubSubCategory $createSubSubCategory){
@@ -35,11 +35,11 @@ class SubSubCategoryController extends Controller
    
    public function edit($id){
     $aid = Auth::id();
-    $admins = Admin::find($aid);
+    $admin = Admin::find($aid);
     $category = Category::all();
     $subcategory = SubCategory::all();
     $subsubcategory = SubSubCategory::find($id);
-   return view('admin.subsubcategory.edit',compact('category','admins','subcategory','subsubcategory'));
+   return view('admin.subsubcategory.edit',compact('category','admin','subcategory','subsubcategory'));
 }
 
 public function update(SubSubCategoryRequest $request, UpdateSubSubCategory $updateSubSubCategory){

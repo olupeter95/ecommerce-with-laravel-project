@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -65,9 +66,100 @@
 <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+<script type="text/javascript">
+$.ajaxSetup({
+   headers:{
+      'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+   }
+
+})
+
+   //start product view with modal
+   function productView(id){
+         //alert(id)
+         $.ajax({
+            type:'GET',
+            url:'/product/view/modal/'+id,
+            dataType:'json',
+            success:function(data){
+               //console.log(data)
+               $('#pname').text(data.product.product_name_en)
+              // $('#price').text(data.product.selling_price)
+               $('#pname_fr').text(data.product.product_name_fr)
+               $('#price').text(data.product.selling_price)
+               $('#code').text(data.product.product_code)
+               $('#category').text(data.product.category.category_name_en)
+               $('#category_fr').text(data.product.category.category_name_fr)
+               $('#brand').text(data.product.brand.brand_name_en)
+               $('#brand_fr').text(data.product.brand.brand_name_fr)
+               $('#quantity').text(data.product.product_qty)
+               $('#pimage').attr('src','storage/upload/product/thumbnail/'+data.product.product_thumbnail)
+               
+
+               // Color english
+              $('select[name="color_en"]').empty();        
+               $.each(data.color_en,function(key,value){
+                  $('select[name="color_en"]').append('<option value=" '+value+' ">'+value+' </option>')
+               }) // end color english
+
+                 // Color french
+               $('select[name="color_fr"]').empty();        
+              $.each(data.color_fr,function(key,value){
+                  $('select[name="color_fr"]').append('<option value=" '+value+' ">'+value+' </option>')
+               }) // end color french
+
+                  // Size
+               $('select[name="size_en"]').empty();        
+               $.each(data.size_en,function(key,value){
+                  $('select[name="size_en"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  if (data.size == "") {
+                        $('#sizeArea').hide();
+                  }else{
+                        $('#sizeArea').show();
+                  }
+               }) // end size
+               
+                  // Size french
+                $('select[name="size_fr"]').empty();        
+               $.each(data.size_fr,function(key,value){
+                  $('select[name="size_fr"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  if (data.size == "") {
+                        $('#sizeArea').hide();
+                  }else{
+                        $('#sizeArea').show();
+                  }
+               }) // end size french
+               //product price
+               if(data.product.discount_price == null){
+                     $('#pprice').text('');
+                     $('#pprice').text('');
+                     $('#pprice').text(data.product.selling_price);
+                  }else{
+                     $('#pprice').text(data.product.discount_price);
+                     $('#oldprice').text(data.product.selling_price);
+                  }
+
+               //stock
+               if(data.product.product_qty > 0){
+                     $('#quantity').text('');
+                     $('#quantity').text('Available');
+               }else{
+                  $('#quantity').text('');
+                  $('#quantity').text('Out Of Stock');
+               }
+            }
+         })
+   }  
+</script>
+
+
+
+
+
+
 
 <script>
- @if(Session::has('message'))
+ if(Session::has('message'))
  var type = "{{ Session::get('alert-type','info') }}"
  switch(type){
     case 'info':
@@ -86,7 +178,7 @@
     toastr.error(" {{ Session::get('message') }} ");
     break; 
  }
- @endif 
+ endif 
 </script>
 </body>
 </html>

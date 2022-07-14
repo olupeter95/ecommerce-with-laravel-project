@@ -14,7 +14,7 @@
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form action="{{ route('admin.profile.update',$admins->id) }}" method="post" enctype="multipart/form-data">
+					<form action="{{ route('admin.profile.update',$admin->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
 					  <div class="row">
 						<div class="col-12">						
