@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Category;
-use App\Models\SubCategory;
-use Illuminate\Support\Facades\Auth;
 use App\Actions\Admin\Subcategory\EditSubCategory;
 use App\Actions\Admin\Subcategory\SubCategoryView;
 use App\Actions\Admin\Subcategory\CreateSubcategory;

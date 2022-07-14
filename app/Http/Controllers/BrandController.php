@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Brand;
-use Illuminate\Support\Facades\Auth;
 use App\Actions\Admin\Brand\BrandView;
 use App\Actions\Admin\Brand\EditBrand;
 use App\Actions\Admin\Brand\CreateBrand;

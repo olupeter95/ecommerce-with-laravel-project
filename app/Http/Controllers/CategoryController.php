@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Admin\Category\CategoryView;
-use App\Models\Admin;
-use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 use App\Actions\Admin\Category\CreateCategory;
 use App\Actions\Admin\Category\DeleteCategory;
 use App\Actions\Admin\Category\EditCategory;
