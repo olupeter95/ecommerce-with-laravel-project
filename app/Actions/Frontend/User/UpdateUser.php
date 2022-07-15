@@ -1,5 +1,5 @@
 <?php
-namespace App\Actions\Frontend;
+namespace App\Actions\Frontend\User;
 
 use Carbon\Carbon;
 use App\Models\User;

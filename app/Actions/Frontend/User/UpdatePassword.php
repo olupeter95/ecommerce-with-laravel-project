@@ -1,5 +1,5 @@
 <?php
-namespace App\Actions\Frontend;
+namespace App\Actions\Frontend\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
