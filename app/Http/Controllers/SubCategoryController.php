@@ -33,24 +33,24 @@ class SubCategoryController extends Controller
     return $edit;
    }
 
-public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory)
-{
-    $updateSubcategory->handle($request);
-    $notification = array(
-       'message' => 'Subcategory updated successfully',
-       'alert-type'=> 'success'
-    );
-    return redirect()->route('all.subcategory')->with($notification);
-}
+    public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory)
+    {
+        $updateSubcategory->handle($request);
+        $notification = array(
+        'message' => 'Subcategory updated successfully',
+        'alert-type'=> 'success'
+        );
+        return redirect()->route('all.subcategory')->with($notification);
+    }
 
-public function delete($id, DeleteSubcategory $deleteSubcategory)
-{
-    $deleteSubcategory->handle($id);
-    $notification = array(
-      'message' => 'category deleted successfully',
-      'alert-type'=> 'error'
-   );
-   return redirect()->back()->with($notification);
-  }
+    public function delete($id, DeleteSubcategory $deleteSubcategory)
+    {
+        $deleteSubcategory->handle($id);
+        $notification = array(
+        'message' => 'category deleted successfully',
+        'alert-type'=> 'error'
+        );
+        return redirect()->back()->with($notification);
+    }
 
 }
