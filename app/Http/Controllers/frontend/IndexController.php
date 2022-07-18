@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use App\Actions\Frontend\HomeView;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\Frontend\User\ViewUser;
 use App\Actions\Frontend\User\UpdateUser;

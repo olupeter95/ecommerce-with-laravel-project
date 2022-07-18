@@ -21,6 +21,7 @@ require_once('web/subsubcategory.php');
 require_once('web/product.php');
 require_once('web/slider.php');
 require_once('web/language.php');
+require_once('web/cart.php');
 
 
 

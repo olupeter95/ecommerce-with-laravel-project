@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 
 Route::prefix('subcategory')->group(function(){

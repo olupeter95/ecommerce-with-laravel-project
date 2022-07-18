@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Actions\Admin\Category\CategoryView;
+use App\Actions\Admin\Category\EditCategory;
 use App\Actions\Admin\Category\CreateCategory;
 use App\Actions\Admin\Category\DeleteCategory;
-use App\Actions\Admin\Category\EditCategory;
 use App\Actions\Admin\Category\UpdateCategory;
 use App\Http\Requests\category\StoreCategoryRequest;
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Actions\Admin\Slider\EditSlider;
 use App\Actions\Admin\Slider\ViewSlider;
 use App\Actions\Admin\Slider\ActiveSlider;

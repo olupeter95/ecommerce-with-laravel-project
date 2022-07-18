@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BrandController;
+use App\Http\Controllers\Backend\BrandController;
 // All Admin Brands route
 Route::prefix('brand')->group(function(){
     Route::get('/all',[BrandController::class,'index'])->name('all.brand')->middleware('auth:admin');

@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontend\LanguageController;
+use App\Http\Controllers\Frontend\LanguageController;
 
 ////All frontend route /////
 Route::get('/language/english',[LanguageController::class, 'English'])->name('english.language');

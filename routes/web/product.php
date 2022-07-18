@@ -1,6 +1,6 @@
 <?php 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Backend\ProductController;
 
 //Admin product route
 Route::prefix('product')->group(function(){

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\Admin\Profile\UpdateProfile;
 use App\Actions\Admin\Profile\ChangePassword;

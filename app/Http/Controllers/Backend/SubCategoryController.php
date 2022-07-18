@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Actions\Admin\Subcategory\EditSubCategory;
 use App\Actions\Admin\Subcategory\SubCategoryView;
 use App\Actions\Admin\Subcategory\CreateSubcategory;

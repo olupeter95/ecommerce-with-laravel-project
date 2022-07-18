@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Actions\Admin\Product\EditProduct;
 use App\Actions\Admin\Product\ProductView;
 use App\Actions\Admin\Product\ProductIndex;

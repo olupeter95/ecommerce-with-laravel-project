@@ -1,6 +1,6 @@
 <?php 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SliderController;
+use App\Http\Controllers\Backend\SliderController;
 
 //Admin slider route///
 Route::prefix('slider')->group(function(){
