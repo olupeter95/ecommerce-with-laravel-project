@@ -1,8 +1,7 @@
 <?php 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\Frontend\CartController;
 
-
-Route::get();
+Route::post('/product/add/cart/{id}', [CartController::class, 'AddCart']);
 
 ?>

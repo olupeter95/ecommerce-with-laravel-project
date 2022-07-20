@@ -419,78 +419,7 @@ E-commerce Store
           <!-- /.home-owl-carousel --> 
         </section>
       
- <!-- Modal -->
-<div class="modal fade  "  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        @if(session()->get('language') == 'french')
-        <h5 class="modal-title" id="exampleModalLabel"><span id="pname_fr"></span></h5>
-        @else 
-        <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
-        @endif
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-4">
-          <div class="card" style="width: 18rem;">
-            <img src=" " class="card-img-top" alt="..." style = "200px; height:200px" id="pimage">
-            
-          </div>
-          </div><!--end col--->
-          <div class="col-md-4">
-          <ul class="list-group">
-            <li class="list-group-item">Price: <strong class="text-danger"><span id="pprice">$</span></strong>
-            <del><span id="oldprice">$</span></del>
-          </li>
-            <li class="list-group-item">Product Code: <strong id="code"></strong></li>
-            @if(session()->get('language') == 'french')
-            <li class="list-group-item">Category: <strong id="category_fr"></strong></li>
-            @else
-            <li class="list-group-item">Category: <strong id="category"></strong></li>
-            @endif
-            @if(session()->get('language') == 'french')
-            <li class="list-group-item">Brand: <strong id="brand_fr"></strong></li>
-            @else
-            <li class="list-group-item">Brand: <strong id="brand"></strong></li>
-            @endif
-            <li class="list-group-item">Stock: <strong id="quantity"></strong></li>
-          </ul>
-          </div><!--end col--->
-          <div class="col-md-4">
-          <div class="form-group">
-          <label for="exampleFormControlSelect1">Choose Color</label>
-          @if(session()->get('language') == 'french')
-          <select class="form-control" id="exampleFormControlSelect1" name="color_fr"></select>
-          @else 
-          <select class="form-control" id="exampleFormControlSelect1" name="color_en"></select>
-          @endif
-        </div><!--end formgroup--->
-        
-        <div class="form-group" id="sizeArea">
-          <label for="exampleFormControlSelect1">Choose Size</label>
-          @if(session()->get('language') == 'french')
-          <select class="form-control" id="exampleFormControlSelect1" name="size_fr"></select>
-          @else 
-          <select class="form-control" id="exampleFormControlSelect1" name="size_en"></select>
-          @endif
-        </div><!--end formgroup--->
-        
-        <div class="form-group">
-          <label for="quantity">Product Quantity</label>
-          <input type="number" class="form-control" value="1" min="1">
-        </div><!--end formgroup---> 
-        <button type="submit" class="btn btn-primary mb-2">Add To Cart</button>
-          </div><!--end col--->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!---- /end modal --->
+
         <!-- ============================================== FEATURED PRODUCTS : END ============================================== --> 
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
         <div class="wide-banners wow fadeInUp outer-bottom-xs">

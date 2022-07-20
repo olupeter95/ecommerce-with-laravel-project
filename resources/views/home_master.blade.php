@@ -43,6 +43,80 @@
 @yield('content')
 <!-- /#top-banner-and-menu --> 
 
+ <!-- Modal -->
+ <div class="modal fade  "  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if(session()->get('language') == 'french')
+        <h5 class="modal-title" id="exampleModalLabel"><span id="pname_fr"></span></h5>
+        @else 
+        <h5 class="modal-title" id="exampleModalLabel"><span id="pname"></span></h5>
+        @endif
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src=" " class="card-img-top" alt="..." style = "200px; height:200px" id="pimage">
+            
+          </div>
+          </div><!--end col--->
+          <div class="col-md-4">
+          <ul class="list-group">
+            <li class="list-group-item">Price: <strong class="text-danger"><span id="pprice">$</span></strong>
+            <del><span id="oldprice">$</span></del>
+          </li>
+            <li class="list-group-item">Product Code: <strong id="code"></strong></li>
+            @if(session()->get('language') == 'french')
+            <li class="list-group-item">Category: <strong id="category_fr"></strong></li>
+            @else
+            <li class="list-group-item">Category: <strong id="category"></strong></li>
+            @endif
+            @if(session()->get('language') == 'french')
+            <li class="list-group-item">Brand: <strong id="brand_fr"></strong></li>
+            @else
+            <li class="list-group-item">Brand: <strong id="brand"></strong></li>
+            @endif
+            <li class="list-group-item">Stock: <strong id="quantity"></strong></li>
+          </ul>
+          </div><!--end col--->
+          <div class="col-md-4">
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Choose Color</label>
+          @if(session()->get('language') == 'french')
+          <select class="form-control" id="color_fr" name="color_fr"></select>
+          @else 
+          <select class="form-control" id="color_en" name="color_en"></select>
+          @endif
+        </div><!--end formgroup--->
+        
+        <div class="form-group" id="sizeArea">
+          <label for="exampleFormControlSelect1">Choose Size</label>
+          @if(session()->get('language') == 'french')
+          <select class="form-control" id="size_fr" name="size_fr"></select>
+          @else 
+          <select class="form-control" id="size_en" name="size_en"></select>
+          @endif
+        </div><!--end formgroup--->
+        
+        <div class="form-group">
+          <label for="quantity">Product Quantity</label>
+          <input type="number" class="form-control" value="1" min="1" id="qty">
+        </div><!--end formgroup---> 
+        <input type="hidden" id="product_id">
+        <button type="submit" class="btn btn-primary mb-2"  onclick="AddToCart()">Add To Cart</button>
+          </div><!--end col--->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!---- /end modal --->
+
 <!-- ============================================================= FOOTER ============================================================= -->
 @include('layouts.body.footer')
 <!-- ============================================================= FOOTER : END============================================================= --> 
@@ -72,7 +146,7 @@ $.ajaxSetup({
       'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
    }
 
-})
+});
 
    //start product view with modal
    function productView(id){
@@ -83,35 +157,34 @@ $.ajaxSetup({
             dataType:'json',
             success:function(data){
                //console.log(data)
-               $('#pname').text(data.product.product_name_en)
-              // $('#price').text(data.product.selling_price)
-               $('#pname_fr').text(data.product.product_name_fr)
-               $('#price').text(data.product.selling_price)
-               $('#code').text(data.product.product_code)
-               $('#category').text(data.product.category.category_name_en)
-               $('#category_fr').text(data.product.category.category_name_fr)
-               $('#brand').text(data.product.brand.brand_name_en)
-               $('#brand_fr').text(data.product.brand.brand_name_fr)
-               $('#quantity').text(data.product.product_qty)
-               $('#pimage').attr('src','storage/upload/product/thumbnail/'+data.product.product_thumbnail)
+               $('#pname').text(data.product.product_name_en);
+               $('#product_id').val(id);
+               $('#pname_fr').text(data.product.product_name_fr);
+               $('#code').text(data.product.product_code);
+               $('#category').text(data.product.category.category_name_en);
+               $('#category_fr').text(data.product.category.category_name_fr);;
+               $('#brand').text(data.product.brand.brand_name_en);
+               $('#brand_fr').text(data.product.brand.brand_name_fr);
+               $('#qty').val(1);
+               $('#pimage').attr('src','storage/upload/product/thumbnail/'+data.product.product_thumbnail);
                
 
                // Color english
               $('select[name="color_en"]').empty();        
                $.each(data.color_en,function(key,value){
-                  $('select[name="color_en"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  $('select[name="color_en"]').append('<option value=" '+value+' ">'+value+' </option>');
                }) // end color english
 
                  // Color french
                $('select[name="color_fr"]').empty();        
               $.each(data.color_fr,function(key,value){
-                  $('select[name="color_fr"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  $('select[name="color_fr"]').append('<option value=" '+value+' ">'+value+' </option>');
                }) // end color french
 
                   // Size
                $('select[name="size_en"]').empty();        
                $.each(data.size_en,function(key,value){
-                  $('select[name="size_en"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  $('select[name="size_en"]').append('<option value=" '+value+' ">'+value+' </option>');
                   if (data.size == "") {
                         $('#sizeArea').hide();
                   }else{
@@ -122,7 +195,7 @@ $.ajaxSetup({
                   // Size french
                 $('select[name="size_fr"]').empty();        
                $.each(data.size_fr,function(key,value){
-                  $('select[name="size_fr"]').append('<option value=" '+value+' ">'+value+' </option>')
+                  $('select[name="size_fr"]').append('<option value=" '+value+' ">'+value+' </option>');
                   if (data.size == "") {
                         $('#sizeArea').hide();
                   }else{
@@ -141,17 +214,52 @@ $.ajaxSetup({
 
                //stock
                if(data.product.product_qty > 0){
-                     $('#quantity').text('');
-                     $('#quantity').text('Available');
+                     $('#qty').text('');
+                     $('#qty').text('Available');
                }else{
-                  $('#quantity').text('');
-                  $('#quantity').text('Out Of Stock');
+                  $('#qty').text('');
+                  $('#qty').text('Out Of Stock');
                }
             }
-         })
-   }  
-</script>
+         });
+         //End product modal view//
+}
 
+
+
+      //Start Add to Cart product
+      function AddToCart(){
+      var product_name = $('#pname').text();
+               var product_name_fr = $('#pname_fr').text();
+               var id = $('#product_id').val();
+               var color_en = $('#color_en option:selected').text();
+               var color_fr = $('#color_fr option:selected').text();
+               var product_price = $('#pprice').text();
+               var size_en = $('#size_en option:selected').text();
+               var size_fr = $('#size_fr option:selected').text();
+               var qty = $('#qty').val();
+
+               $.ajax({
+                  type: 'POST',
+                  dataType: 'json',
+                  url: '/product/add/cart/'+id,
+                  data: {
+                     product_name:product_name, 
+                     product_name_fr:product_name_fr, 
+                     color_en:color_en, color_fr:color_fr,
+                     product_price:product_price, 
+                     size_en:size_en, size_fr:size_fr,qty:qty
+                  },
+                  success: function(data){
+                        console.log(data)
+                        
+                  },
+                  
+               })
+
+         }         
+     //End Add to Cart product  
+</script>
 
 
 
