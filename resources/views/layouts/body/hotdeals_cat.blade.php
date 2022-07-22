@@ -39,7 +39,7 @@
             
             <div class="product-info text-left m-t-20">
               <h3 class="name">
-                <a href="detail.html">
+                <a href="{{route('product-details',$hot_deal->id)}}">
                   @if(session()->get('language')=='french')
                   {{$hot_deal->product_name_fr}}
                   @else
