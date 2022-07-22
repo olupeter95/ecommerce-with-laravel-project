@@ -1,7 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
-use App\Models\User;
 
 /*-----------------User ROUTE------------------*/
 Route::get('/', [IndexController::class,'index'])->name('home');
