@@ -413,7 +413,95 @@
      //end add my wishlist
 </script>
 
+<script type="text/javascript">
+    function wishlist(){
+      $.ajax({
+         type:'GET',
+         dataType:'json',
+         url:'/get-product/wishlist',
+         success: function(response){
+            var rows = ""
+            $.each(response, function(key,value){
+               rows += `<tr>
+					<td class="col-md-2"><img src="/storage/upload/product/thumbnail/${value.product.product_thumbnail}" alt="imga"></td>
+					<td class="col-md-7">
+						<div class="product-name"><a href="#">
+                  @if(session()->get('language') == 'french')
+                  ${value.product.product_name_fr}
+                  @else
+                  ${value.product.product_name_en}
+                  @endif
+                  </a></div>
+						<div class="rating">
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star non-rate"></i>
+							<span class="review">( 06 Reviews )</span>
+						</div>
+						<div class="price">
+                  ${value.product.discount_price == null
+                            ? `$${value.product.selling_price}`
+                            :
+                            `$${value.product.discount_price} <span>$${value.product.selling_price}</span>`
+                        }
+						</div>
+					</td>
+					<td class="col-md-2">
+               <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" 
+               id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
+					</td>
+					<td class="col-md-1 close-btn">
+						<button  id="${value.id}" onclick="removeWishlist(this.id)" type="submit"><i class="fa fa-times"></i></button>
+					</td>
+				</tr>`
+  
+            })
 
+            $('#wishlist').html(rows)   
+         }
+         
+      })
+    }
+    wishlist();
+
+//wishlist remove
+function removeWishlist(id){
+   $.ajax({
+      type:'GET',
+      url:'/remove/wishlist/'+id,
+      dataType:'json',
+      success: function(data){
+       wishlist();
+
+          //start message
+          const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+               })
+               if ($.isEmptyObject(data.error)) {
+                  Toast.fire({
+                     type: 'success',
+                     icon: 'success',
+                     title: data.success
+                  })
+               } else {
+                  Toast.fire({
+                     type: 'error',
+                     icon: 'error',
+                     title: data.error
+                  })
+               }
+               //end message
+
+      }
+   })
+}
+//end wishlist remove
+</script>
 
 
    <script>

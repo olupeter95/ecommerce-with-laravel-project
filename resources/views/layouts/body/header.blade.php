@@ -9,8 +9,10 @@
           <li><a href="#"><i class="icon fa fa-user"></i>
           @if(session()->get('language') == 'french') Mon compte @else My Account @endif
           </a></li>
-          <li><a href="#"><i class="icon fa fa-heart"></i>
-          @if(session()->get('language') == 'french') Liste de souhaits @else Wishlist @endif
+          <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>
+          @if(session()->get('language') == 'french') 
+          Liste de souhaits @else
+           Wishlist @endif
           </a></li>
           <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
           @if(session()->get('language') == 'french') Mon panier @else My Cart @endif
@@ -31,14 +33,17 @@
       
       <div class="cnt-block">
         <ul class="list-unstyled list-inline">
-          <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
+          <li class="dropdown dropdown-small"> 
+            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+              <span class="value">USD </span><b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">USD</a></li>
               <li><a href="#">INR</a></li>
               <li><a href="#">GBP</a></li>
             </ul>
           </li>
-          <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+          <li class="dropdown dropdown-small"> 
+            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
             <span class="value">
             @if(session()->get('language') == 'french')
                 Langue
