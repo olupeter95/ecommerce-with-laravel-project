@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\SubSubCategory;
 
 use App\Models\Admin;
@@ -19,4 +20,3 @@ class SubSubCategoryView
         return view('admin.subsubcategory.index',compact('admin','subcategory','category','subsubcategory'));
     }
 }
-?>

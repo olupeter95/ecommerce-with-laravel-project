@@ -9,48 +9,98 @@ use App\Actions\Admin\Subcategory\CreateSubcategory;
 use App\Actions\Admin\Subcategory\DeleteSubcategory;
 use App\Actions\Admin\Subcategory\UpdateSubcategory;
 use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class SubCategoryController extends Controller
 {
-    public function index(SubCategoryView $subCategoryView)
+    /**
+     * Undocumented function
+     *
+     * @param SubCategoryView $subCategoryView
+     * @return View|Factory
+     */
+    public function index(SubCategoryView $subCategoryView): View|Factory
     {
-        $view =  $subCategoryView->handle();
-        return $view;
+        return $subCategoryView->handle();
     }
 
-    public function create(CreateSubCategoryRequest $request, CreateSubcategory $subCategory)
+    /**
+     * Undocumented function
+     *
+     * @param CreateSubCategoryRequest $request
+     * @param CreateSubcategory $subCategory
+     * @return Redirector|RedirectResponse
+     */
+    public function create(
+        CreateSubCategoryRequest $request, 
+        CreateSubcategory $subCategory
+    ):  Redirector|RedirectResponse
     {
         $subCategory->handle($request);
-        $notification = array(
-           'message' => 'Subcategory added successfully',
-           'alert-type'=> 'success'
-        );
+        $notification = [
+            'message' => 'Subcategory added successfully',
+            'alert-type'=> 'success'
+        ];
         return redirect()->back()->with($notification);
-   }
-   
-   public function edit($id, EditSubCategory  $editSubCategory)
-   {
-    $edit = $editSubCategory->handle($id);
-    return $edit;
-   }
+    }
+    
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param EditSubCategory $editSubCategory
+     * @return View|Factory
+     */
+    public function edit(
+        int $id, 
+        EditSubCategory $editSubCategory
+    ):  View|Factory
+    {
+        return $editSubCategory->handle($id);
+    }
 
-    public function update(CreateSubCategoryRequest $request, UpdateSubcategory $updateSubcategory)
+   
+   
+    /**
+     * Undocumented function
+     *
+     * @param CreateSubCategoryRequest $request
+     * @param UpdateSubcategory $updateSubcategory
+     * @return Redirector|RedirectResponse
+     */
+    public function update(
+        CreateSubCategoryRequest $request, 
+        UpdateSubcategory $updateSubcategory
+    ):  Redirector|RedirectResponse
     {
         $updateSubcategory->handle($request);
-        $notification = array(
-        'message' => 'Subcategory updated successfully',
-        'alert-type'=> 'success'
-        );
+        $notification = [
+            'message' => 'Subcategory updated successfully',
+            'alert-type'=> 'success'
+        ];
         return redirect()->route('all.subcategory')->with($notification);
     }
 
-    public function delete($id, DeleteSubcategory $deleteSubcategory)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param DeleteSubcategory $deleteSubcategory
+     * @return Redirector|RedirectResponse
+     */
+    public function delete(
+        int $id, 
+        DeleteSubcategory $deleteSubcategory
+    ):  Redirector|RedirectResponse
     {
         $deleteSubcategory->handle($id);
-        $notification = array(
-        'message' => 'category deleted successfully',
-        'alert-type'=> 'error'
-        );
+        $notification = [
+            'message' => 'category deleted successfully',
+            'alert-type'=> 'error'
+        ];
         return redirect()->back()->with($notification);
     }
 

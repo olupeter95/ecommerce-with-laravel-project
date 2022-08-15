@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Product;
 
 use App\Models\Product;
@@ -14,12 +15,8 @@ class DeleteProduct
         Product::findorFail($id)->delete();
         $image = MultiImage::where('product_id',$id)->get();
         foreach($image as $imgdel){
-        Storage::delete('public/product/image/'.$imgdel->photo_name);
-        $product =  MultiImage::where('product_id',$id)->delete();
+            Storage::delete('public/product/image/'.$imgdel->photo_name);
+            return MultiImage::where('product_id',$id)->delete();
         }
-        return $product;
-
     }
 }
-
-?>

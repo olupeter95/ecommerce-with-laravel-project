@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Brand;
 
 use App\Models\Admin;
@@ -12,7 +13,6 @@ class EditBrand
         $adminId = Auth::id();
         $admin = Admin::find($adminId);
         $brands = Brand::find($id);
-       return view('admin.brand.edit',compact('brands','admin'));
+        return view('admin.brand.edit',compact('brands','admin'));
     }
 }
-?>

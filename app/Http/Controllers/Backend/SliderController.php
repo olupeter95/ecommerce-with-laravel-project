@@ -12,61 +12,127 @@ use App\Actions\Admin\Slider\DeleteSlider;
 use App\Actions\Admin\Slider\UpdateSlider;
 use App\Http\Requests\Slider\SliderRequest;
 use App\Actions\Admin\Slider\InactiveSlider;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class SliderController extends Controller
 {
-    public function viewSlider(ViewSlider $viewSlider)
+    /**
+     * Undocumented function
+     *
+     * @param ViewSlider $viewSlider
+     * @return View|Factory
+     */
+    public function viewSlider(ViewSlider $viewSlider): View|Factory
     {
-        $view = $viewSlider->handle();
-        return $view;
+        return $viewSlider->handle();
     }
 
-    public function storeSlider(SliderRequest $request, CreateSlider $createSlider)
+    /**
+     * Undocumented function
+     *
+     * @param SliderRequest $request
+     * @param CreateSlider $createSlider
+     * @return Redirector|RedirectResponse
+     */
+    public function storeSlider(
+        SliderRequest $request, 
+        CreateSlider $createSlider
+    ):  Redirector|RedirectResponse
     {
         $createSlider->handle($request);
-        $notification = array(
+        $notification = [
             'message' => 'Slider added successfully',
             'alert-type'=> 'success'
-         );
+        ];
         return redirect()->back()->with($notification); 
     }
 
-    public function editSlider($id, EditSlider $editSlider)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param EditSlider $editSlider
+     * @return View|Factory
+     */
+    public function editSlider(
+        int $id, 
+        EditSlider $editSlider
+    ):  View|Factory
     {
-        $edit = $editSlider->handle($id);
-        return $edit;
+        return $editSlider->handle($id);
     }
 
-    public function delSlider($id,DeleteSlider $deleteSlider)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param DeleteSlider $deleteSlider
+     * @return Redirector|RedirectResponse
+     */
+    public function delSlider(
+        int $id,
+        DeleteSlider $deleteSlider
+    ): Redirector|RedirectResponse
     {
         $deleteSlider->handle($id);
-        $notification = array(
+        $notification = [
             'message' => 'Slider deleted successfully',
             'alert-type' => 'success'
-        );
+        ];
         return redirect()->back()->with($notification);
     }
 
-    public function updateSlider(Request $request, UpdateSlider $updateSlider)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param UpdateSlider $updateSlider
+     * @return Redirector|RedirectResponse
+     */
+    public function updateSlider(
+        Request $request, 
+        UpdateSlider $updateSlider
+    ): Redirector|RedirectResponse
     {
         $updateSlider->handle($request);
-        $notification = array(
+        $notification = [
             'message' => 'Slider Updated Successfully',
             'alert-type'=> 'success'
-         );
+        ];
         return redirect()->route('view.slider')->with($notification);
 
     }
 
-    public function inactiveSlider($id, InactiveSlider $inactiveSlider)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param InactiveSlider $inactiveSlider
+     * @return RedirectResponse
+     */
+    public function inactiveSlider(
+        int $id, 
+        InactiveSlider $inactiveSlider
+    ):  RedirectResponse
     {
-        $inactive = $inactiveSlider->handle($id);
-        return $inactive;
+        return $inactiveSlider->handle($id);
     }
 
-    public function activeSlider($id, ActiveSlider $activeSlider)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param ActiveSlider $activeSlider
+     * @return RedirectResponse
+     */
+    public function activeSlider(
+        int $id, 
+        ActiveSlider $activeSlider
+    ):  RedirectResponse
     {
-        $active = $activeSlider->handle($id);
-        return $active;
+        return $activeSlider->handle($id);
     }
 }

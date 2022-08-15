@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Product;
 
 use App\Models\Admin;
@@ -26,4 +27,3 @@ class EditProduct
         'subsubcategories','multiImg'));
     }
 }
-?>

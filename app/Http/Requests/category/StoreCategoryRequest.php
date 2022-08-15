@@ -24,21 +24,21 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name_en'=>'required|max:255',
-            'category_name_fr'=>'required|max:255',
-            'category_icon'=>'required|max:2000'
+            'category_name_en' => 'required|max:255',
+            'category_name_fr' => 'required|max:255',
+            'category_icon' => 'required|max:2000',
         ];
     }
 
     public function messages()
     {
         return [
-            'category_name_en.required'=>'category Name En is required',
-            'category_name_en.max'=>'exceed maximum number of character',
-            'category_name_fr.required'=>'category Name Fr is required',
-            'category_name_fr.max'=>'exceed maximum number of character',
-            'category_icon.required'=>'category Image is required',
-            'category_icon.max'=>'Maximum file upload file size, is 2mb',
+            'category_name_en.required' => 'category Name En is required',
+            'category_name_en.max' => 'exceed maximum number of character',
+            'category_name_fr.required' => 'category Name Fr is required',
+            'category_name_fr.max' => 'exceed maximum number of character',
+            'category_icon.required' => 'category Image is required',
+            'category_icon.max' => 'Maximum file upload file size, is 2mb',
         ];
     }
 }

@@ -24,22 +24,23 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:255',
-            'email'=>'required|email',
-            'phone'=>'required',
-            'image'=>'mimes:jpg,png|max:4000'
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'image' => 'mimes:jpg,png|max:4000'
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'name.required'=>'name field is required',
-            'name.max'=>'exceeded maximum character',
-            'email.required'=>'email field is required',
-            'phone.required'=>'Phone field is required',
-            'email.email'=>'this is not a valid email address',
-            'image.mimes'=>'only file of type jpg,and png can be uploaded',
-            'image.max'=>'only file of type jpg,and png can be uploaded'
+            'name.required' => 'name field is required',
+            'name.max' => 'exceeded maximum character',
+            'email.required' => 'email field is required',
+            'phone.required' => 'Phone field is required',
+            'email.email' => 'this is not a valid email address',
+            'image.mimes' => 'only file of type jpg,and png can be uploaded',
+            'image.max' => 'only file of type jpg,and png can be uploaded'
         ];
     }
 }

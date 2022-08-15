@@ -1,14 +1,12 @@
-<?php 
+<?php
+
 namespace App\Actions\Admin\SubSubCategory;
 
 use App\Models\SubSubCategory;
-
-class DeleteSubSubCategory 
+class DeleteSubSubCategory
 {
-    public function handle($id): Bool 
+    public function handle($id): bool 
     {
-        $subsubcategory = SubSubCategory::findOrFail($id)->delete();
-        return $subsubcategory;
+        return SubSubCategory::findOrFail($id)->delete();
     }
 }
-?>

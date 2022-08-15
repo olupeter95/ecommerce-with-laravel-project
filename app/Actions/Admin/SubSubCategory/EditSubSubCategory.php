@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\SubSubCategory;
 
 use App\Models\Admin;
@@ -15,7 +16,6 @@ class EditSubSubCategory
         $category = Category::all();
         $subcategory = SubCategory::all();
         $subsubcategory = SubSubCategory::find($id);
-       return view('admin.subsubcategory.edit',compact('category','admin','subcategory','subsubcategory'));
+        return view('admin.subsubcategory.edit',compact('category','admin','subcategory','subsubcategory'));
     }
 }
-?>

@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Product;
 
 use App\Models\Admin;
@@ -15,4 +16,3 @@ class ProductDetails
         return view('admin.product.product-details',compact('admin','prods'));
     }
 }
-?>

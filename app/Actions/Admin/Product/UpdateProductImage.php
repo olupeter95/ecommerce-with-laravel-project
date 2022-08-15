@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Product;
 
 use Carbon\Carbon;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateProductImage 
 {
-    public function handle(Request $request): Bool 
+    public function handle(Request $request): bool 
     {
         $img_id = $request->photo_name;
         foreach($img_id as $id => $img){
@@ -20,13 +21,11 @@ class UpdateProductImage
             $names_img = $img->getClientOriginalName();
             $img_name->save('storage/upload/product/image/'.$names_img);
 
-           $img = MultiImage::Where('id',$id)->update([
+           return MultiImage::Where('id',$id)->update([
                 
                 'photo_name'=>$names_img,
                 'updated_at' => Carbon::now(),
             ]);
-        } 
-        return $img;
+        }
     }
 }
-?>

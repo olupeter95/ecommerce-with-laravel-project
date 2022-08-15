@@ -24,13 +24,13 @@ class SliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'slider_img'=>'required'
+            'slider_img' => 'required'
         ];
     }
 
     public function messages(){
         return [
-            'slider_img.required'=>'Image field is required'
+            'slider_img.required' => 'Image field is required'
         ];
     }
 }

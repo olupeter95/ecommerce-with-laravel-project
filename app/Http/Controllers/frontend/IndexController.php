@@ -18,86 +18,181 @@ use App\Actions\Frontend\Product\ProdSubCategory;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Actions\Frontend\Product\ModalViewProduct;
 use App\Actions\Frontend\Product\ProdSubSubCategory;
-
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 
 class IndexController extends Controller
 {
-    //
-    public function home(ViewUser $viewUser)
+    /**
+     * Undocumented function
+     *
+     * @param ViewUser $viewUser
+     * @return View|Factory
+     */
+    public function home(ViewUser $viewUser): View|Factory
     {
-        $view = $viewUser->handle();
-        return $view;
+        return $viewUser->handle();
     }
 
-    public function index(HomeView $homeView)
+    /**
+     * Undocumented function
+     *
+     * @param HomeView $homeView
+     * @return View|Factory
+     */
+    public function index(HomeView $homeView): View|Factory
     {
-       $view = $homeView->handle();
-       return $view;
+       return $homeView->handle();
     }
 
-    public function UserLogout(UserLogout $userLogout)
+    /**
+     * Undocumented function
+     *
+     * @param UserLogout $userLogout
+     * @return RedirectResponse
+     */
+    public function userLogout(UserLogout $userLogout):RedirectResponse
     {
-        $Logout = $userLogout->handle(); 
-        return $Logout; 
+        return $userLogout->handle();
     }
 
-    public function UserProfile(UserProfile $userProfile)
+    /**
+     * Undocumented function
+     *
+     * @param UserProfile $userProfile
+     * @return View|Factory
+     */
+    public function userProfile(UserProfile $userProfile): View|Factory
     {
-        $profile = $userProfile->handle();
-        return $profile;
+        return $userProfile->handle();
     }
 
-    public function UserProfileUpdate(UpdateUserRequest $request, UpdateUser $updateUser)
+    /**
+     * Undocumented function
+     *
+     * @param UpdateUserRequest $request
+     * @param UpdateUser $updateUser
+     * @return Redirector|RedirectResponse
+     */
+    public function userProfileUpdate(
+        UpdateUserRequest $request, 
+        UpdateUser $updateUser
+    ):  Redirector|RedirectResponse
     {
         $updateUser->handle($request);
-        $notification = array(
+        $notification = [
             'message' => 'User profile updated successfully',
-            'alert-type'=> 'success'
-         );
+            'alert-type'=> 'success',
+        ];
          return redirect()->route('dashboard')->with($notification);
     }
 
-    public function ChangePassword(ChangeUserPwd $changeUserPwd)
+    /**
+     * Undocumented function
+     *
+     * @param ChangeUserPwd $changeUserPwd
+     * @return View|Factory
+     */
+    public function changePassword(ChangeUserPwd $changeUserPwd): View|Factory
     {
-       $changePwd = $changeUserPwd->handle();
-       return $changePwd; 
+       return $changeUserPwd->handle(); 
     }
 
-    public function UpdatePassword(UpdatePasswordRequest $request, UpdatePassword $updatePassword)
+    /**
+     * Undocumented function
+     *
+     * @param UpdatePasswordRequest $request
+     * @param UpdatePassword $updatePassword
+     * @return Redirector|RedirectResponse
+     */
+    public function updatePassword(
+        UpdatePasswordRequest $request, 
+        UpdatePassword $updatePassword
+    ):  Redirector|RedirectResponse
     {
         $updatePassword->handle($request);
         Auth::logout();
-       return redirect()->route('login');
+        return redirect()->route('login');
     }
 
-    public function prodDetails($id, ProductDetails $productDetails)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param ProductDetails $productDetails
+     * @return View|Factory
+     */
+    public function prodDetails(
+        int $id, 
+        ProductDetails $productDetails
+    ):  View|Factory
     {
-            $prodDetails =  $productDetails->handle($id);
-            return $prodDetails;
-            
+        return $productDetails->handle($id);
     }
 
-    public function ProductModalView($id, ModalViewProduct $modalViewProduct)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param ModalViewProduct $modalViewProduct
+     * @return JsonResponse
+     */
+    public function productModalView(
+        int $id, 
+        ModalViewProduct $modalViewProduct
+    ):  JsonResponse
     {
-            $modalViewProd = $modalViewProduct->handle($id);
-            return $modalViewProd;    
+        return $modalViewProduct->handle($id);    
     }
 
-    public function prodTags($tags, ProductTag $prodTags)
+    /**
+     * Undocumented function
+     *
+     * @param array $tags
+     * @param ProductTag $prodTags
+     * @return void
+     */
+    public function prodTags(
+        array $tags, 
+        ProductTag $prodTags)
     {
-        $prodTags = $prodTags->handle($tags);
-        return $prodTags;
+        return $prodTags->handle($tags);
     }
 
-    public function prodSubcat($id, $slug, ProdSubCategory $prodSubCategory)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param string $slug
+     * @param ProdSubCategory $prodSubCategory
+     * @return View|Factory
+     */
+    public function prodSubcat(
+        int $id, 
+        string $slug, 
+        ProdSubCategory $prodSubCategory
+    ):  View|Factory
     {
-        $prodsubcat = $prodSubCategory->handle($id, $slug);
-        return $prodsubcat;
+       return $prodSubCategory->handle($id, $slug);
     }
 
-    public function prodSubSubcat($id, $slug, ProdSubSubCategory $prodSubSubCategory)
+    /**
+     * Undocumented function
+     *
+     * @param int $id
+     * @param string $slug
+     * @param ProdSubSubCategory $prodSubSubCategory
+     * @return View|Factory
+     */
+    public function prodSubSubcat(
+        int $id, 
+        string $slug, 
+        ProdSubSubCategory $prodSubSubCategory
+    ):  View|Factory
     {
-       $prodsubsubcat = $prodSubSubCategory->handle($id, $slug);
-       return $prodsubsubcat;
+       return $prodSubSubCategory->handle($id, $slug);
     }
 }

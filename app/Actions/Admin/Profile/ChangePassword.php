@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Profile;
 
 use App\Models\Admin;
@@ -10,15 +11,11 @@ class ChangePassword
     public function handle(ChangePasswordRequest $request, $id)
     {
         $current_pwd = Admin::find($id)->password;
-        if(hash::check($request->oldpwd,$current_pwd)){
+        if(Hash::check($request->oldpwd,$current_pwd)){
            $newpwd = Hash::make($request->pwd);
-           $admin = Admin::find($id)->update([
+           return Admin::find($id)->update([
                  'password'=>$newpwd
-            ]);
-              return $admin;  
+            ]); 
         }
-        
-        
     }
 }
-?>

@@ -1,9 +1,9 @@
-<?php 
+<?php
+
 namespace App\Actions\Frontend\User;
 
 use Illuminate\Support\Facades\Auth;
-
-class UserLogout 
+class UserLogout
 {
     public function handle()
     {
@@ -11,4 +11,3 @@ class UserLogout
         return redirect()->route('login');
     }
 }
-?>

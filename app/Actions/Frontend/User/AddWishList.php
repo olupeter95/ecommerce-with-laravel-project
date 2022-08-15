@@ -1,11 +1,11 @@
-<?php 
+<?php
+
 namespace App\Actions\Frontend\User;
 
 use Carbon\Carbon;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 class AddWishList
 {
     public function handle(Request $request, $id)
@@ -30,4 +30,3 @@ class AddWishList
         }
     }
 }
-?>

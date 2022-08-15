@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Category;
 
 use App\Models\Admin;
@@ -15,4 +16,3 @@ class CategoryView
         return view('admin.category.index',compact('admin','category'));
     }
 }
-?>

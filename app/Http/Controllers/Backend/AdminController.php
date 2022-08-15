@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers\Backend;
 
-
-use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Features;
 use Illuminate\Routing\Pipeline;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Responses\LoginResponse;
+use App\Http\Responses\LogoutResponse;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use App\Actions\Fortify\AttemptToAuthenticate;
+use Laravel\Fortify\Http\Requests\LoginRequest;
+use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use App\Http\Responses\LoginResponse;
-use Laravel\Fortify\Contracts\LoginViewResponse;
-use App\Http\Responses\LogoutResponse;
-use Laravel\Fortify\Features;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Http\Requests\LoginRequest;
-
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
 class AdminController extends Controller
 {
     /**
@@ -86,8 +88,10 @@ class AdminController extends Controller
         }
 
         return (new Pipeline(app()))->send($request)->through(array_filter([
-            config('fortify.limiters.login') ? null : EnsureLoginIsNotThrottled::class,
-            Features::enabled(Features::twoFactorAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
+            config(
+            'fortify.limiters.login') ? null : EnsureLoginIsNotThrottled::class,
+            Features::enabled(
+            Features::twoFactorAuthentication()) ? RedirectIfTwoFactorAuthenticatable::class : null,
             AttemptToAuthenticate::class,
             PrepareAuthenticatedSession::class,
         ]));
@@ -108,6 +112,18 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return app(LogoutResponse::class);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return View|Factory
+     */
+    public function index(): View|Factory
+    {
+        $id = Auth::id();
+        $admin = Admin::find($id);
+        return view('admin.pages.index',compact('admin'));
     }
 
 }

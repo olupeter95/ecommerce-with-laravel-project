@@ -1,19 +1,12 @@
-<?php 
+<?php
+
 namespace App\Actions\Admin\Subcategory;
 
-use Carbon\Carbon;
 use App\Models\SubCategory;
-use App\Http\Requests\Subcategory\CreateSubCategoryRequest;
-
-Class DeleteSubcategory {
-
-    public function handle($id): Bool
+class DeleteSubcategory
+{
+    public function handle($id): bool
     {
-        $subcategory = SubCategory::findOrFail($id)->delete();
-
-        return $subcategory;
+        return SubCategory::findOrFail($id)->delete();
     }
-
 }
-
-?>

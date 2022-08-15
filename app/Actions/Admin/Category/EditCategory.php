@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Category;
 
 use App\Models\Admin;
@@ -15,4 +16,3 @@ class EditCategory
         return view('admin.category.edit',compact('category','admin'));
     }
 }
-?>

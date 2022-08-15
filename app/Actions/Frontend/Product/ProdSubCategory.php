@@ -1,8 +1,8 @@
-<?php 
+<?php
+
 namespace App\Actions\Frontend\Product;
 
 use App\Models\Product;
-
 class ProdSubCategory
 {
     public function handle($id, $slug)
@@ -11,5 +11,3 @@ class ProdSubCategory
         return view('layouts.categories.subcat-view',compact('prod'));
     }
 }
-
-?>

@@ -1,10 +1,10 @@
-<?php 
+<?php
+
 namespace App\Actions\Frontend;
 
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
-
 class HomeView
 {
     public function handle()
@@ -18,8 +18,7 @@ class HomeView
         $skip_category->id)->orderBy('id','DESC')->get();
        // return $skip_category->id;
         //die();
-        return view('layouts.pages.home',compact('sliders','categories','products','featured',
-        'skip_category','skip_product'));
+        return view('layouts.pages.home',compact('sliders', 'categories', 'products', 'featured',
+        'skip_category', 'skip_product'));
     }
 }
-?>

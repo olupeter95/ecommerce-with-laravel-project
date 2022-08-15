@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Actions\Admin\Slider;
 
 use Carbon\Carbon;
@@ -7,10 +8,9 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
-
 class UpdateSlider 
 {
-    public function handle(Request $request): Bool 
+    public function handle(Request $request): bool 
     {
         $id = $request->id;
         $old_img = $request->old_image;
@@ -21,27 +21,24 @@ class UpdateSlider
             $img->resize(870,370);
             $name = $file->getClientOriginalName();
             $img->save('storage/upload/slider/'.$name);
-           $slider = Slider::findorFail($id)->update([
+            return Slider::findorFail($id)->update([
                 'title_en'=>$request->title_en,
                 'title_fr'=>$request->title_fr,
                 'description_en'=>$request->description_en,
                 'description_fr'=>$request->description_fr,
                 'slider_img' => $name,
                 'status'=>0,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
         }else{
-            $slider = Slider::findorFail($id)->update([
+            return Slider::findorFail($id)->update([
                 'title_en'=>$request->title_en,
                 'title_fr'=>$request->title_fr,
                 'description_en'=>$request->description_en,
                 'description_fr'=>$request->description_fr,
                 'status'=>0,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
             ]);
         }
-        
-        return $slider;
     }
 }
-?>

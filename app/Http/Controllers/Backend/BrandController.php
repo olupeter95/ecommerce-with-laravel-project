@@ -9,45 +9,98 @@ use App\Actions\Admin\Brand\CreateBrand;
 use App\Actions\Admin\Brand\DeleteBrand;
 use App\Actions\Admin\Brand\UpdateBrand;
 use App\Http\Requests\Brand\storeBrandRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
 
 
 class BrandController extends Controller
 {
-    public function index(BrandView $brandView){
-       $view = $brandView->handle();
-       return $view; 
+   /**
+    * Undocumented function
+    *
+    * @param BrandView $brandView
+    * @return View|Factory
+    */
+    public function index(BrandView $brandView): View|Factory
+    {
+       return $brandView->handle();
     }
 
-   public function create(storeBrandRequest $request, CreateBrand $createBrand){
-        $createBrand->handle($request);
-        $notification = array(
-            'message' => 'Brand Added Successfully',
-            'alert-type'=> 'success'
-         );
-        return redirect()->back()->with($notification);
+   /**
+    * Undocumented function
+    *
+    * @param storeBrandRequest $request
+    * @param CreateBrand $createBrand
+    * @return Redirector|RedirectResponse
+    */
+   public function create(
+      storeBrandRequest $request, 
+      CreateBrand $createBrand
+   ): Redirector|RedirectResponse
+   {
+      $createBrand->handle($request);
+      $notification = [
+         'message' => 'Brand Added Successfully',
+         'alert-type'=> 'success'
+      ];
+      return redirect()->back()->with($notification);
    } 
 
-   public function edit($id, EditBrand $editBrand){
-       $edit = $editBrand->handle($id);
-       return $edit;
+  /**
+   * Undocumented function
+   *
+   * @param int $id
+   * @param EditBrand $editBrand
+   * @return View|Factory
+   */
+   public function edit(
+      int $id, 
+      EditBrand $editBrand
+   ): View|Factory
+   {
+       return $editBrand->handle($id);
    }
 
-    public function update(storeBrandRequest $request, UpdateBrand $updateBrand){
-     $updateBrand->handle($request);
-     $notification = array(
-        'message' => 'Brand Updated Successfully',
-        'alert-type'=> 'success'
-     );
-     return redirect()->route('all.brand')->with($notification);
-    }
+   /**
+    * Undocumented function
+    *
+    * @param storeBrandRequest $request
+    * @param UpdateBrand $updateBrand
+    * @return Redirector|RedirectResponse
+    */
+   public function update(
+      storeBrandRequest $request, 
+      UpdateBrand $updateBrand
+   ): Redirector|RedirectResponse
+   {
+      $updateBrand->handle($request);
+      $notification = [
+         'message' => 'Brand Updated Successfully',
+         'alert-type'=> 'success'
+      ];
+      return redirect()->route('all.brand')->with($notification);
+   }
 
-   public function delete($id, DeleteBrand $deleteBrand){
+   /**
+    * Undocumented function
+    *
+    * @param int $id
+    * @param DeleteBrand $deleteBrand
+    * @return Redirector|RedirectResponse
+    */
+   public function delete(
+      int $id, 
+      DeleteBrand $deleteBrand
+   ): Redirector|RedirectResponse
+   {
       $deleteBrand->handle($id);
-      $notification = array(
+      $notification = [
         'message' => 'brand deleted successfully',
         'alert-type'=> 'error'
-     );
-     return redirect()->back()->with($notification);
-    }
+      ];
+      return redirect()->back()->with($notification);
+   }
 
 }

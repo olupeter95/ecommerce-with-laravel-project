@@ -7,24 +7,51 @@ use App\Http\Controllers\Controller;
 use App\Actions\Frontend\Cart\AddCart;
 use App\Actions\Frontend\Cart\MiniCart;
 use App\Actions\Frontend\Cart\RemoveMiniCart;
+use Illuminate\Http\JsonResponse;
 
 class CartController extends Controller
 {
-    public function AddCart(Request $request, $id, AddCart $addCart)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param int $id
+     * @param AddCart $addCart
+     * @return JsonResponse
+     */
+    public function addCart(
+        Request $request, 
+        int $id, 
+        AddCart $addCart
+    ):  JsonResponse
     {
-        $addtocart = $addCart->handle($request, $id);
-        return $addtocart;
+        return $addCart->handle($request, $id);
     }
 
-    public function MiniCart(MiniCart $miniCart)
+    /**
+     * Undocumented function
+     *
+     * @param MiniCart $miniCart
+     * @return JsonResponse
+     */
+    public function miniCart(MiniCart $miniCart): JsonResponse
     {
-        $addMiniCart = $miniCart->handle();
-        return $addMiniCart;
+        return $miniCart->handle();
     }
 
-    public function RemoveMiniCart($rowId, RemoveMiniCart $removeMiniCart)
+    
+    /**
+     * Undocumented function
+     *
+     * @param int $rowId
+     * @param RemoveMiniCart $removeMiniCart
+     * @return JsonResponse
+     */
+    public function removeMiniCart(
+        int $rowId, 
+        RemoveMiniCart $removeMiniCart
+    ):  JsonResponse
     {
-        $remove = $removeMiniCart->handle($rowId);
-        return $remove;
+        return $removeMiniCart->handle($rowId);
     }
 }

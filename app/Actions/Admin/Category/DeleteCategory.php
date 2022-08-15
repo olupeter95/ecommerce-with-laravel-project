@@ -1,18 +1,12 @@
 <?php
+
 namespace App\Actions\Admin\Category;
 
 use App\Models\Category;
-
-Class DeleteCategory
+class DeleteCategory
 {
-    public function handle($id): Category|Bool
+    public function handle($id): bool
     {
-        $category = Category::findOrFail($id)->delete();
-        return $category;
+        return Category::findOrFail($id)->delete();
     }   
 }
-
-
-
-
-?>

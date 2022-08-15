@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class MultiImage extends Model
 {
     use HasFactory;
-    protected $fillable= [
-        'product_id',
-        'photo_name'
+    protected $fillable = [
+        'product_id', 'photo_name'
     ];
     
     public function product()

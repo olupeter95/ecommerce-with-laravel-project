@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Product;
 
 use App\Models\Admin;
@@ -17,4 +18,3 @@ class ProductIndex
         return view('admin.product.add',compact('admin','categories','brands'));
     }
 }
-?>

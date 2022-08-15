@@ -24,19 +24,19 @@ class CreateSubCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id'=>'required',
-            'subcategory_name_en'=>'required|max:255',
-            'subcategory_name_fr'=>'required|max:255',
+            'category_id' => 'required',
+            'subcategory_name_en' => 'required|max:255',
+            'subcategory_name_fr' => 'required|max:255',
         ];
     }
 
     public function messages(){
         return [
-            'category_id'=>'category is required',
-            'subcategory_name_en.required'=>'category Name En is required',
-            'subcategory_name_en.max'=>'exceed maximum number of character',
-            'subcategory_name_fr.required'=>'category Name Fr is required',
-            'subcategory_name_fr.max'=>'exceed maximum number of character',
+            'category_id' => 'category is required',
+            'subcategory_name_en.required' => 'category Name En is required',
+            'subcategory_name_en.max' => 'exceed maximum number of character',
+            'subcategory_name_fr.required' => 'category Name Fr is required',
+            'subcategory_name_fr.max' => 'exceed maximum number of character',
         ];
             
     }

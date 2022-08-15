@@ -84,7 +84,8 @@
                         @else
                         <li class="list-group-item">Brand: <strong id="brand"></strong></li>
                         @endif
-                        <li class="list-group-item">Stock: <strong id="quantity"></strong></li>
+                        <li class="list-group-item">Stock: 
+                           <span class="badge badge-success" id="qty"></span></li>
                      </ul>
                   </div>
                   <!--end col--->
@@ -110,7 +111,7 @@
                      <!--end formgroup--->
 
                      <div class="form-group">
-                        <label for="quantity">Product Quantity</label>
+                        <label for="qty">Product Quantity</label>
                         <input type="number" class="form-control" value="1" min="1" id="qty">
                      </div>
                      <!--end formgroup--->

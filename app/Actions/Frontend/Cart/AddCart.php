@@ -1,16 +1,16 @@
 <?php
+
 namespace App\Actions\Frontend\Cart;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
 class AddCart
 {
     public function handle(Request $request, $id)
     {
         $product = Product::findorFail($id);
-        if($product->discount_price == NULL) {
+        if($product->discount_price === null) {
             Cart::add([
                 'id' => $id, 
                 'name' => $request->product_name,
@@ -26,7 +26,6 @@ class AddCart
                     'product_name_fr' => $request->product_name_fr,
                 ]
             ]);
-            return response()->json(['success' => 'successfully added on your cart']);
         }else {
             Cart::add([
                 'id' => $id, 
@@ -43,8 +42,8 @@ class AddCart
                     'product_name_fr' => $request->product_name_fr,
                 ]
             ]);
-            return response()->json(['success' => 'successfully added on your cart']);
         }
+        return response()->json(['success' => 'successfully added on your cart']);
     }
 
 }

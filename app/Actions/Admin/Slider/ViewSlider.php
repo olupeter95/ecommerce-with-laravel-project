@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Slider;
 
 use App\Models\Admin;
@@ -15,4 +16,3 @@ class ViewSlider
         return view('admin.slider.view',compact('admin','sliders'));
     }
 }
-?>

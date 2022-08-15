@@ -1,4 +1,5 @@
 <?php 
+
 namespace App\Actions\Admin\Brand;
 
 use App\Models\Admin;
@@ -18,4 +19,3 @@ class BrandView
 
 }
 
-?>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Actions\Frontend\Cart;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
