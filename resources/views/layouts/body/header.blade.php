@@ -14,7 +14,7 @@
           Liste de souhaits @else
            Wishlist @endif
           </a></li>
-          <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+          <li><a href="{{route('cart')}}"><i class="icon fa fa-shopping-cart"></i>
           @if(session()->get('language') == 'french') Mon panier @else My Cart @endif
         </a></li>
           <li><a href="#"><i class="icon fa fa-check"></i>

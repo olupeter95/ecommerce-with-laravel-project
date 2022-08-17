@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class,'index'])->name('home');

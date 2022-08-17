@@ -19,11 +19,11 @@ class AddCart
                 'weight'=> 1,
                 'options' => [
                     'image' => $product->product_thumbnail, 
-                    'color_en'=>$request->color_en,
-                    'color_fr'=>$request->color_fr,
-                    'size_en' => $request->size_en,
-                    'size_fr' => $request->size_fr,
-                    'product_name_fr' => $request->product_name_fr,
+                    'color'=> $request->color_en,
+                    'color_fr'=> $request->color_fr,
+                    'size' => $request->product_size_en,
+                    'sizefr' => $request->product_size_fr,
+                    'productfr' => $request->product_name_fr,
                 ]
             ]);
         }else {
@@ -35,11 +35,11 @@ class AddCart
                 'price'=> $product->selling_price,
                 'options' => [
                     'image' => $product->product_thumbnail, 
-                    'color_en'=>$request->color_en,
-                    'color_fr'=>$request->color_fr,
-                    'size_en' => $request->size_en, 
-                    'size_fr' => $request->size_fr,
-                    'product_name_fr' => $request->product_name_fr,
+                    'color'=>$request->color_en,
+                    'colorfr'=>$request->color_fr,
+                    'size' => $request->product_size_en, 
+                    'sizefr' => $request->product_size_fr,
+                    'productfr' => $request->product_name_fr,
                 ]
             ]);
         }

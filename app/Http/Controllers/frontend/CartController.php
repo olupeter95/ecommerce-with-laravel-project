@@ -43,12 +43,12 @@ class CartController extends Controller
     /**
      * Undocumented function
      *
-     * @param int $rowId
+     * @param string $rowId
      * @param RemoveMiniCart $removeMiniCart
      * @return JsonResponse
      */
     public function removeMiniCart(
-        int $rowId, 
+        string $rowId, 
         RemoveMiniCart $removeMiniCart
     ):  JsonResponse
     {
