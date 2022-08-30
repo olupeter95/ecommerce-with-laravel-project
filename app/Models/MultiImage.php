@@ -9,7 +9,7 @@ class MultiImage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'product_id', 'photo_name'
+        'product_id', 'photo_name',
     ];
     
     public function product()

@@ -20,6 +20,7 @@ use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
+
 class AdminController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class AdminController extends Controller
      */
     protected $guard;
     public function loginForm(){
-        return view('auth.admin_login',['guard'=>'admin']);
+        return view('auth.admin_login', ['guard'=>'admin']);
     }
 
     /**
@@ -123,7 +124,7 @@ class AdminController extends Controller
     {
         $id = Auth::id();
         $admin = Admin::find($id);
-        return view('admin.pages.index',compact('admin'));
+        return view('admin.pages.index', compact('admin'));
     }
 
 }

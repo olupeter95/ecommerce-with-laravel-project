@@ -13,8 +13,8 @@ class ChangePassword
         $current_pwd = Admin::find($id)->password;
         if(Hash::check($request->oldpwd,$current_pwd)){
            $newpwd = Hash::make($request->pwd);
-           return Admin::find($id)->update([
-                 'password'=>$newpwd
+            return Admin::find($id)->update([
+                'password' => $newpwd
             ]); 
         }
     }

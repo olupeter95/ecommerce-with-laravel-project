@@ -24,10 +24,9 @@ class UpdateProfile
                 'name' => $request->name, 'email'=>$request->email, 'profile_photo_path' => $name,
                 'created_at'=> Carbon::now()
             ]);
-        }else{
+        }
             return Admin::find($id)->update([
                 'name' => $request->name, 'email'=>$request->email, 'created_at'=> Carbon::now()
             ]);
-        }
     }
 }

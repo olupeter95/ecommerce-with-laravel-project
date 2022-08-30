@@ -30,7 +30,7 @@ class UpdateSlider
                 'status'=>0,
                 'created_at' => Carbon::now(),
             ]);
-        }else{
+        }
             return Slider::findorFail($id)->update([
                 'title_en'=>$request->title_en,
                 'title_fr'=>$request->title_fr,
@@ -39,6 +39,5 @@ class UpdateSlider
                 'status'=>0,
                 'created_at' => Carbon::now(),
             ]);
-        }
     }
 }

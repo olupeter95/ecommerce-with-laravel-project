@@ -24,7 +24,7 @@ class SubSubCategoryController extends Controller
      * @param SubSubCategoryView $subSubCategoryView
      * @return View|Factory
      */
-    public function index(SubSubCategoryView $subSubCategoryView):View|Factory 
+    public function index(SubSubCategoryView $subSubCategoryView):View|Factory
     {
         return $subSubCategoryView->handle();
     }
@@ -37,14 +37,14 @@ class SubSubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function create(
-        SubSubCategoryRequest $request, 
+        SubSubCategoryRequest $request,
         CreateSubSubCategory $createSubSubCategory
     ):  Redirector|RedirectResponse
     {
         $createSubSubCategory->handle($request);
         $notification = [
             'message' => 'Sub Subcategory added successfully',
-            'alert-type'=> 'success'        
+            'alert-type'=> 'success',
         ];
         return redirect()->back()->with($notification);
     }
@@ -57,7 +57,7 @@ class SubSubCategoryController extends Controller
      * @return View|Factory
      */
     public function edit(
-        int $id, 
+        int $id,
         EditSubSubCategory $editSubSubCategory
     ):  View|Factory
     {
@@ -72,9 +72,9 @@ class SubSubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function update(
-        SubSubCategoryRequest $request, 
+        SubSubCategoryRequest $request,
         UpdateSubSubCategory $updateSubSubCategory
-    ):  Redirector|RedirectResponse
+    ): Redirector|RedirectResponse
     {
         $updateSubSubCategory->handle($request);
         $notification = [
@@ -92,9 +92,9 @@ class SubSubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function delete(
-        int $id, 
+        int $id,
         DeleteSubSubCategory $deleteSubSubCategory
-    ):  Redirector|RedirectResponse
+    ): Redirector|RedirectResponse
     {
         $deleteSubSubCategory->handle($id);
         $notification = [
@@ -113,23 +113,23 @@ class SubSubCategoryController extends Controller
      */
     public function getSubCategory(
         int $category_id,
-        GetSubCategory $getSubCategory 
-    ):  string|false
+        GetSubCategory $getSubCategory
+    ): string|false
     {
         return $getSubCategory->handle($category_id);
     }
 
-   /**
-    * Undocumented function
-    *
-    * @param int $subcategory_id
-    * @param GetSubSubCategory $getSubSubCategory
-    * @return string|false
-    */
+    /**
+     * Undocumented function
+     *
+     * @param int $subcategory_id
+     * @param GetSubSubCategory $getSubSubCategory
+     * @return string|false
+     */
     public function getSubSubCategory(
-        int $subcategory_id, 
+        int $subcategory_id,
         GetSubSubCategory $getSubSubCategory
-    ):  string|false
+    ): string|false
     {
         return $getSubSubCategory->handle($subcategory_id);
     }

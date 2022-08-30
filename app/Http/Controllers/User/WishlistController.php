@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Actions\Frontend\User\AddWishList;
 use App\Actions\Frontend\User\ViewWishList;
@@ -10,10 +9,12 @@ use App\Actions\Frontend\User\RemoveWishList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
 
 class WishlistController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
 
@@ -26,10 +27,10 @@ class WishlistController extends Controller
      * @return JsonResponse
      */
     public function addWishList(
-        Request $request, 
-        int $id, 
+        Request $request,
+        int $id,
         AddWishList $addWishList
-    ):  JsonResponse
+    ): JsonResponse
     {
         return $addWishList->handle($request, $id);
     }
@@ -63,9 +64,9 @@ class WishlistController extends Controller
      * @return JsonResponse
      */
     public function removeWishList(
-        int $id, 
+        int $id,
         RemoveWishList $removeWishList
-    ):  JsonResponse
+    ): JsonResponse
     {
         return $removeWishList->handle($id);
         

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 class RemoveWishList
 {
     public function handle($id){
-        Wishlist::where('user_id',Auth::id())->Where('id', $id)->delete();
+        Wishlist::where('user_id', Auth::id())->Where('id', $id)->delete();
         return response()->json(
-        ['success'=>'Product Successfully removed from wishlist']);
+        ['success' => 'Product Successfully removed from wishlist']);
     }
 }

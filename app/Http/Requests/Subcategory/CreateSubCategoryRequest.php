@@ -30,7 +30,8 @@ class CreateSubCategoryRequest extends FormRequest
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'category_id' => 'category is required',
             'subcategory_name_en.required' => 'category Name En is required',

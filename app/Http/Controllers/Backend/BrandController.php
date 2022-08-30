@@ -14,7 +14,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
 
-
 class BrandController extends Controller
 {
    /**
@@ -35,18 +34,18 @@ class BrandController extends Controller
     * @param CreateBrand $createBrand
     * @return Redirector|RedirectResponse
     */
-   public function create(
+   	public function create(
       storeBrandRequest $request, 
       CreateBrand $createBrand
-   ): Redirector|RedirectResponse
-   {
-      $createBrand->handle($request);
-      $notification = [
-         'message' => 'Brand Added Successfully',
-         'alert-type'=> 'success'
-      ];
-      return redirect()->back()->with($notification);
-   } 
+   	): Redirector|RedirectResponse
+   	{
+		$createBrand->handle($request);
+		$notification = [
+			'message' => 'Brand Added Successfully',
+			'alert-type'=> 'success'
+		];
+		return redirect()->back()->with($notification);
+   	} 
 
   /**
    * Undocumented function
@@ -55,13 +54,13 @@ class BrandController extends Controller
    * @param EditBrand $editBrand
    * @return View|Factory
    */
-   public function edit(
+   	public function edit(
       int $id, 
       EditBrand $editBrand
-   ): View|Factory
-   {
+   	): View|Factory
+   	{
        return $editBrand->handle($id);
-   }
+   	}
 
    /**
     * Undocumented function
@@ -70,18 +69,18 @@ class BrandController extends Controller
     * @param UpdateBrand $updateBrand
     * @return Redirector|RedirectResponse
     */
-   public function update(
+   	public function update(
       storeBrandRequest $request, 
       UpdateBrand $updateBrand
-   ): Redirector|RedirectResponse
-   {
-      $updateBrand->handle($request);
-      $notification = [
-         'message' => 'Brand Updated Successfully',
-         'alert-type'=> 'success'
-      ];
-      return redirect()->route('all.brand')->with($notification);
-   }
+   	): Redirector|RedirectResponse
+   	{
+      	$updateBrand->handle($request);
+      	$notification = [
+         	'message' => 'Brand Updated Successfully',
+         	'alert-type'=> 'success'
+      	];
+      	return redirect()->route('all.brand')->with($notification);
+   	}
 
    /**
     * Undocumented function
@@ -90,17 +89,17 @@ class BrandController extends Controller
     * @param DeleteBrand $deleteBrand
     * @return Redirector|RedirectResponse
     */
-   public function delete(
+   	public function delete(
       int $id, 
       DeleteBrand $deleteBrand
-   ): Redirector|RedirectResponse
-   {
-      $deleteBrand->handle($id);
-      $notification = [
-        'message' => 'brand deleted successfully',
-        'alert-type'=> 'error'
-      ];
-      return redirect()->back()->with($notification);
-   }
+   	): Redirector|RedirectResponse
+   	{
+      	$deleteBrand->handle($id);
+      	$notification = [
+			'message' => 'brand deleted successfully',
+			'alert-type'=> 'error'
+      	];
+      	return redirect()->back()->with($notification);
+   	}
 
 }

@@ -54,7 +54,7 @@ class IndexController extends Controller
      * @param UserLogout $userLogout
      * @return RedirectResponse
      */
-    public function userLogout(UserLogout $userLogout):RedirectResponse
+    public function userLogout(UserLogout $userLogout): RedirectResponse
     {
         return $userLogout->handle();
     }
@@ -78,9 +78,9 @@ class IndexController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function userProfileUpdate(
-        UpdateUserRequest $request, 
+        UpdateUserRequest $request,
         UpdateUser $updateUser
-    ):  Redirector|RedirectResponse
+    ): Redirector|RedirectResponse
     {
         $updateUser->handle($request);
         $notification = [
@@ -98,7 +98,7 @@ class IndexController extends Controller
      */
     public function changePassword(ChangeUserPwd $changeUserPwd): View|Factory
     {
-       return $changeUserPwd->handle(); 
+       return $changeUserPwd->handle();
     }
 
     /**
@@ -109,9 +109,9 @@ class IndexController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function updatePassword(
-        UpdatePasswordRequest $request, 
+        UpdatePasswordRequest $request,
         UpdatePassword $updatePassword
-    ):  Redirector|RedirectResponse
+    ): Redirector|RedirectResponse
     {
         $updatePassword->handle($request);
         Auth::logout();
@@ -126,9 +126,9 @@ class IndexController extends Controller
      * @return View|Factory
      */
     public function prodDetails(
-        int $id, 
+        int $id,
         ProductDetails $productDetails
-    ):  View|Factory
+    ): View|Factory
     {
         return $productDetails->handle($id);
     }
@@ -141,11 +141,11 @@ class IndexController extends Controller
      * @return JsonResponse
      */
     public function productModalView(
-        int $id, 
+        int $id,
         ModalViewProduct $modalViewProduct
-    ):  JsonResponse
+    ): JsonResponse
     {
-        return $modalViewProduct->handle($id);    
+        return $modalViewProduct->handle($id);
     }
 
     /**
@@ -156,8 +156,9 @@ class IndexController extends Controller
      * @return void
      */
     public function prodTags(
-        array $tags, 
-        ProductTag $prodTags)
+        array $tags,
+        ProductTag $prodTags
+    )
     {
         return $prodTags->handle($tags);
     }
@@ -171,10 +172,10 @@ class IndexController extends Controller
      * @return View|Factory
      */
     public function prodSubcat(
-        int $id, 
-        string $slug, 
+        int $id,
+        string $slug,
         ProdSubCategory $prodSubCategory
-    ):  View|Factory
+    ): View|Factory
     {
        return $prodSubCategory->handle($id, $slug);
     }
@@ -188,10 +189,10 @@ class IndexController extends Controller
      * @return View|Factory
      */
     public function prodSubSubcat(
-        int $id, 
-        string $slug, 
+        int $id,
+        string $slug,
         ProdSubSubCategory $prodSubSubCategory
-    ):  View|Factory
+    ): View|Factory
     {
        return $prodSubSubCategory->handle($id, $slug);
     }

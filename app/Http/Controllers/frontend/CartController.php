@@ -20,10 +20,10 @@ class CartController extends Controller
      * @return JsonResponse
      */
     public function addCart(
-        Request $request, 
-        int $id, 
+        Request $request,
+        int $id,
         AddCart $addCart
-    ):  JsonResponse
+    ): JsonResponse
     {
         return $addCart->handle($request, $id);
     }
@@ -39,7 +39,6 @@ class CartController extends Controller
         return $miniCart->handle();
     }
 
-    
     /**
      * Undocumented function
      *
@@ -48,9 +47,9 @@ class CartController extends Controller
      * @return JsonResponse
      */
     public function removeMiniCart(
-        string $rowId, 
+        string $rowId,
         RemoveMiniCart $removeMiniCart
-    ):  JsonResponse
+    ): JsonResponse
     {
         return $removeMiniCart->handle($rowId);
     }

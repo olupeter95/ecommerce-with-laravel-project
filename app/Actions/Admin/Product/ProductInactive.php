@@ -13,7 +13,6 @@ class ProductInactive
             'message' => 'Product Inactive',
             'alert-type' => 'success'
         ];
-
         return redirect()->back()->with($notification);
     }
 }

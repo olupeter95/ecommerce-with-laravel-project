@@ -10,7 +10,7 @@ class ProductActive
     /**
      * Undocumented function
      *
-     * @param integer $id
+     * @param int $id
      * @return Redirector|RedirectResponse
      */
     public function handle(int $id): Redirector|RedirectResponse
@@ -18,7 +18,7 @@ class ProductActive
         Product::findOrFail($id)->update(['status' => 1]);
         $notification = [
             'message' => 'Product Active',
-           'alert-type' => 'success'
+            'alert-type' => 'success'
         ];
         return redirect()->back()->with($notification);
     }

@@ -13,6 +13,6 @@ class Brand extends Model
         'brand_name_fr',
         'brand_slug_en',
         'brand_slug_fr',
-        'brand_image'
+        'brand_image',
     ];
 }

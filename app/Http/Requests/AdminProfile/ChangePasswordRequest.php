@@ -24,17 +24,18 @@ class ChangePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'oldpwd'=>'required',
-            'pwd'=>'required|confirmed',
-            'pwd_confirmation'=>'required'
+            'oldpwd' => 'required',
+            'pwd' => 'required|confirmed',
+            'pwd_confirmation' => 'required',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'oldpwd.required'=>'Currrent Password field required',
-            'pwd.required'=>'New Password field required',
-            'pwd.confirmed'=>'Password do not match',
+            'oldpwd.required' => 'Currrent Password field required',
+            'pwd.required' => 'New Password field required',
+            'pwd.confirmed' => 'Password do not match',
         ];
     }
 }

@@ -21,8 +21,7 @@ class UpdateProductImage
             $names_img = $img->getClientOriginalName();
             $img_name->save('storage/upload/product/image/'.$names_img);
 
-           return MultiImage::Where('id',$id)->update([
-                
+            return MultiImage::Where('id',$id)->update([
                 'photo_name'=>$names_img,
                 'updated_at' => Carbon::now(),
             ]);

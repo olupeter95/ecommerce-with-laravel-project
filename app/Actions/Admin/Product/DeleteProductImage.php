@@ -10,6 +10,6 @@ class DeleteProductImage
     {
         $oldImg = MultiImage::findorFail($id);
         Storage::delete('public/product/image/'.$oldImg->photo_name);
-         return  MultiImage::findorFail($id)->delete();
+        return MultiImage::findorFail($id)->delete();
     }
 }

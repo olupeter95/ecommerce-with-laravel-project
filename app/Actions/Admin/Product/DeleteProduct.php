@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class DeleteProduct 
 {
-    public function handle($id): Bool
+    public function handle($id)
     {
         $prods = Product::findorFail($id);
         Storage::delete('public/product/thumbnail/'.$prods->product_thumbnail);

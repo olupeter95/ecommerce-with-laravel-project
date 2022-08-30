@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\RedirectResponse;
+
 class AdminProfileController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class AdminProfileController extends Controller
     public function profile(int $id): View|Factory
     {
         $admin = Admin::find($id);
-        return view('admin.pages.profile',compact('admin'));
+        return view('admin.pages.profile', compact('admin'));
     }
 
     /**
@@ -36,7 +37,7 @@ class AdminProfileController extends Controller
     public function profileEdit(int $id): View|Factory
     {
         $admin = Admin::find($id);
-        return view('admin.pages.profile_edit',compact('admin'));
+        return view('admin.pages.profile_edit', compact('admin'));
     }
     
     /**
@@ -60,7 +61,7 @@ class AdminProfileController extends Controller
         ];
             
         
-        return redirect()->route('admin.profile',[$id])->with($notification);
+        return redirect()->route('admin.profile', [$id])->with($notification);
         
     }
 
@@ -73,7 +74,7 @@ class AdminProfileController extends Controller
     public function passwordChange(int $id): View|Factory
     {
         $admin = Admin::find($id);
-        return view('admin.admin_changepwd',compact('admin'));
+        return view('admin.admin_changepwd', compact('admin'));
     }
 
     /**

@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email',
             'phone' => 'required',
-            'image' => 'mimes:jpg,png|max:4000'
+            'image' => 'mimes:jpg,png|max:4000',
         ];
     }
 
@@ -40,7 +40,7 @@ class UpdateUserRequest extends FormRequest
             'phone.required' => 'Phone field is required',
             'email.email' => 'this is not a valid email address',
             'image.mimes' => 'only file of type jpg,and png can be uploaded',
-            'image.max' => 'only file of type jpg,and png can be uploaded'
+            'image.max' => 'only file of type jpg,and png can be uploaded',
         ];
     }
 }

@@ -73,7 +73,8 @@ return [
             'app/Http/Middleware',
             'app/Providers',
             'app/Models',
-            
+            'app\Providers',
+            'kernel.php',
 
     ],
 

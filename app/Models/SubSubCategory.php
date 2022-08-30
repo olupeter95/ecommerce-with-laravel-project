@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class SubSubCategory extends Model
 {
@@ -17,11 +17,13 @@ class SubSubCategory extends Model
         'subsubcategory_slug_fr',
     ];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function subcategory(){
+    public function subcategory()
+    {
         return $this->belongsTo(SubCategory::class);
     }
 }

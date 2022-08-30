@@ -26,7 +26,7 @@ class UpdatePasswordRequest extends FormRequest
         return [
             'current_password' => 'required|current_password',
             'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
         ];
     }
     public function messages()
@@ -36,7 +36,7 @@ class UpdatePasswordRequest extends FormRequest
             'current_password.current_password' => 'incorrect password',
             'password.required' => 'Password field required',
             'password.confirmed' => 'Password do not match',
-            'password_confirmation' => 'Password Confimation field required'
+            'password_confirmation' => 'Password Confimation field required',
         ];
     }
 }

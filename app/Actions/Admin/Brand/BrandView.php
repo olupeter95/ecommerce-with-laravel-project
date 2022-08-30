@@ -13,7 +13,7 @@ class BrandView
         $id = Auth::id();
         $admin = Admin::find($id);
         $brands = Brand::latest()->get();
-        return view('admin.brand.index',compact('admin','brands'));
+        return view('admin.brand.index', compact('admin','brands'));
     }
 
 

@@ -35,7 +35,7 @@ class SubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function create(
-        CreateSubCategoryRequest $request, 
+        CreateSubCategoryRequest $request,
         CreateSubcategory $subCategory
     ):  Redirector|RedirectResponse
     {
@@ -55,15 +55,13 @@ class SubCategoryController extends Controller
      * @return View|Factory
      */
     public function edit(
-        int $id, 
+        int $id,
         EditSubCategory $editSubCategory
     ):  View|Factory
     {
         return $editSubCategory->handle($id);
     }
-
-   
-   
+ 
     /**
      * Undocumented function
      *
@@ -72,14 +70,14 @@ class SubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function update(
-        CreateSubCategoryRequest $request, 
+        CreateSubCategoryRequest $request,
         UpdateSubcategory $updateSubcategory
     ):  Redirector|RedirectResponse
     {
         $updateSubcategory->handle($request);
         $notification = [
             'message' => 'Subcategory updated successfully',
-            'alert-type'=> 'success'
+            'alert-type'=> 'success',
         ];
         return redirect()->route('all.subcategory')->with($notification);
     }
@@ -92,14 +90,14 @@ class SubCategoryController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function delete(
-        int $id, 
+        int $id,
         DeleteSubcategory $deleteSubcategory
     ):  Redirector|RedirectResponse
     {
         $deleteSubcategory->handle($id);
         $notification = [
             'message' => 'category deleted successfully',
-            'alert-type'=> 'error'
+            'alert-type'=> 'error',
         ];
         return redirect()->back()->with($notification);
     }

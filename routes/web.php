@@ -22,6 +22,8 @@ require_once 'web/slider.php';
 require_once 'web/language.php';
 require_once 'web/cart.php';
 require_once 'web/wishlist.php';
+require_once 'web/coupon.php';
+require_once 'web/shipping.php';
 
 
 

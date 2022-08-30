@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use \Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\Factory;
 use App\Actions\Frontend\User\ViewCart;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
@@ -35,7 +35,7 @@ class CartPageController extends Controller
      * @return void
      */
     public function removeCartList(
-        string $id, 
+        string $id,
         RemoveCartList $removeCartList
     )
     {

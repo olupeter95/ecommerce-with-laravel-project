@@ -9,7 +9,6 @@ use Carbon\Carbon;
 
 class CreateBrand 
 {
-
     public function handle(storeBrandRequest $request): Brand 
     {
         $file = $request->file('brand_image');

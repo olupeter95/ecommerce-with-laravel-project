@@ -12,7 +12,7 @@ class UpdatePassword
     {
         $newpwd = Hash::make($request->password);
         return User::find(Auth::user()->id)->update([
-            'password'=>$newpwd
-       ]); 
+            'password' => $newpwd
+        ]); 
     }
 }

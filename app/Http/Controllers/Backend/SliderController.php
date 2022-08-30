@@ -38,7 +38,7 @@ class SliderController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function storeSlider(
-        SliderRequest $request, 
+        SliderRequest $request,
         CreateSlider $createSlider
     ):  Redirector|RedirectResponse
     {
@@ -47,7 +47,7 @@ class SliderController extends Controller
             'message' => 'Slider added successfully',
             'alert-type'=> 'success'
         ];
-        return redirect()->back()->with($notification); 
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -58,7 +58,7 @@ class SliderController extends Controller
      * @return View|Factory
      */
     public function editSlider(
-        int $id, 
+        int $id,
         EditSlider $editSlider
     ):  View|Factory
     {
@@ -80,7 +80,7 @@ class SliderController extends Controller
         $deleteSlider->handle($id);
         $notification = [
             'message' => 'Slider deleted successfully',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         ];
         return redirect()->back()->with($notification);
     }
@@ -93,14 +93,14 @@ class SliderController extends Controller
      * @return Redirector|RedirectResponse
      */
     public function updateSlider(
-        Request $request, 
+        Request $request,
         UpdateSlider $updateSlider
     ): Redirector|RedirectResponse
     {
         $updateSlider->handle($request);
         $notification = [
             'message' => 'Slider Updated Successfully',
-            'alert-type'=> 'success'
+            'alert-type'=> 'success',
         ];
         return redirect()->route('view.slider')->with($notification);
 
@@ -114,7 +114,7 @@ class SliderController extends Controller
      * @return RedirectResponse
      */
     public function inactiveSlider(
-        int $id, 
+        int $id,
         InactiveSlider $inactiveSlider
     ):  RedirectResponse
     {
@@ -129,7 +129,7 @@ class SliderController extends Controller
      * @return RedirectResponse
      */
     public function activeSlider(
-        int $id, 
+        int $id,
         ActiveSlider $activeSlider
     ):  RedirectResponse
     {

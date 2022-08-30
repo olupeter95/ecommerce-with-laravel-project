@@ -24,20 +24,21 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'max:255',
-            'email'=>'email',
-            'profile_photo_path'=>'mimes:jpg,png|max:4000'
+            'name' => 'max:255',
+            'email' => 'email',
+            'profile_photo_path' => 'mimes:jpg,png|max:4000',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'name.required'=>'name field is required',
-            'name.max'=>'exceeded maximum character',
-            'email.required'=>'email field is required',
-            'email.email'=>'this is not a valid email address',
-            'profile_photo_path.mimes'=>'only file of type jpg,and png can be uploaded',
-            'profile_photo_path.max'=>'only file of type jpg,and png can be uploaded'
+            'name.required' => 'name field is required',
+            'name.max' => 'exceeded maximum character',
+            'email.required' => 'email field is required',
+            'email.email' => 'this is not a valid email address',
+            'profile_photo_path.mimes' => 'only file of type jpg,and png can be uploaded',
+            'profile_photo_path.max' => 'only file of type jpg,and png can be uploaded',
         ];
     }
 }

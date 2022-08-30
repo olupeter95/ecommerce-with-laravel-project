@@ -22,10 +22,10 @@ class CategoryController extends Controller
     * @param CategoryView $categoryView
     * @return View|Factory
     */
-   public function index(CategoryView $categoryView): View|Factory
-   {
+   	public function index(CategoryView $categoryView): View|Factory
+   	{
       return $categoryView->handle();
-   }
+   	}
 
    /**
     * Undocumented function
@@ -34,18 +34,18 @@ class CategoryController extends Controller
     * @param CreateCategory $createCategory
     * @return Redirector|RedirectResponse
     */
-   public function create(
+   	public function create(
       StoreCategoryRequest $request, 
       CreateCategory $createCategory
-   ): Redirector|RedirectResponse 
-   {
-      $createCategory->handle($request);
-      $notification = [
-         'message' => 'category added successfully',
-         'alert-type'=> 'success'
-      ];
-      return redirect()->back()->with($notification);
-   }
+   	): Redirector|RedirectResponse 
+   	{
+      	$createCategory->handle($request);
+      	$notification = [
+			'message' => 'category added successfully',
+			'alert-type'=> 'success'
+      	];
+      	return redirect()->back()->with($notification);
+   	}
 
    /**
     * Undocumented function
@@ -54,13 +54,13 @@ class CategoryController extends Controller
     * @param EditCategory $editCategory
     * @return View|Factory
     */
-   public function edit(
+   	public function edit(
       int $id, 
       EditCategory $editCategory
-   ): View|Factory
-   {
+   	): View|Factory
+   	{
       return $editCategory->handle($id);
-   }
+   	}
 
    /**
     * Undocumented function
@@ -69,18 +69,18 @@ class CategoryController extends Controller
     * @param UpdateCategory $updateCategory
     * @return Redirector|RedirectResponse
     */
-   public function update(
+   	public function update(
       StoreCategoryRequest $request, 
       UpdateCategory $updateCategory
-   ): Redirector|RedirectResponse
-   {
-      $updateCategory->handle($request); 
-      $notification = [
-         'message' => 'category updated successfully',
-         'alert-type'=> 'success'
-      ];
+   	): Redirector|RedirectResponse
+   	{
+      	$updateCategory->handle($request); 
+      	$notification = [
+		    'message' => 'category updated successfully',
+         	'alert-type' => 'success'
+	    ];
       return redirect()->route('all.category')->with($notification);
-   }
+   	}
 
    /**
     * Undocumented function
@@ -89,17 +89,17 @@ class CategoryController extends Controller
     * @param DeleteCategory $deleteCategory
     * @return Redirector|RedirectResponse
     */
-   public function delete(
+   	public function delete(
       int $id,
       DeleteCategory $deleteCategory
-   ): Redirector|RedirectResponse
-   {
-      $deleteCategory->handle($id);
-      $notification = [
-         'message' => 'category deleted successfully',
-         'alert-type'=> 'error'
-      ];
-      return redirect()->back()->with($notification);
-   }
+   	): Redirector|RedirectResponse
+	{
+      	$deleteCategory->handle($id);
+      	$notification = [
+          	'message' => 'category deleted successfully',
+          	'alert-type' => 'error'
+      	];
+      	return redirect()->back()->with($notification);
+   	}
 
 }
