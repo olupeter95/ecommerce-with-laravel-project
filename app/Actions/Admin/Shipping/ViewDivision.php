@@ -13,6 +13,6 @@ class ViewDivision
         $id = Auth::id();
         $admin = Admin::find($id);
         $ships = Shipping::latest()->get();
-        return view('admin.shipping.index', compact('admin', 'ships'));
+        return view('admin.shipping.division.index', compact('admin', 'ships'));
     }
 }

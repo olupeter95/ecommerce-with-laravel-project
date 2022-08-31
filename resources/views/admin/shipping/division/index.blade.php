@@ -49,7 +49,7 @@
                         <form action="{{route('add.division')}}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="Coupon_name">Division Name</label>
+                                <label for="division_name">Division Name</label>
                                 <input type="text" class="form-control" name="division_name" required>
                                 @error('division_name')
                                 <span class="text-danger">{{$message}}</span>
