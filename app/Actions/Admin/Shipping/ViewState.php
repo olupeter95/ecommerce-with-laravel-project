@@ -8,15 +8,15 @@ use App\Models\District;
 use App\Models\Shipping;
 use Illuminate\Support\Facades\Auth;
 
-class EditState
+class viewState
 {
-    public function handle($id)
+    public function handle()
     {
-        $adminId = Auth::id();
-        $admin = Admin::findorFail($adminId);
+        $id = Auth::id();
+        $admin = Admin::findorFail($id);
         $divisions = Shipping::latest()->get();
         $districts = District::latest()->get();
-        $state = State::findorFail($id);
-        return view('admin.shipping.state.edit_state', compact('admin', 'divisions', 'districts', 'state'));
+        $states = State::latest()->get();
+        return view('admin.shipping.state.index', compact('admin', 'divisions', 'districts', 'states'));
     }
 }

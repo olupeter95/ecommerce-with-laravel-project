@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ShippingController;
+use App\Http\Controllers\Backend\ShippingStateController;
 use App\Http\Controllers\Backend\ShippingDistrictController;
 
 Route::prefix('shipping')->group(function () {
-    Route::middleware(['auth:admin'])->group(function (){
-        Route::get('division/view', [ShippingController::class, 'viewDivision'])->name('manage-division');
+  Route::middleware(['auth:admin'])->group(function () {
+    Route::get('division/view', [ShippingController::class, 'viewDivision'])->name('manage-division');
         Route::post('division/add', [ShippingController::class, 'addDivision'])->name('add.division');
         Route::get('division/edit/{id}', [ShippingController::class, 'editDivision'])->name('edit.division');
         Route::get('division/delete/{id}', [ShippingController::class, 'deleteDivision'])->name('delete.division');
@@ -23,5 +24,7 @@ Route::prefix('shipping')->group(function () {
         Route::get('state/edit/{id}', [ShippingStateController::class, 'editState'])->name('edit.state');
         Route::get('state/delete/{id}', [ShippingStateController::class, 'deleteState'])->name('delete.state');
         Route::post('state/update', [ShippingStateController::class, 'updateState'])->name('update.state');
-    });
+        //ajax shipping division state route
+        Route::get('/division/district/ajax/{division_id}', [ShippingStateController::class, 'getDistrict']);
+  });
 });

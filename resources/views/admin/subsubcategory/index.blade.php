@@ -125,6 +125,6 @@
             }
         });
     });
-    </script>
+</script>
 
 @endsection
