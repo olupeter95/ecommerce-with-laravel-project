@@ -28,9 +28,7 @@
                             <div class="form-group">
                                 <label for="district_id">District Name</label>
                                 <select name="district_id" class="form-control">
-                                    @foreach($districts as $district)
-                                    <option value="{{$district->district_id}}"{{$district->id == $state->district_id ? 'selected' : ' '}}>{{$district->district_name}}</option>
-                                    @endforeach
+                                    <option value="{{$state->district_id}}" selected="">{{$state->district->district_name}}</option>
                                 </select>
                                 @error('district_id')
                                 <span class="text-danger">{{$message}}</span>
