@@ -95,7 +95,7 @@ class ShippingController extends Controller
         $deleteDivision->handle($id);
         $notification = [
             'message' => 'Shipping Division Deleted Successfully',
-            'alert-type' => 'danger',
+            'alert-type' => 'error',
         ];
         return redirect()->back()->with($notification);
     }

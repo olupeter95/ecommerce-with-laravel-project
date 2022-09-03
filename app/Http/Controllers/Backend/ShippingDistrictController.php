@@ -90,7 +90,7 @@ class ShippingDistrictController extends Controller
         $deleteDistrict->handle($id);
         $notification = [
             'message' => 'Shipping District Deleted Successfully',
-            'alert-type' => 'danger',
+            'alert-type' => 'error',
         ];
         return redirect()->back()->with($notification);
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use App\Actions\Frontend\User\ViewCart;
+use App\Actions\Frontend\Cart\ApplyCoupon;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
 use App\Actions\Frontend\User\RemoveCartList;
@@ -57,11 +59,26 @@ class CartPageController extends Controller
         return $incrementCart->handle($rowId);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $rowId
+     * @param DecrementCart $decrementCart
+     * @return void
+     */
     public function decrementCart(
         string $rowId,
         DecrementCart $decrementCart
     )
     {
         return $decrementCart->handle($rowId);
+    }
+
+    public function applyCoupon(
+        Request $request,
+        ApplyCoupon $applyCoupon
+    )
+    {
+        return $applyCoupon->handle($request);
     }
 }

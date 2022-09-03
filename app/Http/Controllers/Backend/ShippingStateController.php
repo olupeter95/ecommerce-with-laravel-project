@@ -96,7 +96,7 @@ class ShippingStateController extends Controller
         $deleteState->handle($id);
         $notification = [
             'message' => 'Shipping State Deleted Successfully',
-            'alert-type' => 'danger',
+            'alert-type' => 'error',
         ];
         return redirect()->back()->with($notification);
     }

@@ -163,7 +163,7 @@
          //alert(id)
          $.ajax({
             type: 'GET',
-            url: '/product/view/modal/' + id,
+            url: '/product/view/modal/'+id,
             dataType: 'json',
             success: function(data) {
                //console.log(data)
@@ -644,7 +644,52 @@ function cartDecrement(rowId){
 }
 </script>
 
+<script type="text/javascript">
+   function applyCoupon(){
+      var coupon_name = $('#coupon_name').val()
+      $.ajax({
+         type: 'POST',
+         dataType: 'json',
+         data: {coupon_name:coupon_name},
+         url: "{{ url('/apply-coupon')}}",
+         success: function(data){
+            console.log(data)
+             //start message
+          const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+               })
+               if ($.isEmptyObject(data.error)) {
+                  Toast.fire({
+                     type: 'success',
+                     icon: 'success',
+                     title: data.success
+                  })
+               } else {
+                  Toast.fire({
+                     type: 'error',
+                     icon: 'error',
+                     title: data.error
+                  })
+               }
+               //end message
+         }
+      })
+   }
 
+   function couponResult(){
+      $.ajax({
+         type: 'GET',
+         url: "{{url('/coupon-result')}}",
+         dataType: 'json',
+         success: function(data){
+            
+         }
+      })
+   }
+</script>
    <script>
       if (Session::has('message'))
          var type = "{{ Session::get('alert-type','info') }}"

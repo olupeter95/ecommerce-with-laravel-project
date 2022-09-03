@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\User\CartPageController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/coupon')->group(function () {
@@ -26,3 +27,5 @@ Route::prefix('/coupon')->group(function () {
         )->name('delete.coupon');
     });
 });
+Route::post('/apply-coupon', [CartPageController::class, 'applyCoupon']);
+Route::get('/coupon-result', [CartPageController::class, 'couponResult']);
