@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\CartPageController;
 
 Route::post('/product/add/cart/{id}', [CartController::class, 'addCart']);
 Route::get('/product/mini/cart', [CartController::class, 'miniCart']);

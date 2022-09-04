@@ -74,16 +74,6 @@ MyCart
 <div class="col-md-4 col-sm-12 cart-shopping-total">
 	<table class="table">
 		<thead id="coupon_result">
-			<tr>
-				<th>
-					<div class="cart-sub-total">
-						Subtotal<span class="inner-left-md">$600.00</span>
-					</div>
-					<div class="cart-grand-total">
-						Grand Total<span class="inner-left-md">$600.00</span>
-					</div>
-				</th>
-			</tr>
 		</thead><!-- /thead -->
 		<tbody>
 				<tr>

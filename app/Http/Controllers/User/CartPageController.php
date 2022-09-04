@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use App\Actions\Frontend\User\ViewCart;
 use App\Actions\Frontend\Cart\ApplyCoupon;
+use App\Actions\Frontend\Cart\CouponResult;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
 use App\Actions\Frontend\User\RemoveCartList;
@@ -74,11 +75,23 @@ class CartPageController extends Controller
         return $decrementCart->handle($rowId);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param ApplyCoupon $applyCoupon
+     * @return void
+     */
     public function applyCoupon(
         Request $request,
         ApplyCoupon $applyCoupon
     )
     {
         return $applyCoupon->handle($request);
+    }
+
+    public function couponResult(CouponResult $couponResult)
+    {
+       return $couponResult->handle();
     }
 }

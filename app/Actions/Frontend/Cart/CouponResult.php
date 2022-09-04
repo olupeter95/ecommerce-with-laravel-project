@@ -19,7 +19,7 @@ class CouponResult
             ]);
         }
         return response()->json([
-            'subtotal' => Cart::total(),
+            'total' => Cart::total(),
         ]);
     }
 }
