@@ -4,11 +4,16 @@ namespace App\Actions\Frontend\Cart;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+
 class AddCart
 {
     public function handle(Request $request, $id)
     {
+        if(Session::has('coupon')){
+            Session::forget('coupon');
+        }
         $product = Product::findorFail($id);
         if($product->discount_price === null) {
             Cart::add([

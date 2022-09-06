@@ -589,9 +589,11 @@ function removeCartList(id){
       url:'/remove/cartlist/'+id,
       dataType:'json',
       success: function(data){
-       cart();
-       miniCart()
-
+         couponResult()
+         cart()
+         miniCart()
+         $('#apply_coupon').show()
+         $('#coupon_name').val('')
           //start message
           const Toast = Swal.mixin({
                   toast: true,
@@ -625,6 +627,7 @@ function cartIncrement(rowId){
       url:'/increment/cart/'+rowId,
       dataType:'json',
       success:function(data){
+         couponResult()
          cart()
          miniCart()
       }
@@ -637,6 +640,7 @@ function cartDecrement(rowId){
       url:'/decrement/cart/'+rowId,
       dataType:'json',
       success:function(data){
+         couponResult()
          cart()
          miniCart()
       }
@@ -653,7 +657,6 @@ function cartDecrement(rowId){
          data: {coupon_name:coupon_name},
          url: "{{ url('/apply-coupon')}}",
          success: function(data){
-            console.log(data)
             couponResult()
             $('#apply_coupon').hide() 
             //start message
@@ -758,7 +761,6 @@ couponResult()
          }
       })
    }   
-   removeCoupon()
 </script>
 
    <script>
