@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use App\Actions\Frontend\User\ViewCart;
 use App\Actions\Frontend\Cart\ApplyCoupon;
+use App\Actions\Frontend\Cart\CouponRemove;
 use App\Actions\Frontend\Cart\CouponResult;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
@@ -90,8 +91,25 @@ class CartPageController extends Controller
         return $applyCoupon->handle($request);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param CouponResult $couponResult
+     * @return void
+     */
     public function couponResult(CouponResult $couponResult)
     {
        return $couponResult->handle();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param CouponRemove $couponRemove
+     * @return void
+     */
+    public function couponRemove(CouponRemove $couponRemove)
+    {
+        return $couponRemove->handle();
     }
 }

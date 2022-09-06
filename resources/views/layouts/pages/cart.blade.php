@@ -46,7 +46,7 @@ MyCart
 	<div class="col-md-4 col-sm-12 estimate-ship-tax">
 		@if(Session::has('coupon'))
 		@else
-	<table class="table">
+	<table class="table" id="apply_coupon">
 		<thead>
 			<tr>
 				<th>
@@ -59,7 +59,7 @@ MyCart
 				<tr>
 					<td>
 						<div class="form-group">
-							<input type="text" class="form-control unicase-form-control text-input" id="coupon_name" placeholder="You Coupon..">
+							<input type="text" class="form-control unicase-form-control text-input" id="coupon_name" placeholder="Your Coupon..">
 						</div>
 						<div class="clearfix pull-right">
 							<button type="submit" class="btn-upper btn btn-primary" onclick="applyCoupon()">APPLY COUPON</button>

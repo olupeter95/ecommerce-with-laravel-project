@@ -654,7 +654,9 @@ function cartDecrement(rowId){
          url: "{{ url('/apply-coupon')}}",
          success: function(data){
             console.log(data)
-             //start message
+            couponResult()
+            $('#apply_coupon').hide() 
+            //start message
           const Toast = Swal.mixin({
                   toast: true,
                   position: 'top-end',
@@ -675,6 +677,7 @@ function cartDecrement(rowId){
                   })
                }
                //end message
+               
          }
       })
    }
@@ -704,7 +707,7 @@ function cartDecrement(rowId){
                      </div>
                      <div class="cart-sub-total">
                         Coupon Name<span class="inner-left-md">${data.coupon_name}</span>
-                        <button type="submit"><i class="fa fa-times"></i></button>
+                        <button type="submit" onclick="removeCoupon()"><i class="fa fa-times"></i></button>
                      </div>
                      <div class="cart-sub-total">
                         Discount Amount<span class="inner-left-md">$ ${data.discount_amount}</span>
@@ -721,6 +724,43 @@ function cartDecrement(rowId){
    }
 couponResult()
 </script>
+<script type="text/javascript">
+   function removeCoupon(){
+      $.ajax({
+         type:'GET',
+         dataType: 'json',
+         url:"{{ url('/remove-coupon') }}",
+         success: function(data){
+            couponResult() 
+            $('#apply_coupon').show()
+            $('#coupon_name').val('')
+            //start message
+          const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000
+               })
+               if ($.isEmptyObject(data.error)) {
+                  Toast.fire({
+                     type: 'success',
+                     icon: 'success',
+                     title: data.success
+                  })
+               } else {
+                  Toast.fire({
+                     type: 'error',
+                     icon: 'error',
+                     title: data.error
+                  })
+               }
+               //end message
+         }
+      })
+   }   
+   removeCoupon()
+</script>
+
    <script>
       if (Session::has('message'))
          var type = "{{ Session::get('alert-type','info') }}"

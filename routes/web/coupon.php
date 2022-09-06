@@ -29,3 +29,4 @@ Route::prefix('/coupon')->group(function () {
 });
 Route::post('/apply-coupon', [CartPageController::class, 'applyCoupon']);
 Route::get('/coupon-result', [CartPageController::class, 'couponResult']);
+Route::get('/remove-coupon', [CartPageController::class, 'couponRemove']);
