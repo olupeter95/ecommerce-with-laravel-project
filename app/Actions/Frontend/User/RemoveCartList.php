@@ -15,6 +15,6 @@ class RemoveCartList
         if(Session::has('coupon')){
             Session::forget('coupon');
         }
-        return response()->json(['success', 'Product removed from cart']);
+        return response()->json(['success' => 'Product removed from cart']);
     }
 }
