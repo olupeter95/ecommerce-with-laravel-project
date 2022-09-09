@@ -91,20 +91,22 @@
                   <!--end col--->
                   <div class="col-md-4">
                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Choose Color</label>
                         @if(session()->get('language') == 'french')
+                        <label for="color_fr">Choose Color</label>
                         <select class="form-control" id="color_fr" name="color_fr"></select>
                         @else
+                        <label for="color_en">Choose Color</label>
                         <select class="form-control" id="color_en" name="color_en"></select>
                         @endif
                      </div>
                      <!--end formgroup--->
 
                      <div class="form-group" id="sizeArea">
-                        <label for="exampleFormControlSelect1">Choose Size</label>
                         @if(session()->get('language') == 'french')
+                        <label for="size_fr">Choose Size</label>
                         <select class="form-control" id="size_fr" name="size_fr"></select>
                         @else
+                        <label for="size_en">Choose Size</label>
                         <select class="form-control" id="size_en" name="size_en"></select>
                         @endif
                      </div>
@@ -264,6 +266,7 @@
                qty: qty
             },
             success: function(data) {
+               console.log(data)
                miniCart()
                $('#closeModal').click();
                //console.log(data)

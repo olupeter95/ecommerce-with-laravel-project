@@ -18,3 +18,4 @@ Route::get(
 Route::get(
     '/decrement/cart/{rowId}', [CartPageController::class, 'decrementCart']
 );
+Route::get('cart/checkout', [CartPageController::class, 'viewCheckout'])->name('checkout');

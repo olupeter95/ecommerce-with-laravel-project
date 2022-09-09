@@ -10,6 +10,7 @@ use App\Actions\Frontend\User\ViewCart;
 use App\Actions\Frontend\Cart\ApplyCoupon;
 use App\Actions\Frontend\Cart\CouponRemove;
 use App\Actions\Frontend\Cart\CouponResult;
+use App\Actions\Frontend\Cart\viewCheckout;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
 use App\Actions\Frontend\User\RemoveCartList;
@@ -111,5 +112,10 @@ class CartPageController extends Controller
     public function couponRemove(CouponRemove $couponRemove)
     {
         return $couponRemove->handle();
+    }
+
+    public function viewCheckout(ViewCheckout $viewCheckout)
+    {
+        return $viewCheckout->handle();
     }
 }

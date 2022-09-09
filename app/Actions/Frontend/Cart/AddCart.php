@@ -19,19 +19,19 @@ class AddCart
             Cart::add([
                 'id' => $id, 
                 'name' => $request->product_name,
-                'qty'=>$request->qty,
+                'qty'=> $request->qty,
                 'price'=> $product->selling_price,
                 'weight'=> 1,
                 'options' => [
                     'image' => $product->product_thumbnail, 
                     'color'=> $request->color_en,
                     'color_fr'=> $request->color_fr,
-                    'size' => $request->product_size_en,
-                    'sizefr' => $request->product_size_fr,
+                    'size' => $request->size_en,
+                    'sizefr' => $request->size_fr,
                     'productfr' => $request->product_name_fr,
                 ]
             ]);
-        }else {
+        } else {
             Cart::add([
                 'id' => $id, 
                 'name' => $request->product_name,
@@ -42,8 +42,8 @@ class AddCart
                     'image' => $product->product_thumbnail, 
                     'color'=>$request->color_en,
                     'colorfr'=>$request->color_fr,
-                    'size' => $request->product_size_en, 
-                    'sizefr' => $request->product_size_fr,
+                    'size' => $request->size_en, 
+                    'sizefr' => $request->size_fr,
                     'productfr' => $request->product_name_fr,
                 ]
             ]);
