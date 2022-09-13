@@ -28,3 +28,5 @@ Route::prefix('shipping')->group(function () {
         Route::get('/division/district/ajax/{division_id}', [ShippingStateController::class, 'getDistrict']);
   });
 });
+Route::get('/shipping/state/ajax/{district_id}', [ShippingStateController::class, 'getState']);
+Route::get('/shipping/district/ajax/{division_id}', [ShippingStateController::class, 'getDistrict']);

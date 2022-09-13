@@ -2,6 +2,7 @@
 
 namespace App\Actions\Frontend\Cart;
 
+use App\Models\Shipping;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -14,7 +15,8 @@ class viewCheckout
                 $carts = Cart::content();
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
-                return view('layouts.pages.checkout', compact('carts', 'cartQty', 'cartTotal'));
+                $divisions = Shipping::latest()->get();
+                return view('layouts.pages.checkout', compact('carts', 'cartQty', 'cartTotal', 'divisions'));
             } else {
                 $notification = [
                     'message' => 'Shopping cart is empty add item',

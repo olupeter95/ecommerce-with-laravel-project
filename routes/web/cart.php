@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 
 Route::post('/product/add/cart/{id}', [CartController::class, 'addCart']);
 Route::get('/product/mini/cart', [CartController::class, 'miniCart']);
@@ -19,3 +20,4 @@ Route::get(
     '/decrement/cart/{rowId}', [CartPageController::class, 'decrementCart']
 );
 Route::get('cart/checkout', [CartPageController::class, 'viewCheckout'])->name('checkout');
+Route::post('/checkout/product', [CheckoutController::class, 'storeCheckout'])->name('checkout.store');

@@ -11,13 +11,39 @@ use App\Actions\Admin\Shipping\ViewState;
 use App\Actions\Admin\Shipping\CreateState;
 use App\Actions\Admin\Shipping\DeleteState;
 use App\Actions\Admin\Shipping\GetDistrict;
+use App\Actions\Admin\Shipping\GetState;
 use App\Actions\Admin\Shipping\UpdateState;
 
 class ShippingStateController extends Controller
 {
-    public function getDistrict($division_id, GetDistrict $getDistrict)
+    /**
+     * Undocumented function
+     *
+     * @param int $division_id
+     * @param GetDistrict $getDistrict
+     * @return string|false
+     */
+    public function getDistrict(
+        int $division_id,
+        GetDistrict $getDistrict
+    ): string|false
     {
         return $getDistrict->handle($division_id);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param int $district_id
+     * @param GetState $getState
+     * @return string|false
+     */
+    public function getState(
+        int $district_id,
+        GetState $getState
+    ): string|false
+    {
+       return $getState->handle($district_id);
     }
 
     public function viewState(ViewState $viewState)
