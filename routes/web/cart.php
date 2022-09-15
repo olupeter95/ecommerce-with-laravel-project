@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
@@ -21,3 +22,8 @@ Route::get(
 );
 Route::get('cart/checkout', [CartPageController::class, 'viewCheckout'])->name('checkout');
 Route::post('/checkout/product', [CheckoutController::class, 'storeCheckout'])->name('checkout.store');
+Route::post(
+    'stripe/order',
+    [StripeController::class, 'stripeOrder'])
+    ->name('stripe-order')
+    ->middleware('auth');
