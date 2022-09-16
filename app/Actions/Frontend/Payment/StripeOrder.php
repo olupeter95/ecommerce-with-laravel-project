@@ -2,13 +2,15 @@
 
 namespace App\Actions\Frontend\Payment;
 
+use Carbon\Carbon;
 use Stripe\Charge;
 use Stripe\Stripe;
 use App\Models\Order;
+use App\Mail\OrderMail;
 use App\Models\OrderItem;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -54,6 +56,19 @@ class StripeOrder
         ]);
 
         $order_id = Order::insertGetId($request->except('_token','stripeToken'));
+
+        $invoice = Order::findorFail($order_id);
+
+        $data = [
+            'invoice_number' => $invoice->invoice_number,
+            'amount' => $total_amount,
+            'name' => $invoice->name,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+        ];
+
+        Mail::to($request->email)->send(new OrderMail($data));
+
         $carts = Cart::content();
 
         foreach ($carts as $cart) {
