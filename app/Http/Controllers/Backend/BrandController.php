@@ -39,12 +39,12 @@ class BrandController extends Controller
       CreateBrand $createBrand
    	): Redirector|RedirectResponse
    	{
-		$createBrand->handle($request);
-		$notification = [
-			'message' => 'Brand Added Successfully',
-			'alert-type'=> 'success'
-		];
-		return redirect()->back()->with($notification);
+         $createBrand->handle($request);
+         $notification = [
+            'message' => 'Brand Added Successfully',
+            'alert-type'=> 'success'
+         ];
+	   	return redirect()->back()->with($notification);
    	} 
 
   /**
@@ -59,7 +59,7 @@ class BrandController extends Controller
       EditBrand $editBrand
    	): View|Factory
    	{
-       return $editBrand->handle($id);
+         return $editBrand->handle($id);
    	}
 
    /**
