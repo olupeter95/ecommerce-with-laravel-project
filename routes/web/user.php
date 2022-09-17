@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\UserOrderController;
 
 Route::get('/', [IndexController::class,'index'])->name('home');
 Route::get('logout/user', [IndexController::class,'userLogout'])->name('user.logout');
@@ -43,3 +44,8 @@ Route::get(
     [IndexController::class, 'prodSubSubcat'])->name('subsubcat-product');
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productModalView']);
+Route::get('/view/my-order', [UserOrderController::class, 'myOrders'])->name('my-orders')
+->middleware('auth');
+Route::get('/all/order/details/{order_id}', [UserOrderController::class, 'orderDetails'])
+->name('order-details')->middleware('auth');
+Route::get('/order/invoice/{order_id}', [UserOrderController::class, 'OrderInvoice'])->name('order-invoice');

@@ -25,7 +25,7 @@ class StripeController extends Controller
         $stripeOrder->handle($request);  
         $notification = [
 			'message' => 'Order Placed Successfully',
-			'alert-type'=> 'success'
+			'alert-type'=> 'success',
 		];
 		return redirect()->route('home')->with($notification);
     }
