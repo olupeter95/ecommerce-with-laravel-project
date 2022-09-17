@@ -22,6 +22,7 @@ class ApplyCoupon
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
             ]);
             return response()->json([
+                'validity' => true,
                 'success' => 'Coupon Applied Successfully',
             ]);
         }

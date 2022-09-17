@@ -15,29 +15,20 @@ Checkout
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->
 </div><!-- /.breadcrumb -->
-
 <div class="body-content">
 	<div class="container">
-		<div class="checkout-box ">
+		<div class="checkout-box">
 			<div class="row">
 				<div class="col-md-8">
 					<div class="panel-group checkout-steps" id="accordion">
-						<!-- checkout-step-01  -->
 						<div class="panel panel-default checkout-step-01">
-
-
-							<div id="collapseOne" class="panel-collapse collapse in">
-
-								<!-- panel-body  -->
+							<div class="panel-collapse collapse in" id="collapseOne">
 								<div class="panel-body">
-									<div class="row">		
-
-										<!-- shipping-info -->			
-										<div class="col-md-6 col-sm-6 already-registered-login">
+									<div class="row">
+										<div class="col-md-6">
 											<h4 class="checkout-subtitle"><b>Shipping Address</b></h4>
 											<form class="register-form" action="{{route('checkout.store')}}" method="POST">
 												@csrf
-
 												<div class="form-group">
 													<label class="info-title" for="shipping_name"><b>Shipping Name</b> <span>*</span></label>
 													<input type="text" class="form-control unicase-form-control text-input" name="shipping_name"
@@ -61,12 +52,10 @@ Checkout
 													<input type="text" class="form-control unicase-form-control text-input" name="postal_code"
 													placeholder="Postal Code">
 												</div>
-										</div><!--end col -->
-										<!-- shipping-info -->
 
-										<!-- already-registered-login -->
-										<div class="col-md-6 col-sm-6 already-registered-login">
-
+											
+										</div>
+										<div class="col-md-6 col-sm-6">
 											<div class="form-group">
 												<label for="category"><b>Division</b></label>
 												<select name="division_id" class="form-control">
@@ -106,28 +95,22 @@ Checkout
 												<label class="info-title" for="postal_code"><b>Notes</b></label>
 												<textarea class="form-control" cols="30" rows="5" name="notes"></textarea>
 											</div>
-											
-											
-										</div>	<!--end col-->
-										<!-- already-registered-login -->		
-
-									</div><!-- row -->		
-								</div><!-- panel-body  -->
-
-							</div><!-- CollapseOne  -->
-						</div><!-- checkout-step-01  -->
-					</div><!-- /.checkout-steps -->
-				</div><!-- /.col-md-8 -->
-				<div class="col-md-4">
-					<!-- checkout-progress-sidebar -->
-					<div class="checkout-progress-sidebar ">
-						<div class="panel-group">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+										</div>
+									</div>
 								</div>
-								
-									
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="row">
+						<div class="col">
+							<div class="checkout-progress-sidebar">
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+										</div>
 										<ul class="nav nav-checkout-progress list-unstyled">
 											@foreach($carts as $item)
 											<li>
@@ -168,50 +151,47 @@ Checkout
 												@endif
 											</li>
 										</ul>
-											
-								
-							</div>
-						</div>
-					</div> <!-- checkout-progress-sidebar -->
-				</div>
-
-				<div class="col-md-4">
-					<!-- checkout-progress-sidebar -->
-					<div class="checkout-progress-sidebar ">
-						<div class="panel-group">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="unicase-checkout-title">Select Payment Method</h4>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<label for="stripe">Stripe</label>
-										<input type="radio" name="payment_method" value="stripe">
-										<img src="{{ asset('frontend/assets/images/payments/stripe.jpg') }}" width="60px" height="25px">
-									</div>	
-									<div class="col-md-4">
-										<label for="card">Card</label>
-										<input type="radio" name="payment_method" value="card">
-										<img src="{{ asset('frontend/assets/images/payments/3.png') }}" width="60px" height="25px">
-									</div>	
-									<div class="col-md-4">
-										<label for="cash">Cash</label>
-										<input type="radio" name="payment_method" value="cash">
-										<img src="{{ asset('frontend/assets/images/payments/1.png') }}" width="60px" height="25px">
 									</div>
-								</div><!--end row-->		
-								<hr>
-								<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Step</button>
+								</div>
 							</div>
 						</div>
-					</div> <!-- checkout-progress-sidebar -->
+						<div class="col">
+							<div class="checkout-progress-sidebar">
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="unicase-checkout-title">Stripe Payment</h4>
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<label for="stripe">Stripe</label>
+												<input type="radio" name="payment_method" value="stripe">
+												<img src="{{ asset('frontend/assets/images/payments/stripe.jpg') }}" width="60px" height="25px">
+											</div>	
+											<div class="col-md-4">
+												<label for="card">Card</label>
+												<input type="radio" name="payment_method" value="card">
+												<img src="{{ asset('frontend/assets/images/payments/3.png') }}" width="60px" height="25px">
+											</div>	
+											<div class="col-md-4">
+												<label for="cash">Cash</label>
+												<input type="radio" name="payment_method" value="cash">
+												<img src="{{ asset('frontend/assets/images/payments/1.png') }}" width="60px" height="25px">
+											</div>
+										</div><!--end row-->		
+										<hr>
+										<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Step</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</form>
-			</div><!-- /.row -->
-		</div><!-- /.checkout-box -->
-	</div><!-- /.container -->
-</div><!-- /.body-content -->
-
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script type="text/javascript">
       $(document).ready(function() {

@@ -662,7 +662,9 @@ function cartDecrement(rowId){
          url: "{{ url('/apply-coupon')}}",
          success: function(data){
             couponResult()
-            $('#apply_coupon').hide() 
+            if (data.validity == true) {
+               $('#apply_coupon').hide()
+            } 
             //start message
           const Toast = Swal.mixin({
                   toast: true,
