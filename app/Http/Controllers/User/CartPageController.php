@@ -10,7 +10,7 @@ use App\Actions\Frontend\User\ViewCart;
 use App\Actions\Frontend\Cart\ApplyCoupon;
 use App\Actions\Frontend\Cart\CouponRemove;
 use App\Actions\Frontend\Cart\CouponResult;
-use App\Actions\Frontend\Cart\viewCheckout;
+use App\Actions\Frontend\Cart\ViewCheckout;
 use App\Actions\Frontend\User\DecrementCart;
 use App\Actions\Frontend\User\IncrementCart;
 use App\Actions\Frontend\User\RemoveCartList;

@@ -23,7 +23,7 @@
                                 <div class="form-group">
 								<h5>Admin Username <span class="text-danger">*</span></h5>
 								<div class="controls">
-								 <input type="text" name="name" class="form-control" value="{{$admins->name}}">
+								 <input type="text" name="name" class="form-control" value="{{$admin->name}}">
                                  @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -34,7 +34,7 @@
                                 <div class="form-group">
 								 <h5>Admin Email <span class="text-danger">*</span></h5>
 								<div class="controls">
-								 <input type="text" name="email" class="form-control"value="{{$admins->email}}">
+								 <input type="text" name="email" class="form-control"value="{{$admin->email}}">
                                  @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                                  @enderror
@@ -56,8 +56,8 @@
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                            <img id="showimage" src="{{ (!empty($admins->profile_photo_path)) ? 
-                              url('storage/upload/admin_image/'.$admins->profile_photo_path) : url('storage/upload/no_image.jpg')  }}" 
+                            <img id="showimage" src="{{ (!empty($admin->profile_photo_path)) ? 
+                              url('storage/upload/admin_image/'.$admin->profile_photo_path) : url('storage/upload/no_image.jpg')  }}" 
                              alt="User Avatar" alt="" style="width:100px; height:100px">
                             </div>
                         </div>

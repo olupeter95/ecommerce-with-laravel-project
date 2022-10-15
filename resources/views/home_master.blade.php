@@ -417,7 +417,6 @@
      }
      //end add my wishlist
 </script>
-
 <script type="text/javascript">
     function wishlist(){
       $.ajax({

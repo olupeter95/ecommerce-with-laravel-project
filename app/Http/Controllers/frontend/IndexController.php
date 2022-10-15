@@ -151,12 +151,12 @@ class IndexController extends Controller
     /**
      * Undocumented function
      *
-     * @param array $tags
+     * @param string $tags
      * @param ProductTag $prodTags
      * @return void
      */
     public function prodTags(
-        array $tags,
+        string $tags,
         ProductTag $prodTags
     )
     {

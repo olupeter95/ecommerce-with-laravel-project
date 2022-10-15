@@ -169,11 +169,15 @@ E-commerce Store
                           <div class="action">
                             <ul class="list-unstyled">
                               <li class="add-cart-button btn-group">
-                                <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                                <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                              <button class="btn btn-primary icon" data-toggle="modal" data-target="#exampleModal"
+                                type="button" id="{{$prod->id}}" onclick="" title="Cart">
+                                <i class="fa fa-shopping-cart"></i> 
+                              </button>
                               </li>
-                              <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                              <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                              <button class="btn btn-primary icon" type="button" id="{{$prod->id}}" onclick="addMyWishlist(this.id)">
+                                <i class="fa fa-heart"></i> 
+                              </button>
+                              <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                             </ul>
                           </div>
                           <!-- /.action --> 
@@ -229,7 +233,7 @@ E-commerce Store
                         <!-- /.product-image -->
                         
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="detail.html">
+                          <h3 class="name"><a href="#">
                             @if(session()->get('language') == 'french')
                             {{$prod->product_name_fr}}
                             @else
@@ -256,11 +260,17 @@ E-commerce Store
                           <div class="action">
                             <ul class="list-unstyled">
                               <li class="add-cart-button btn-group">
-                                <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                                <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                              <button class="btn btn-primary icon" data-toggle="modal" data-target="#exampleModal"
+                                type="button" id="{{$prod->id}}" onclick="productView(this.id)" title="Cart">
+                                <i class="fa fa-shopping-cart"></i>
+                              </button> 
                               </li>
-                              <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                              <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                              <button class="btn btn-primary icon" type="button" id="{{$prod->id}}" onclick="addMyWishlist(this.id)">
+                                <i class="fa fa-heart"></i> 
+                              </button>
+                              <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true">
+
+                              </i> </a> </li>
                             </ul>
                           </div>
                           <!-- /.action --> 
@@ -360,14 +370,9 @@ E-commerce Store
                       {{$feature->product_name_en}}
                       @endif
                     </a></h3>
-                    <div class="rating rateit-small rateit">
-                      <button id="rateit-reset-47" data-role="none" class="rateit-reset" aria-label="reset rating" aria-controls="rateit-range-47" style="display: none;">
-                    </button>
-                    <div id="rateit-range-47" class="rateit-range" tabindex="0" role="slider" aria-label="rating" aria-owns="rateit-reset-47" aria-valuemin="0" aria-valuemax="5" aria-valuenow="4" aria-readonly="true" style="width: 70px; height: 14px;">
-                    <div class="rateit-selected" style="height: 14px; width: 56px;"></div>
-                    <div class="rateit-hover" style="height:14px"></div>
-                    </div>
-                  </div>
+                    <div class="rating rateit-small"></div>
+                  
+                  
                     <div class="description"></div>
                     <div class="product-price"> 
                     <span class="price"> ${{$feature->discount_price}} </span> 
@@ -389,10 +394,10 @@ E-commerce Store
                         </li>
                         
                         <button class="btn btn-primary icon" type="button" id="{{$feature->id}}" onclick="addMyWishlist(this.id)">
-                             <i class="fa fa-heart"></i> 
-                            </button>
+                           <i class="fa fa-heart"></i> 
+                        </button>
 
-                        <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                        <li class="lnk"> <a class="add-to-cart" href="#" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                       </ul>
                     </div>
                     <!-- /.action --> 

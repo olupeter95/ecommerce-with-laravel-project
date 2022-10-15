@@ -6,7 +6,7 @@ use App\Models\Shipping;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
-class viewCheckout
+class ViewCheckout
 {
     public function handle()
     {
