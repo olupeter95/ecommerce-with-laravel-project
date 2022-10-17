@@ -5,6 +5,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\Frontend\CashOrderController;
 
 
 Route::post('/product/add/cart/{id}', [CartController::class, 'addCart']);
@@ -27,4 +28,9 @@ Route::post(
     'stripe/order',
     [StripeController::class, 'stripeOrder'])
     ->name('stripe-order')
+    ->middleware('auth');
+Route::post(
+    'cash/order',
+    [CashOrderController::class, 'cashOrder'])
+    ->name('cash-order')
     ->middleware('auth');
