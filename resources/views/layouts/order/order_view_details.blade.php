@@ -20,7 +20,7 @@
               <th> Shipping Phone : </th>
                <th> {{ $order->phone }} </th>
             </tr>
-
+             
              <tr>
               <th> Shipping Email : </th>
                <th> {{ $order->email }} </th>

@@ -52,7 +52,7 @@
                                <td>
                                 <a href="{{ route('order-details',$order->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a>
 
-                                <a href="{{ route('order-invoice',$order->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-download" style="color: white;"></i> Invoice </a>
+                                <a target="_blank" href="{{ route('order-invoice',$order->id) }}" class="btn btn-sm btn-danger" style="margin-top:5px;"><i class="fa fa-download" style="color: white;"></i> Invoice </a>
                                </td> 
                             </tr>
                             @endforeach
