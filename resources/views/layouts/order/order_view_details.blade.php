@@ -158,7 +158,7 @@
 
 
               @foreach($orderItem as $item)
-       <tr>
+              <tr>
                 <td class="col-md-1">
                   <label for=""><img src="{{ asset('storage/upload/product/thumbnail/'.$item->product->product_thumbnail) }}" height="50px;" width="50px;"> </label>
                 </td>
@@ -184,7 +184,7 @@
                   <label for=""> {{ $item->qty }}</label>
                 </td>
 
-          <td class="col-md-2">
+                <td class="col-md-2">
                   <label for=""> ${{ $item->price }}  ( $ {{ $item->price * $item->qty}} ) </label>
                 </td>
 
@@ -205,6 +205,14 @@
         
 
       
+        <br>
+        @if($order->status !== 'delivered')
+        @else
+        <div class="form-group">
+          <label for="return order">Return Order Reason</label>
+          <textarea class="form-control" name="return_reason" id="return_reason" cols="30" rows="10"></textarea>
+        </div>
+        @endif
         <br>
     </div><!--end container-->
 </div>
