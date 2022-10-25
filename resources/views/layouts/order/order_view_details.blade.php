@@ -120,86 +120,85 @@
 
         <div class="row">
             <div class="col-md-12">
-            <div class="table-responsive">
-          <table class="table">
-            <tbody>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
 
-              <tr style="background: #e2e2e2;">
-                <td class="col-md-1">
-                  <label for=""> Image</label>
-                </td>
+                    <tr style="background: #e2e2e2;">
+                      <td class="col-md-1">
+                        <label for=""> Image</label>
+                      </td>
 
-                <td class="col-md-3">
-                  <label for=""> Product Name </label>
-                </td>
+                      <td class="col-md-3">
+                        <label for=""> Product Name </label>
+                      </td>
 
-                <td class="col-md-3">
-                  <label for=""> Product Code</label>
-                </td>
-
-
-                <td class="col-md-2">
-                  <label for=""> Color </label>
-                </td>
-
-                 <td class="col-md-2">
-                  <label for=""> Size </label>
-                </td>
-
-                 <td class="col-md-1">
-                  <label for=""> Quantity </label>
-                </td>
-
-                <td class="col-md-1">
-                  <label for=""> Price </label>
-                </td>
-
-              </tr>
+                      <td class="col-md-3">
+                        <label for=""> Product Code</label>
+                      </td>
 
 
-              @foreach($orderItem as $item)
-              <tr>
-                <td class="col-md-1">
-                  <label for=""><img src="{{ asset('storage/upload/product/thumbnail/'.$item->product->product_thumbnail) }}" height="50px;" width="50px;"> </label>
-                </td>
+                      <td class="col-md-2">
+                        <label for=""> Color </label>
+                      </td>
 
-                <td class="col-md-3">
-                  <label for=""> {{ $item->product->product_name_en }}</label>
-                </td>
+                      <td class="col-md-2">
+                        <label for=""> Size </label>
+                      </td>
 
+                      <td class="col-md-1">
+                        <label for=""> Quantity </label>
+                      </td>
 
-                 <td class="col-md-3">
-                  <label for=""> {{ $item->product->product_code }}</label>
-                </td>
+                      <td class="col-md-1">
+                        <label for=""> Price </label>
+                      </td>
 
-                <td class="col-md-2">
-                  <label for=""> {{ $item->color }}</label>
-                </td>
-
-                <td class="col-md-2">
-                  <label for=""> {{ $item->size }}</label>
-                </td>
-
-                 <td class="col-md-2">
-                  <label for=""> {{ $item->qty }}</label>
-                </td>
-
-                <td class="col-md-2">
-                  <label for=""> ${{ $item->price }}  ( $ {{ $item->price * $item->qty}} ) </label>
-                </td>
-
-              </tr>
-              @endforeach
+                    </tr>
 
 
+                    @foreach($orderItem as $item)
+                    <tr>
+                      <td class="col-md-1">
+                        <label for=""><img src="{{ asset('storage/upload/product/thumbnail/'.$item->product->product_thumbnail) }}" height="50px;" width="50px;"> </label>
+                      </td>
+
+                      <td class="col-md-3">
+                        <label for=""> {{ $item->product->product_name_en }}</label>
+                      </td>
+
+
+                      <td class="col-md-3">
+                        <label for=""> {{ $item->product->product_code }}</label>
+                      </td>
+
+                      <td class="col-md-2">
+                        <label for=""> {{ $item->color }}</label>
+                      </td>
+
+                      <td class="col-md-2">
+                        <label for=""> {{ $item->size }}</label>
+                      </td>
+
+                      <td class="col-md-2">
+                        <label for=""> {{ $item->qty }}</label>
+                      </td>
+
+                      <td class="col-md-2">
+                        <label for=""> ${{ $item->price }}  ( $ {{ $item->price * $item->qty}} ) </label>
+                      </td>
+
+                    </tr>
+                    @endforeach
 
 
 
-            </tbody>
 
-          </table>
 
-        </div>
+                  </tbody>
+
+                </table>
+              </div>
             </div>
         </div>
         

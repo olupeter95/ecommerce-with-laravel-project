@@ -7,7 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 
-class PendingOrderDetails
+class OrderDetails
 {
     public function handle($id)
     {
@@ -16,6 +16,6 @@ class PendingOrderDetails
         $order = Order::with('division', 'district', 'state', 'user')
         ->where('id', $id)->orderBy('id', 'DESC')->first(); 
         $orderItem = OrderItem::with('product')->where('order_id', $id)->get();
-        return view('admin.order.pending_order_details', compact('order', 'orderItem', 'admin'));
+        return view('admin.order.order_details', compact('order', 'orderItem', 'admin'));
     }
 }

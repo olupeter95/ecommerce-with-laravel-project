@@ -113,6 +113,24 @@
                     <th>   
                         <span class="badge badge-pill badge-warning" style="background: #418DB9;">{{ $order->status }} </span> </th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @if($order->status == 'pending')
+                            <a href="{{route('pending-confirm',$order->id)}}" class="btn btn-block btn-success" id="confirm">Confirm Order</a>
+                            @elseif($order->status == 'confirmed')
+                            <a href="{{route('confirm-processing',$order->id)}}" class="btn btn-block btn-success" id="processing">Process Order</a>
+                            @elseif($order->status == 'processing')
+                            <a href="{{route('processing-pick',$order->id)}}" class="btn btn-block btn-success" id="picked">Picked Order</a>
+                            @elseif($order->status == 'picked')
+                            <a href="{{route('pick-ship',$order->id)}}" class="btn btn-block btn-success" id="shipped">Ship Order</a>
+                            @elseif($order->status == 'shipped')
+                            <a href="{{route('ship-deliver',$order->id)}}" class="btn btn-block btn-success" id="delivered">Deliver Order</a>
+                            @else
+                            <a href="{{route('deliver-cancel',$order->id)}}" class="btn btn-block btn-success" id="cancelled">Cancel Order</a>
+                            @endif
+                        </th>
+                    </tr>
                 </table>
             
         </div>
