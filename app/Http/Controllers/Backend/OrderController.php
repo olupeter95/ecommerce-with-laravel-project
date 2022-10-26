@@ -11,13 +11,15 @@ use App\Actions\Admin\Orders\ShippedOrders;
 use App\Actions\Admin\Orders\CancelledOrders;
 use App\Actions\Admin\Orders\ConfirmedOrders;
 use App\Actions\Admin\Orders\DeliveredOrders;
+use App\Actions\Admin\Orders\InvoiceDownload;
 use App\Actions\Admin\Orders\PickedToShipped;
 use App\Actions\Admin\Orders\PendingToConfirm;
 use App\Actions\Admin\Orders\ProcessingOrders;
 use App\Actions\Admin\Orders\ShippedToDeliver;
+use App\Actions\Admin\Orders\DeliveredToCancel;
 use App\Actions\Admin\Orders\ProcessingToPicked;
 use App\Actions\Admin\Orders\ConfirmToProcessing;
-use App\Actions\Admin\Orders\DeliveredToCancel;
+
 
 class OrderController extends Controller
 {
@@ -202,5 +204,13 @@ class OrderController extends Controller
     )
     {
         return $deliveredToCancel->handle($id);
+    }
+
+    public function invoiceDownload(
+        int $id,
+        InvoiceDownload $invoiceDownload
+    )
+    {
+        return $invoiceDownload->handle($id);
     }
 }

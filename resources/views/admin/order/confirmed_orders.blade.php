@@ -38,7 +38,8 @@
                             </td>
                             <td>
                                 <a href="{{route('order-details',$item->id)}}" class="btn btn-primary" title="view details"><i class="fa fa-eye"></i></a>
-                                <a href="" class="btn btn-danger" title="delete"><i class="fa fa-trash"></i></a>
+                                <a target="_blank" href="{{ route('invoice-download',$item->id) }}" class="btn btn-danger" title="Order Invoice">
+                                    <i class="fa fa-download" style="color: white;"></i></a>
                             </td>
                         </tr>
                         @endforeach

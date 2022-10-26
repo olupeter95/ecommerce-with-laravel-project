@@ -20,6 +20,7 @@ Route::prefix('admin/order')->group(function () {
         Route::get('/pick/ship/{id}', [OrderController::class,'pickedToShipped'])->name('pick-ship');
         Route::get('/ship/deliver/{id}', [OrderController::class,'shippedToDeliver'])->name('ship-deliver');
         Route::get('/deliver/cancel/{id}', [OrderController::class,'deliveredToCancel'])->name('deliver-cancel');
+        Route::get('/invoice/download/{id}', [OrderController::class,'invoiceDownload'])->name('invoice-download');
     });
 });
 
