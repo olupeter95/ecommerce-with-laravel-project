@@ -29,7 +29,7 @@
                                     <label for="">Actions</label>
                                </td> 
                             </tr>
-                            @foreach($orders as $order)
+                            @forelse($orders as $order)
                             <tr>
                                <td>
                                     <label for="">{{$order->order_date}}</label>
@@ -47,6 +47,7 @@
                                 <label for="">
                                     <span class="badge badge-pill badge-warning" style="background: #418DB9;">
                                     {{ $order->status }} </span>
+                                   </span>
                                 </label>
                                </td> 
                                <td>
@@ -55,7 +56,9 @@
                                 <a target="_blank" href="{{ route('order-invoice',$order->id) }}" class="btn btn-sm btn-danger" style="margin-top:5px;"><i class="fa fa-download" style="color: white;"></i> Invoice </a>
                                </td> 
                             </tr>
-                            @endforeach
+                            @empty
+                            <h1 class="text-danger">Order Not Found</h1>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

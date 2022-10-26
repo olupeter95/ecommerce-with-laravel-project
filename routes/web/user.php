@@ -47,5 +47,8 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'productModalVie
 Route::get('/view/my-order', [UserOrderController::class, 'myOrders'])->name('my-orders')
 ->middleware('auth');
 Route::get('/all/order/details/{order_id}', [UserOrderController::class, 'orderDetails'])
-->name('order-details')->middleware('auth');
-Route::get('/order/invoice/{order_id}', [UserOrderController::class, 'OrderInvoice'])->name('order-invoice');
+->name('user-order-details')->middleware('auth');
+Route::get('/order/invoice/{order_id}', [UserOrderController::class, 'orderInvoice'])->name('order-invoice');
+Route::post('/return/order', [UserOrderController::class, 'returnOrder'])->name('return-order');
+Route::get('/view/return/order', [UserOrderController::class, 'viewReturnOrder'])->name('view-returned-orders');
+Route::get('/cancel/order', [UserOrderController::class, 'cancelOrders'])->name('cancel-orders');

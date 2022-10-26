@@ -47,6 +47,9 @@
                                 <label for="">
                                     <span class="badge badge-pill badge-warning" style="background: #418DB9;">
                                     {{ $order->status }} </span>
+                                    <span class="badge badge-pill badge-danger" style="background: #418DB9;">
+                                        Return Request 
+                                   </span>
                                 </label>
                                </td> 
                                <td>
