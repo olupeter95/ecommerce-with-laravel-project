@@ -15,7 +15,7 @@ class WishlistController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('addWishList');
+        $this->middleware('user')->except('addWishList');
     }
 
     /**

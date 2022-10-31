@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Features;
 use Illuminate\Routing\Pipeline;
 use Illuminate\Routing\Controller;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Responses\LoginResponse;
 use App\Http\Responses\LogoutResponse;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use App\Actions\Fortify\AttemptToAuthenticate;
 use Laravel\Fortify\Http\Requests\LoginRequest;
@@ -18,8 +21,7 @@ use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\View\Factory;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -124,7 +126,9 @@ class AdminController extends Controller
     {
         $id = Auth::id();
         $admin = Admin::find($id);
-        return view('admin.pages.index', compact('admin'));
+        $users = User::all();
+        $products = Product::all();
+        return view('admin.pages.index', compact('admin', 'users', 'products'));
     }
 
 }

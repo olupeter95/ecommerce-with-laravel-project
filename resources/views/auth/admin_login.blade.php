@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{asset('backend/images/favicon.ico')}}">
 
-    <title>Sunny Admin - Log in </title>
+    <title>Lacime Fashion Store Admin - Log in </title>
   
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{asset('backend/css/vendors_css.css')}}">
@@ -27,12 +27,12 @@
 				<div class="row justify-content-center no-gutters">
 					<div class="col-lg-4 col-md-5 col-12">
 						<div class="content-top-agile p-10">
-							<h2 class="text-white">Get started with Us</h2>
-							<p class="text-white-50">Sign in to start your session</p>							
+							<h2 class="text-white">Lacime Fashion Store</h2>
+							<p class="text-white-50">Admin Login</p>							
 						</div>
 						<div class="p-30 rounded30 box-shadowed b-2 b-dashed">
 							
-						<form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login')  }}">
+						<form method="POST" action="{{ isset($guard) ? url($guard.'/login/form') : route('login')  }}">
            				 @csrf
 								<div class="form-group">
 									<div class="input-group mb-3">

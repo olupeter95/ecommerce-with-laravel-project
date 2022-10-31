@@ -157,15 +157,22 @@ $route = Route::current()->getName();
             <li class="{{ ($route == 'all-reports') ? 'active':'' }}">
               <a href="{{  route('all-reports') }}"><i class="ti-more"></i>All Reports</a>
             </li>
-            <li class="{{ ($route == 'manage-district') ? 'active':'' }}">
-              <a href="{{  route('manage-district') }}"><i class="ti-more"></i>Ship District</a>
-            </li>
-            <li class="{{ ($route == 'manage-state') ? 'active':'' }}">
-              <a href="{{  route('manage-state') }}"><i class="ti-more"></i>Ship State</a>
-            </li>
           </ul>
         </li>
 		 
+        <li class="treeview {{ ($prefix == '/admin/user') ? 'active':'' }}">
+          <a href="#">
+            <i data-feather="user"></i> <span>User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'all-users') ? 'active':'' }}">
+              <a href="{{  route('all-users') }}"><i class="ti-more"></i>All Users</a>
+            </li>
+          </ul>
+        </li>
         
       </ul>
     </section>

@@ -6,7 +6,7 @@ use App\Http\Controllers\User\UserOrderController;
 
 Route::get('/', [IndexController::class,'index'])->name('home');
 Route::get('logout/user', [IndexController::class,'userLogout'])->name('user.logout');
-Route::get('profile/user', [IndexController::class,'userProfile'])->name('user.profile');
+Route::get('profile/user', [IndexController::class,'userProfile'])->name('user.profile')->middleware('user');
 Route::post('profile/user/update',
     [IndexController::class, 'userProfileUpdate'])
     ->name('user.profile.update');
