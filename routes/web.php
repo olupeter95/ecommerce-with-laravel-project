@@ -25,6 +25,7 @@ require_once 'web/wishlist.php';
 require_once 'web/coupon.php';
 require_once 'web/shipping.php';
 require_once 'web/order.php';
+require_once 'web/reports.php';
 
 
 
