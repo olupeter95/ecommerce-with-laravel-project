@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -65,6 +65,6 @@ class User extends Authenticatable
 
     public function onlineUser()
     {
-        return Cache::has('user-is-online', $this->id);
+        return Cache::has('user-is-online' . $this->id);
     }
 }

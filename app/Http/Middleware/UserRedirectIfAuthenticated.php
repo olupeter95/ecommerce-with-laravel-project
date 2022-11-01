@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Providers\RouteServiceProvider;
 
-class AdminRedirectIfAuthenticated
+class UserRedirectIfAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -23,10 +23,11 @@ class AdminRedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         if(Auth::check()){
-            $expiredTime = Carbon::now()->addSeonds(30);
-            Cache::put('user-is-online', Auth::user()->id, true, $expiredTime);
-            User::where('id', Auth::id())->update('last_seen', Carbon::now());
+            $expiredTime = Carbon::now()->addSeconds(60);
+            Cache::put('user-is-online' . Auth::user()->id, true, $expiredTime);
+            User::where('id', Auth::user()->id)->update(['last_seen' => Carbon::now()]);
         }
+
         if(Auth::check() && Auth::user())
         {
             return $next($request);

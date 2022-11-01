@@ -6,25 +6,15 @@ use App\Http\Controllers\User\UserOrderController;
 
 Route::get('/', [IndexController::class,'index'])->name('home');
 Route::get('logout/user', [IndexController::class,'userLogout'])->name('user.logout');
-Route::get('profile/user', [IndexController::class,'userProfile'])->name('user.profile')->middleware('user');
-Route::post('profile/user/update',
-    [IndexController::class, 'userProfileUpdate'])
+Route::middleware(['user'])->group(function () {
+    Route::get('/dashboard', [IndexController::class, 'home'])->name('dashboard');
+    Route::get('profile/user', [IndexController::class,'userProfile'])->name('user.profile');
+    Route::post('profile/user/update', [IndexController::class, 'userProfileUpdate'])
     ->name('user.profile.update');
-Route::get(
-    'change/user/pwd',
-    [IndexController::class, 'changePassword']
-)->name('change.user.password');
-
-Route::post(
-    'user/update/password',
-    [IndexController::class, 'updatePassword']
-)->name('user.password.update');
-
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
-])->group(function () {
-    Route::get(
-        '/dashboard',
-        [IndexController::class, 'home'])->name('dashboard');
+    Route::get('change/user/pwd', [IndexController::class, 'changePassword'])
+    ->name('change.user.password');
+    Route::post('user/update/password', [IndexController::class, 'updatePassword'])
+    ->name('user.password.update');
 });
 
 Route::get(
