@@ -242,7 +242,7 @@
                     <div class="row"><!---start eighth row --->
                         <div class="col-md-6">
                         <div class="form-group">
-                            <label for="category">Long Description En </label>
+                            <label for="category">Description En </label>
                             <textarea id="editor1" name="description_en" rows="10" cols="80" class="form-control">
                             {{$products->description_en}}
                             </textarea>
@@ -253,7 +253,7 @@
                         </div>
                         <div class="col-md-6">
                         <div class="form-group">
-                            <label for="category">Long Description Fr</label>
+                            <label for="category">Description Fr</label>
                             <textarea id="editor2" name="description_fr" class="form-control" rows="10" cols="80">
                             {{$products->description_fr}}
                             </textarea>
@@ -317,41 +317,36 @@
 <!-------Multiple Image Update area--------->
 <section class="content">
     <div class="row">
-
-
-
-<div class="col-md-12">
-  <div class="box bl-3 border-primary">
-    <div class="box-header">
-      <h4 class="box-title"> <strong>Product Multiple Image Update</strong></h4>
-    </div>
-
-    <form action="{{route('update.product-img')}}" enctype="multipart/form-data" method="post">
-        @csrf
-        <div class="row row-sm ">
-            @foreach($multiImg as $img)
-            <div class="col-md-3 p-4">
-            <div class="card" style="width: 18rem;">
-             <img src="{{ asset('storage/upload/product/image/'.$img->photo_name) }}" 
-                class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">
-                <a href="{{ route('product-del-multiimg',$img->id)}}" id="delete" title="Delete Data" class="btn btn-sm btn-danger">
-                <i class="fa fa-trash"></i></a>
-            </h5>
-            <p class="card-text">
-                <div class="form-group">
-                    <label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
-                    <input type="file" class="form-group" name="photo_name[{{$img->id}}]">
+        <div class="col-md-12">
+            <div class="box bl-3 border-primary">
+                <div class="box-header">
+                    <h4 class="box-title"> <strong>Product Multiple Image Update</strong></h4>
                 </div>
-            </p>
-           
-        </div>
-    </div>
-                
-            </div>
-            @endforeach
-        </div>
+
+                <form action="{{route('update.product-img')}}" enctype="multipart/form-data" method="post">
+                    @csrf
+                    <div class="row row-sm ">
+                    @foreach($multiImg as $img)
+                        <div class="col-md-3 p-4">
+                            <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('storage/upload/product/image/'.$img->photo_name) }}" 
+                            class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ route('product-del-multiimg',$img->id)}}" id="delete" title="Delete Data" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i></a>
+                                </h5>
+                                <p class="card-text">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Change Image <span class="tx-danger">*</span></label>
+                                        <input type="file" class="form-group" name="photo_name[{{$img->id}}]">
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
         <div class="text-xs-right px-2">
             <input type="submit" class="btn btn-primary" value="Update Image">
         </div>

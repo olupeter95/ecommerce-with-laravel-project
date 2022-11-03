@@ -3,6 +3,7 @@
 namespace App\Actions\Admin\Product;
 
 use App\Models\Admin;
+use App\Models\MultiImage;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,9 @@ class ProductDetails
     {
         $aid = Auth::id();
         $admin = Admin::find($aid);
-        $prods = Product::findorFail($id);
-        return view('admin.product.product-details',compact('admin','prods'));
+        $prod = Product::with('brand', 'category', 'subcategory', 'subsubcategory', 'multiimage')
+        ->where('id', $id)->first();
+        $multiImg = MultiImage::where('product_id', $id)->get();
+        return view('admin.product.product-details',compact('admin', 'prod', 'multiImg'));
     }
 }

@@ -55,7 +55,7 @@
 												foreach($users as $user)
 												{
 													if(!$user->onlineUser()){
-														$active[] = $user;
+														$inactive[] = $user;
 													}
 												}
 											@endphp

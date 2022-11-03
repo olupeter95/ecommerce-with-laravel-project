@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Product extends Model
 {
@@ -25,4 +27,28 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
+    }
+
+    public function subsubcategory()
+    {
+        return $this->belongsTo(SubSubCategory::class, 'subsubcategory_id', 'id');
+    }
+    
+    public function shortDescEn(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => strip_tags($value)
+        );
+    }
+
+    public function descriptionEn(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => strip_tags($value)
+        );
+    }
+    
 }

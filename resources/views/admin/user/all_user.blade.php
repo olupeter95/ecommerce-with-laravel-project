@@ -32,7 +32,7 @@
                                 url('storage/upload/no_image.jpg')  }}" alt="no avatar" style="width:60px;height:60px"></td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->email}}</td>
+                            <td>{{$user->phone}}</td>
                             <td>
                                 @if($user->onlineUser())
                                 <span class="badge badge-pill badge-success">Active Now</span>
