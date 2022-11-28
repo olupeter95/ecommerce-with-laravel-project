@@ -18,6 +18,7 @@ use App\Actions\Frontend\Product\ProdSubCategory;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Actions\Frontend\Product\ModalViewProduct;
 use App\Actions\Frontend\Product\ProdSubSubCategory;
+use App\Actions\Frontend\User\SearchCategoryProduct;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Routing\Redirector;
@@ -195,5 +196,13 @@ class IndexController extends Controller
     ): View|Factory
     {
        return $prodSubSubCategory->handle($id, $slug);
+    }
+
+    public function searchProduct(
+        int $id,
+        SearchCategoryProduct $searchCategoryProduct
+    )
+    {
+        return $searchCategoryProduct->handle($id);
     }
 }

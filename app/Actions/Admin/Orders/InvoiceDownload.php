@@ -19,6 +19,7 @@ class InvoiceDownload
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
         ]);
+        //dd($pdf);
         return $pdf->download('invoice.pdf');
     }
 }

@@ -55,14 +55,6 @@
                     <th> SubSubCategory Name : </th>
                     <th> {{ $prod->subsubcategory->subsubcategory_name_en }} </th>
                     </tr>
-
-                    <tr>
-                    <th> Product Code : </th>
-                    <th>{{ $prod->product_code }} </th>
-                    </tr>
-
-                   
-
                 </table>
             
         </div>
@@ -91,6 +83,10 @@
                         <th> {{ $prod->product_color_en }} </th>
                     </tr>
                     <tr>
+                    <th> Product Code : </th>
+                    <th>{{ $prod->product_code }} </th>
+                    </tr>
+                    <tr>
                         <th> Product price : </th>
                         <th>
                             @if($prod->discount_price == null)
@@ -109,7 +105,7 @@
     </div>
     <div class="col-md-12 col-12">
         <div class="row">
-            <div class="col-md-6 col-12">
+            <div class="col-md-12 col-12">
                 <div class="box">
                     <div class="box-header with-border">
                         <h4 class="box-title box-title-bold">Short Description</h4>
@@ -119,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-12 col-12">
                 <div class="box">
                     <div class="box-header with-border">
                         <h4 class="box-title box-title-bold">Description</h4>

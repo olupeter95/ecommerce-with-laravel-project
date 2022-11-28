@@ -88,13 +88,22 @@
           <form>
             <div class="control-group">
               <ul class="categories-filter animate-dropdown">
-                <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+                <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="">Categories <b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" >
-                    <li class="menu-header">Computer</li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
+                  @php
+                  $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
+                  @endphp
+                  @foreach($categories as $cat)
+                    <li role="presentation">
+                      <a role="menuitem" tabindex="-1" href="{{route('search-product-by-category',[$cat->])}}">
+                        @if(session()->get('language')=='french')
+                          {{$cat->category_name_fr}}
+                        @else
+                          {{$cat->category_name_en}}
+                        @endif
+                      </a>
+                    </li>
+                  @endforeach
                   </ul>
                 </li>
               </ul>
@@ -170,11 +179,11 @@
               @foreach($categories as $cat)
               <li class="dropdown yamm mega-menu"> 
               <a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
-             @if(session()->get('language')=='french')
-              {{$cat->category_name_fr}}
-            @else
-            {{$cat->category_name_en}}
-            @endif
+              @if(session()->get('language')=='french')
+                {{$cat->category_name_fr}}
+              @else
+               {{$cat->category_name_en}}
+              @endif
               </a>
                 <ul class="dropdown-menu container">
                   <li>

@@ -19,19 +19,28 @@ Route::middleware(['user'])->group(function () {
 
 Route::get(
     '/product/detail/{id}',
-    [IndexController::class, 'prodDetails'])->name('product-details');
+    [IndexController::class, 'prodDetails']
+)->name('product-details');
 
 Route::get(
     '/product/tags/{tags}',
-    [IndexController::class, 'prodTags'])->name('product-tags');
+    [IndexController::class, 'prodTags']
+)->name('product-tags');
 
 Route::get(
     '/product/subcat/{id}/{slug}',
-    [IndexController::class, 'prodSubcat'])->name('subcat-product');
+    [IndexController::class, 'prodSubcat']
+)->name('subcat-product');
 
 Route::get(
     '/product/subsubcat/{id}/{slug}',
-    [IndexController::class, 'prodSubSubcat'])->name('subsubcat-product');
+    [IndexController::class, 'prodSubSubcat']
+)->name('subsubcat-product');
+
+Route::get(
+    '/search/product/{id}',
+    [IndexController::class,'searchProduct']
+)->name('search-product-by-category');
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productModalView']);
 Route::get('/view/my-order', [UserOrderController::class, 'myOrders'])->name('my-orders')
