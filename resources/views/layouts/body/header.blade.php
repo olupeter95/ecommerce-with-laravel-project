@@ -85,32 +85,34 @@
         <!-- /.contact-row --> 
         <!-- ============================================================= SEARCH AREA ============================================================= -->
         <div class="search-area">
-          <form>
-            <div class="control-group">
-              <ul class="categories-filter animate-dropdown">
-                <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="">Categories <b class="caret"></b></a>
-                  <ul class="dropdown-menu" role="menu" >
-                  @php
-                  $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
-                  @endphp
-                  @foreach($categories as $cat)
-                    <li role="presentation">
-                      <a role="menuitem" tabindex="-1" href="{{route('search-product-by-category',[$cat->])}}">
-                        @if(session()->get('language')=='french')
-                          {{$cat->category_name_fr}}
+            <form method="post" action="{{ route('product.search') }}">
+              @csrf
+              <div class="control-group">
+                <ul class="categories-filter animate-dropdown">
+                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="#">Categories <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" >
+                      @php
+                       $categories = App\Models\Category::all();
+                      @endphp
+                      @foreach($categories as $cat)
+                      <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="category.html">
+                        @if(session()->get('language') == 'french')
+                        - {{ $cat->category_name_fr }}
                         @else
-                          {{$cat->category_name_en}}
+                        - {{ $cat->category_name_en }}
                         @endif
-                      </a>
-                    </li>
-                  @endforeach
-                  </ul>
-                </li>
-              </ul>
-              <input class="search-field" placeholder="Search here..." />
-              <a class="search-button" href="#" ></a> </div>
-          </form>
-        </div>
+                        </a>
+                      </li>
+                      @endforeach
+                    </ul>
+                  </li>
+                </ul>
+                <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()" id="search" name="search" placeholder="Search here..." />
+                <button class="search-button" type="submit"></button> </div>
+            </form>
+            <div id="searchProducts"></div>
+          </div>
         <!-- /.search-area --> 
         <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
       <!-- /.top-search-holder -->
@@ -253,3 +255,28 @@
 <!-- ============================================== NAVBAR : END ============================================== --> 
 
 </header>
+<style>
+.search-area{
+  position: relative;
+}
+  #searchProducts {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 999;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+</style>
+
+
+<script>
+  function search_result_hide(){
+    $("#searchProducts").slideUp();
+  }
+   function search_result_show(){
+      $("#searchProducts").slideDown();
+  }
+</script>

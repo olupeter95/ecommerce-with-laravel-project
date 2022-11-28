@@ -246,7 +246,7 @@ Product Tags
             <div class="tab-pane active " id="grid-container">
               <div class="category-product">
                 <div class="row">
-                @foreach($products as $prod)
+                @forelse($products as $prod)
                   <div class="col-sm-6 col-md-4 wow fadeInUp">
                     <div class="products">
                       <div class="product">
@@ -314,7 +314,9 @@ Product Tags
                     <!-- /.products --> 
                   </div>
                   <!-- /.item -->
-                  @endforeach
+                  @empty
+                  <span class="text-danger">No Product Found</span>
+                  @endforelse
                 </div>
                 <!-- /.row --> 
               </div>
@@ -326,7 +328,7 @@ Product Tags
 
             <div class="tab-pane "  id="list-container">
               <div class="category-product">
-              @foreach($products as $prod)
+              @forelse($products as $prod)
                 <div class="category-product-inner wow fadeInUp">
                   <div class="products">
                     <div class="product-list product">
@@ -405,7 +407,9 @@ Product Tags
                   <!-- /.products --> 
                 </div>
                 <!-- /.category-product-inner -->
-               @endforeach
+                @empty
+                <span class="text-danger">No Product Found</span>
+               @endforelse
                 
               </div>
               <!-- /.category-product --> 

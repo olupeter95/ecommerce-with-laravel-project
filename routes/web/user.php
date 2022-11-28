@@ -37,10 +37,10 @@ Route::get(
     [IndexController::class, 'prodSubSubcat']
 )->name('subsubcat-product');
 
-Route::get(
-    '/search/product/{id}',
+Route::post(
+    '/search/product',
     [IndexController::class,'searchProduct']
-)->name('search-product-by-category');
+)->name('product.search');
 
 Route::get('/product/view/modal/{id}', [IndexController::class, 'productModalView']);
 Route::get('/view/my-order', [UserOrderController::class, 'myOrders'])->name('my-orders')

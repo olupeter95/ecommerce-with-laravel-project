@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Actions\Frontend\HomeView;
+use Illuminate\Routing\Redirector;
+use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory;
 use App\Actions\Frontend\User\ViewUser;
 use App\Actions\Frontend\User\UpdateUser;
 use App\Actions\Frontend\User\UserLogout;
@@ -19,11 +25,6 @@ use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Actions\Frontend\Product\ModalViewProduct;
 use App\Actions\Frontend\Product\ProdSubSubCategory;
 use App\Actions\Frontend\User\SearchCategoryProduct;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Routing\Redirector;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\JsonResponse;
 
 class IndexController extends Controller
 {
@@ -199,10 +200,10 @@ class IndexController extends Controller
     }
 
     public function searchProduct(
-        int $id,
+        Request $request,
         SearchCategoryProduct $searchCategoryProduct
     )
     {
-        return $searchCategoryProduct->handle($id);
+        return $searchCategoryProduct->handle($request);
     }
 }
