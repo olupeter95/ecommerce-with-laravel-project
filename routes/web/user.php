@@ -51,3 +51,4 @@ Route::get('/order/invoice/{order_id}', [UserOrderController::class, 'orderInvoi
 Route::post('/return/order', [UserOrderController::class, 'returnOrder'])->name('return-order');
 Route::get('/view/return/order', [UserOrderController::class, 'viewReturnOrder'])->name('view-returned-orders');
 Route::get('/cancel/order', [UserOrderController::class, 'cancelOrders'])->name('cancel-orders');
+Route::get('product/categoryview/{id}', [IndexController::class, 'prodCatView'])->name('category.prodview');

@@ -96,7 +96,7 @@
                       @endphp
                       @foreach($categories as $cat)
                       <li role="presentation">
-                        <a role="menuitem" tabindex="-1" href="category.html">
+                        <a role="menuitem" tabindex="-1" href="{{ route('category.prodview',$cat->id) }}">
                         @if(session()->get('language') == 'french')
                         - {{ $cat->category_name_fr }}
                         @else

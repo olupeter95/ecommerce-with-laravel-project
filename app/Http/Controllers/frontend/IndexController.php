@@ -23,6 +23,7 @@ use App\Actions\Frontend\Product\ProductDetails;
 use App\Actions\Frontend\Product\ProdSubCategory;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Actions\Frontend\Product\ModalViewProduct;
+use App\Actions\Frontend\Product\ProdCategoryView;
 use App\Actions\Frontend\Product\ProdSubSubCategory;
 use App\Actions\Frontend\User\SearchCategoryProduct;
 
@@ -205,5 +206,13 @@ class IndexController extends Controller
     )
     {
         return $searchCategoryProduct->handle($request);
+    }
+
+    public function prodCatView(
+        int $id,
+        ProdCategoryView $prodCategoryView
+    )
+    {
+        return $prodCategoryView->handle($id);
     }
 }
