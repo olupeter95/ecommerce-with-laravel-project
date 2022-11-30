@@ -26,6 +26,7 @@ require_once 'web/coupon.php';
 require_once 'web/shipping.php';
 require_once 'web/order.php';
 require_once 'web/reports.php';
+require_once 'web/blog.php';
 
 
 
