@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                         @php
-                         $1 = 1;
+                         $i = 1;
                         @endphp
                         @foreach($categories as $cat)
                         <tr>
