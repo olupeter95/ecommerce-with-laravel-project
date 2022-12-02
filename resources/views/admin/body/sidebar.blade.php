@@ -185,6 +185,9 @@ $route = Route::current()->getName();
             <li class="{{ ($route == 'blog.category') ? 'active':'' }}">
               <a href="{{  route('blog.category') }}"><i class="ti-more"></i>Blog Categories</a>
             </li>
+            <li class="{{ ($route == 'all.blog') ? 'active':'' }}">
+              <a href="{{  route('all.blog') }}"><i class="ti-more"></i>All Blog</a>
+            </li>
           </ul>
         </li>
 
