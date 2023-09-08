@@ -47,7 +47,7 @@
 		  	</label>
 		  	<a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
 		</div>
-	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+	  	<button class="btn-upper btn btn-primary checkout-page-button">Login</button>
 	</form>					
 </div>
 <!-- Sign-in -->
