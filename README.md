@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## eCommerce Website with Laravel
 Welcome to the eCommerce website project built using Laravel. This web application provides a platform for online shopping and includes several key features to enhance the shopping experience.
 
@@ -28,35 +27,35 @@ Manage shipping options and provide users with choices during checkout.
 Track and update order status to keep customers informed.
 ## Installation and Setup
 =======
-##eCommerce Website with Laravel
+## eCommerce Website with Laravel
 Welcome to the eCommerce website project built using Laravel. This web application provides a platform for online shopping and includes several key features to enhance the shopping experience.
 
-##Features
-##Multi Authentication
+## Features
+## Multi Authentication
 Admin Authentication: Use the admin panel to manage the website, products, and orders.
 User Authentication: Allow customers to create accounts, manage their profiles, and place orders.
-##Admin Dashboard
+## Admin Dashboard
 Access an intuitive dashboard for easy management of products, orders, and coupons.
 Admins have full control over the website's content and functionality.
-##User Dashboard
+## User Dashboard
 Users can view and update their profiles, including shipping information.
-##Track order history and status from the user dashboard.
-##Coupon Management System
+## Track order history and status from the user dashboard.
+## Coupon Management System
 Admins can create, edit, and manage coupon codes to offer discounts to customers during checkout.
-##Shopping Cart
+## Shopping Cart
 Users can add products to their shopping cart, edit quantities, and remove items.
 The cart displays the total price and allows for easy checkout.
-##Stripe Payment Integration
+## Stripe Payment Integration
 Securely accept payments using the Stripe payment gateway.
 Customers can make payments using credit/debit cards.
-##Order System
+## Order System
 Customers can place orders, view order details, and receive order confirmation emails.
 Admins can manage and process orders from the admin dashboard.
-##Shipping System
+## Shipping System
 Manage shipping options and provide users with choices during checkout.
 Track and update order status to keep customers informed.
-##Installation and Setup
->>>>>>> 7458fa3727ae8886a2960ef9e577bd7402b29b0a
+## Installation and Setup
+
 To run this eCommerce website on your local development environment, follow these steps:
 1. Clone the repository
 2. Navigate to the project directory
@@ -75,9 +74,8 @@ Access the admin panel at http://localhost:8000/admin to manage products, orders
 ## User Dashboard
 Users can register or log in to their accounts to shop and manage their profiles.
 =======
-##Usage
-##Admin Panel
+## Usage
+## Admin Panel
 Access the admin panel at http://localhost:8000/admin to manage products, orders, and coupons. Use the admin credentials to log in.
-##User Dashboard
+## User Dashboard
 Users can register or log in to their accounts to shop and manage their profiles.
->>>>>>> 7458fa3727ae8886a2960ef9e577bd7402b29b0a
